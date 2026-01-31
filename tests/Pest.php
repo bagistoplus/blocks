@@ -1,0 +1,5 @@
+<?php
+
+use BagistoPlus\BasicBlocks\Tests\TestCase;
+
+uses(TestCase::class)->in(__DIR__);

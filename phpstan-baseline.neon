@@ -1,0 +1,12 @@
+parameters:
+    ignoreErrors:
+        -
+            message: '#Call to method resolve\(\) on an unknown class Webkul\\Shop\\Http\\Resources\\ProductResource#'
+            paths:
+                - src/Blocks/Product/ProductImage.php
+                - src/Blocks/Product/ProductLabels.php
+        -
+            message: '#Instantiated class Webkul\\Shop\\Http\\Resources\\ProductResource not found#'
+            paths:
+                - src/Blocks/Product/ProductImage.php
+                - src/Blocks/Product/ProductLabels.php
