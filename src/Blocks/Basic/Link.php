@@ -16,6 +16,11 @@ class Link extends Text
 
     protected static string $category = 'Basic';
 
+    public static function description(): string
+    {
+        return _t('blocks.link.description');
+    }
+
     public static function settings(): array
     {
         return array_merge(

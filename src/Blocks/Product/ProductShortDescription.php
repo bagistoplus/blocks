@@ -17,6 +17,11 @@ class ProductShortDescription extends Text
 
     protected static string $category = 'Product';
 
+    public static function description(): string
+    {
+        return _t('blocks.product-short-description.description');
+    }
+
     public static function settings(): array
     {
         return array_merge(

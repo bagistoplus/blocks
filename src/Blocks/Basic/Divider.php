@@ -19,6 +19,11 @@ class Divider extends SimpleBlock
 
     protected static string $category = 'Basic';
 
+    public static function description(): string
+    {
+        return _t('blocks.divider.description');
+    }
+
     public static function settings(): array
     {
         return [

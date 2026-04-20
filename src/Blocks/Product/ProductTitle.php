@@ -19,6 +19,11 @@ class ProductTitle extends Heading
 
     protected static string $category = 'Product';
 
+    public static function description(): string
+    {
+        return _t('blocks.product-title.description');
+    }
+
     public static function settings(): array
     {
         // Get parent settings and filter out the 'text' setting

@@ -18,6 +18,11 @@ class CategoryName extends Text
 
     protected static string $category = 'Category';
 
+    public static function description(): string
+    {
+        return _t('blocks.category-name.description');
+    }
+
     public static function settings(): array
     {
         return array_merge(

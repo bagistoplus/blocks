@@ -16,6 +16,11 @@ class Heading extends Text
 
     protected static string $category = 'Basic';
 
+    public static function description(): string
+    {
+        return _t('blocks.heading.description');
+    }
+
     public static function settings(): array
     {
         return array_merge(
