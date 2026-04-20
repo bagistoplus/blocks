@@ -14,17 +14,8 @@ return [
         'margin_label' => 'Margin',
     ],
 
-    'product' => [
-        'settings' => [
-            'product_info' => 'Select a product to display',
-        ],
-    ],
-
-    'product-card-group' => [
-        'name' => 'Product Card Group',
-    ],
-
     'divider' => [
+        'description' => 'A horizontal line to separate content',
         'settings' => [
             'thickness_label' => 'Thickness',
             'thickness_info' => 'Set the thickness of the divider line',
@@ -49,35 +40,14 @@ return [
     ],
 
     'richtext' => [
+        'description' => 'Rich text content with formatting',
         'settings' => [
             'content_label' => 'Content',
-
-            'layout_header' => 'Layout',
-
-            'width_label' => 'Width',
-            'width_options' => [
-                'fit' => 'Fit Content',
-                'fill' => 'Fill',
-            ],
-
-            'max_width_label' => 'Max Width',
-            'max_width_options' => [
-                'narrow' => 'Narrow (Prose)',
-                'normal' => 'Normal',
-                'wide' => 'Wide',
-                'none' => 'None',
-            ],
-
-            'alignment_label' => 'Alignment',
-            'alignment_options' => [
-                'left' => 'Left',
-                'center' => 'Center',
-                'right' => 'Right',
-            ],
         ],
     ],
 
     'text' => [
+        'description' => 'Plain text with typography and color options',
         'settings' => [
             'text_label' => 'Text Content',
 
@@ -142,6 +112,7 @@ return [
     ],
 
     'icon' => [
+        'description' => 'Display an icon with customizable size and color',
         'settings' => [
             'icon_label' => 'Icon',
 
@@ -164,78 +135,8 @@ return [
         ],
     ],
 
-    'button' => [
-        'settings' => [
-            'label_label' => 'Button Label',
-            'label_default' => 'Button',
-
-            'link_label' => 'Link URL',
-
-            'open_in_new_tab_label' => 'Open in New Tab',
-
-            'style_class_label' => 'Button Style',
-            'style_class_options' => [
-                'button' => 'Solid',
-                'outline' => 'Outline',
-                'link' => 'Link',
-            ],
-
-            'size_label' => 'Size',
-            'size_options' => [
-                'sm' => 'Small',
-                'md' => 'Medium',
-                'lg' => 'Large',
-                'xl' => 'Extra Large',
-            ],
-
-            'color_label' => 'Color',
-            'color_options' => [
-                'primary' => 'Primary',
-                'secondary' => 'Secondary',
-                'success' => 'Success',
-                'danger' => 'Danger',
-                'warning' => 'Warning',
-                'info' => 'Info',
-            ],
-
-            'icon_label' => 'Icon',
-            'icon_info' => 'Add an icon to the button',
-
-            'circle_label' => 'Circle Button',
-            'circle_info' => 'Make the button circular (icon-only)',
-
-            'square_label' => 'Square Button',
-            'square_info' => 'Make the button square (icon-only)',
-
-            'block_label' => 'Full Width',
-            'block_info' => 'Make the button span the full width of its parent',
-
-            'width_label' => 'Width (Desktop)',
-            'width_options' => [
-                'fit_content' => 'Fit Content',
-                'custom' => 'Custom',
-            ],
-
-            'custom_width_label' => 'Custom Width',
-
-            'width_mobile_label' => 'Width (Mobile)',
-            'width_mobile_options' => [
-                'fit_content' => 'Fit Content',
-                'custom' => 'Custom',
-            ],
-
-            'custom_width_mobile_label' => 'Custom Mobile Width',
-        ],
-
-        'presets' => [
-            'button' => [
-                'name' => 'Button',
-                'category' => 'Actions',
-            ],
-        ],
-    ],
-
     'link' => [
+        'description' => 'A clickable link with typography options',
         'settings' => [
             'text_label' => 'Link Text',
             'url_label' => 'URL',
@@ -265,41 +166,14 @@ return [
     ],
 
     'heading' => [
+        'description' => 'A heading text with configurable level',
         'text_label' => 'Heading Text',
         'default_text' => 'Welcome to our store',
         'heading_level_label' => 'Heading Level',
     ],
 
-    'category' => [
-        'settings' => [
-            'category_label' => 'Category',
-        ],
-    ],
-
-    'category-card' => [
-        'settings' => [
-            'category_label' => 'Category',
-        ],
-        'presets' => [
-            'overlay' => [
-                'name' => 'Category Card with Overlay',
-            ],
-            'vertical_overlay' => [
-                'name' => 'Vertical with Overlay',
-                'category' => 'Category',
-            ],
-            'vertical_below' => [
-                'name' => 'Vertical with Name Below',
-                'category' => 'Category',
-            ],
-            'simple_hover' => [
-                'name' => 'Simple Hover',
-                'category' => 'Category',
-            ],
-        ],
-    ],
-
     'category-image' => [
+        'description' => 'Display a category banner or logo image',
         'settings' => [
             'category_label' => 'Category',
             'image_source_label' => 'Image Source',
@@ -324,6 +198,7 @@ return [
     ],
 
     'category-name' => [
+        'description' => 'Display the category name',
         'settings' => [
             'category_label' => 'Category',
             'tag_label' => 'HTML Tag',
@@ -337,120 +212,8 @@ return [
         ],
     ],
 
-    'feature' => [
-        'icon_label' => 'Icon',
-        'title_label' => 'Title',
-        'text_label' => 'Description',
-    ],
-
-    'featured-product' => [
-        'product_label' => 'Product',
-        'product_info' => 'Select a product to display',
-    ],
-
-    'footer-group' => [
-        'title_label' => 'Group Name',
-        'title_default' => 'Links Group',
-    ],
-
-    'footer-link' => [
-        'text_label' => 'Link Text',
-        'text_default' => 'Link',
-        'link_label' => 'Link URL',
-    ],
-
-    'collage-image' => [
-        'image_label' => 'Image',
-    ],
-
-    'collage-product' => [
-        'product_label' => 'Product',
-    ],
-
-    'collage-category' => [
-        'category_label' => 'Select Category',
-    ],
-
-    'collage-custom' => [
-        'image_label' => 'Image',
-        'title_label' => 'Title',
-        'text_label' => 'Description',
-        'link_label' => 'Link URL',
-        'link_text_label' => 'Link Text',
-    ],
-
-    'text-with-image-button' => [
-        'text_label' => 'Button Text',
-        'url_label' => 'Button URL',
-        'text_default' => 'Button Text',
-        'variant_label' => 'Button Variant',
-        'variant_primary' => 'Primary',
-        'variant_secondary' => 'Secondary',
-        'variant_accent' => 'Accent',
-        'variant_neutral' => 'Neutral',
-        'style_label' => 'Button Style',
-        'style_solid' => 'Solid',
-        'style_soft' => 'Soft',
-        'style_outline' => 'Outline',
-        'style_ghost' => 'Ghost',
-    ],
-
-    'accordion' => [
-        'settings' => [
-            'icon_label' => 'Icon Style',
-            'icon_options' => [
-                'caret' => 'Caret',
-                'plus' => 'Plus',
-            ],
-
-            'dividers_label' => 'Show Dividers',
-
-            'typography_label' => 'Typography',
-            'typography_info' => 'Select typography style',
-
-            'inherit_color_scheme_label' => 'Inherit Color Scheme',
-            'color_scheme_label' => 'Color Scheme',
-
-            'borders_header' => 'Borders',
-
-            'border_label' => 'Border Style',
-            'border_options' => [
-                'none' => 'None',
-                'solid' => 'Solid',
-            ],
-
-            'border_width_label' => 'Border Thickness',
-            'border_opacity_label' => 'Border Opacity',
-            'border_radius_label' => 'Border Radius',
-        ],
-
-        'presets' => [
-            'accordion' => [
-                'name' => 'Accordion',
-                'category' => 'Layout',
-            ],
-        ],
-    ],
-
-    'accordion-row' => [
-        'settings' => [
-            'heading_label' => 'Heading',
-            'open_by_default_label' => 'Open by Default',
-
-            'icon_header' => 'Icon',
-
-            'icon_label' => 'Icon',
-            'width_label' => 'Icon Width',
-        ],
-
-        'presets' => [
-            'accordion_row' => [
-                'name' => 'Accordion Row',
-            ],
-        ],
-    ],
-
     'image' => [
+        'description' => 'An image with sizing, borders, and hover effects',
         'settings' => [
             'image_label' => 'Image',
             'link_label' => 'Link',
@@ -529,6 +292,7 @@ return [
                 'xl' => 'Extra Large',
                 '2xl' => '2X Large',
                 '3xl' => '3X Large',
+                '4xl' => '4X Large',
                 'full' => 'Full',
             ],
         ],
@@ -541,123 +305,8 @@ return [
         ],
     ],
 
-    'group' => [
-        'settings' => [
-            'layout_header' => 'Layout',
-
-            'content_direction_label' => 'Direction',
-            'content_direction_options' => [
-                'row' => 'Row',
-                'column' => 'Column',
-            ],
-
-            'alignment_label' => 'Alignment',
-            'alignment_options' => [
-                'start' => 'Start',
-                'center' => 'Center',
-                'end' => 'End',
-            ],
-
-            'gap_label' => 'Gap',
-
-            'size_header' => 'Size',
-
-            'width_label' => 'Width',
-            'width_options' => [
-                'auto' => 'Auto',
-                'full' => 'Full',
-            ],
-
-            'height_label' => 'Height',
-            'height_options' => [
-                'auto' => 'Auto',
-                'full' => 'Full',
-            ],
-        ],
-
-        'presets' => [
-            'empty_group' => [
-                'name' => 'Empty Group',
-                'category' => 'Layout',
-            ],
-            'two_columns' => [
-                'name' => 'Two Columns',
-                'category' => 'Layout',
-            ],
-        ],
-    ],
-
-    'product-media-gallery' => [
-        'settings' => [
-            'presentation_header' => 'Presentation',
-
-            'media_presentation_label' => 'Media Presentation',
-            'media_presentation_options' => [
-                'carousel' => 'Carousel',
-                'grid' => 'Grid',
-            ],
-            'media_presentation_info' => 'Choose how to display product images and videos',
-
-            'grid_columns_label' => 'Grid Columns',
-            'grid_columns_info' => 'Number of columns when using grid presentation',
-
-            'image_gap_label' => 'Image Gap',
-            'image_gap_info' => 'Space between images in grid view',
-
-            'image_settings_header' => 'Image Settings',
-
-            'aspect_ratio_label' => 'Aspect Ratio',
-            'aspect_ratio_options' => [
-                'adapt' => 'Adapt to image',
-                'square' => 'Square (1:1)',
-                'portrait' => 'Portrait (2:3)',
-                'landscape' => 'Landscape (3:2)',
-            ],
-
-            'constrain_to_viewport_label' => 'Constrain to Viewport',
-            'constrain_to_viewport_info' => 'Prevent images from exceeding screen height',
-
-            'media_fit_label' => 'Media Fit',
-            'media_fit_options' => [
-                'contain' => 'Contain',
-                'cover' => 'Cover',
-            ],
-
-            'media_radius_label' => 'Media Corner Radius',
-
-            'zoom_label' => 'Enable Zoom',
-            'zoom_info' => 'Allow users to zoom into product images',
-
-            'layout_header' => 'Layout',
-
-            'sticky_label' => 'Sticky',
-            'sticky_info' => 'Keep media gallery visible while scrolling',
-        ],
-    ],
-
-    'product-details' => [
-        'settings' => [
-            'layout_header' => 'Layout',
-            'gap_label' => 'Gap',
-            'gap_info' => 'Space between child blocks',
-
-            'sticky_label' => 'Sticky',
-            'sticky_info' => 'Keep product details visible while scrolling',
-        ],
-    ],
-
-    'product-title' => [
-        'name' => 'Product Title',
-        'settings' => [
-            'tag_label' => 'Heading Tag',
-            'size_label' => 'Title Size',
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
-    ],
-
     'product-image' => [
+        'description' => 'Display the product image',
         'settings' => [
             'size_label' => 'Image Size',
             'size_options' => [
@@ -693,98 +342,8 @@ return [
         ],
     ],
 
-    'product-price' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
-    ],
-
-    'product-rating' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
-    ],
-
-    'product-short-description' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
-    ],
-
-    'product-quantity-selector' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
-    ],
-
-    'product-buy-buttons' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-            'enable_buy_now_label' => 'Enable Buy Now Button',
-            'enable_buy_now_info' => 'Show a separate "Buy Now" button for quick checkout',
-        ],
-    ],
-
-    'product-button' => [
-        'settings' => [
-            'action_label' => 'Action',
-            'action_options' => [
-                'cart' => 'Add to Cart',
-                'wishlist' => 'Add to Wishlist',
-                'compare' => 'Add to Compare',
-            ],
-            'variant_label' => 'Variant',
-            'variant_options' => [
-                'solid' => 'Solid',
-                'outline' => 'Outline',
-                'soft' => 'Soft',
-                'link' => 'Link',
-            ],
-            'size_label' => 'Size',
-            'size_options' => [
-                'sm' => 'Small',
-                'md' => 'Medium',
-                'lg' => 'Large',
-                'xl' => 'Extra Large',
-            ],
-            'color_label' => 'Color',
-            'color_options' => [
-                'primary' => 'Primary',
-                'secondary' => 'Secondary',
-                'success' => 'Success',
-                'danger' => 'Danger',
-                'warning' => 'Warning',
-                'info' => 'Info',
-            ],
-            'icon_label' => 'Icon',
-            'icon_info' => 'Optional icon to display in the button',
-            'circle_label' => 'Circle Button',
-            'circle_info' => 'Make the button circular (icon only)',
-            'square_label' => 'Square Button',
-            'square_info' => 'Make the button square (icon only)',
-            'block_label' => 'Full Width',
-            'block_info' => 'Make the button span the full width of its parent',
-        ],
-        'placeholder' => [
-            'cart' => 'Add to Cart',
-            'wishlist' => 'Add to Wishlist',
-            'compare' => 'Add to Compare',
-        ],
-        'wishlist_disabled' => 'Wishlist disabled',
-        'compare_disabled' => 'Compare disabled',
-    ],
-
     'product-labels' => [
+        'description' => 'Display product sale and new badges',
         'settings' => [
             'layout_label' => 'Layout',
             'layout_options' => [
@@ -823,139 +382,17 @@ return [
         'placeholder' => 'No labels available',
     ],
 
-    'product-card' => [
-        'presets' => [
-            'vertical' => [
-                'name' => 'Vertical Card',
-                'category' => 'Product Cards',
-            ],
-            'horizontal' => [
-                'name' => 'Horizontal Card',
-                'category' => 'Product Cards',
-            ],
-            'overlay' => [
-                'name' => 'Card with Hover Overlay',
-                'category' => 'Product Cards',
-            ],
-        ],
+    'product-title' => [
+        'name' => 'Product Title',
+        'description' => 'Display the product title',
     ],
 
     'product-description' => [
-        'settings' => [
-            'show_in_panel_label' => 'Show in Accordion Panel',
-            'should_open_panel_label' => 'Open Panel by Default',
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
+        'description' => 'Display the full product description',
     ],
 
-    'product-variant-picker' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
-    ],
-
-    'product-grouped-options' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
-    ],
-
-    'product-bundle-options' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
-    ],
-
-    'product-downloadable-options' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
-    ],
-
-    'product-customizable-options' => [
-        'name' => 'Product Customizable Options',
-        'description' => 'Display customizable product options with price adjustments',
-    ],
-
-    'logo' => [
-        'name' => 'Logo',
-        'description' => 'Site logo or name',
-        'settings' => [
-            'logo_text_label' => 'Logo Text',
-            'logo_text_placeholder' => 'Displayed when no logo image is set',
-            'logo_text_info' => 'Logo images are configured in theme settings under "Logo & Favicon"',
-        ],
-    ],
-
-    'header-nav' => [
-        'name' => 'Navigation',
-        'description' => 'Main navigation menu displayed in the header',
-        'settings' => [
-            'push_to_left' => 'Push this element to the start',
-            'push_to_right' => 'Push this element to the end',
-        ],
-    ],
-
-    'header-currency' => [
-        'name' => 'Currency Selector',
-        'description' => 'Allows customers to switch between available currencies',
-    ],
-
-    'header-locale' => [
-        'name' => 'Language Selector',
-        'description' => 'Allows customers to switch between available languages',
-        'settings' => [
-            'icon_label' => 'Icon',
-        ],
-    ],
-
-    'header-search' => [
-        'name' => 'Search Form',
-        'description' => 'Product search input with optional image search',
-        'settings' => [
-            'search_icon_label' => 'Search Icon',
-            'image_search_icon_label' => 'Image Search Icon',
-        ],
-    ],
-
-    'header-compare' => [
-        'name' => 'Compare',
-        'description' => 'Link to product comparison page',
-        'settings' => [
-            'icon_label' => 'Icon',
-        ],
-    ],
-
-    'header-user' => [
-        'name' => 'User Menu',
-        'description' => 'User account menu with sign in/sign up options',
-        'settings' => [
-            'icon_label' => 'Icon',
-            'guest_heading_label' => 'Heading shown to guest users',
-            'guest_description_label' => 'Description shown to guest users',
-            'guest_heading_default' => 'Welcome Guest',
-            'guest_description_default' => 'Manage Cart, Orders & Wishlist',
-        ],
-    ],
-
-    'header-cart' => [
-        'name' => 'Cart Preview',
-        'description' => 'Shopping cart icon with mini cart preview',
-        'settings' => [
-            'heading_label' => 'Heading',
-            'description_label' => 'Description',
-            'description_default' => 'Get Up To 30% OFF on your 1st order',
-        ],
+    'product-short-description' => [
+        'description' => 'Display the product short description',
     ],
 
     'group' => [
@@ -979,32 +416,18 @@ return [
                 'vertical' => 'Vertical',
             ],
 
-            'vertical_justify_label' => 'Content Position',
-            'vertical_justify_options' => [
-                'top' => 'Top',
+            'flex_justify_label' => 'Content Position',
+            'flex_justify_options' => [
+                'start' => 'Start',
                 'center' => 'Center',
                 'space_between' => 'Space Between',
-                'bottom' => 'Bottom',
+                'end' => 'End',
             ],
-            'vertical_align_label' => 'Content Alignment',
-            'vertical_align_options' => [
+            'flex_align_label' => 'Content Alignment',
+            'flex_align_options' => [
                 'start' => 'Start',
                 'center' => 'Center',
                 'end' => 'End',
-            ],
-
-            'horizontal_justify_label' => 'Content Position',
-            'horizontal_justify_options' => [
-                'left' => 'Left',
-                'center' => 'Center',
-                'space_between' => 'Space Between',
-                'right' => 'Right',
-            ],
-            'horizontal_align_label' => 'Content Alignment',
-            'horizontal_align_options' => [
-                'top' => 'Top',
-                'center' => 'Center',
-                'bottom' => 'Bottom',
             ],
 
             'flex_wrap_label' => 'Flex Wrap',
@@ -1124,6 +547,21 @@ return [
             'overlay_header' => 'Overlay',
             'is_overlay_label' => 'Position as Overlay',
             'is_overlay_info' => 'When enabled, this group will be positioned absolutely over its parent',
+            'overlay_position_label' => 'Overlay Position',
+            'overlay_position_options' => [
+                'full' => 'Full Coverage',
+                'top_left' => 'Top Left',
+                'top_center' => 'Top Center',
+                'top_right' => 'Top Right',
+                'middle_left' => 'Middle Left',
+                'middle_center' => 'Middle Center',
+                'middle_right' => 'Middle Right',
+                'bottom_left' => 'Bottom Left',
+                'bottom_center' => 'Bottom Center',
+                'bottom_right' => 'Bottom Right',
+                'top' => 'Top (Full Width)',
+                'bottom' => 'Bottom (Full Width)',
+            ],
             'overlay_visibility_label' => 'Overlay Visibility',
             'overlay_visibility_info' => 'Control when the overlay is visible',
             'overlay_visibility_options' => [
@@ -1173,6 +611,71 @@ return [
             ],
             'feature_icon' => [
                 'name' => 'Feature Icon',
+            ],
+        ],
+    ],
+
+    'button' => [
+        'description' => 'A customizable button with color, style, and size options',
+        'settings' => [
+            'text_label' => 'Text',
+            'url_label' => 'URL',
+            'open_in_new_tab_label' => 'Open in new tab',
+
+            'appearance_header' => 'Appearance',
+            'color_label' => 'Color',
+            'color_options' => [
+                'primary' => 'Primary',
+                'secondary' => 'Secondary',
+                'accent' => 'Accent',
+                'neutral' => 'Neutral',
+            ],
+            'style_label' => 'Style',
+            'style_options' => [
+                'filled' => 'Filled',
+                'soft' => 'Soft',
+                'outline' => 'Outline',
+                'ghost' => 'Ghost',
+                'link' => 'Link',
+            ],
+            'size_label' => 'Size',
+            'size_options' => [
+                'xs' => 'Extra Small',
+                'sm' => 'Small',
+                'md' => 'Medium',
+                'lg' => 'Large',
+                'xl' => 'Extra Large',
+            ],
+            'full_width_label' => 'Full Width',
+
+            'icon_header' => 'Icon',
+            'icon_label' => 'Icon',
+            'icon_position_label' => 'Icon Position',
+            'icon_position_options' => [
+                'left' => 'Left',
+                'right' => 'Right',
+            ],
+        ],
+        'presets' => [
+            'primary' => [
+                'name' => 'Primary Button',
+                'category' => 'Basic',
+            ],
+            'outline' => [
+                'name' => 'Outline Button',
+                'category' => 'Basic',
+            ],
+            'ghost' => [
+                'name' => 'Ghost Button',
+                'category' => 'Basic',
+            ],
+            'large_cta' => [
+                'name' => 'Large CTA',
+                'category' => 'Basic',
+            ],
+            'small_soft' => [
+                'name' => 'Small Soft',
+                'category' => 'Basic',
             ],
         ],
     ],

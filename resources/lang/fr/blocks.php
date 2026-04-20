@@ -3,6 +3,7 @@
 return [
     'common' => [
         'product_label' => 'Produit',
+        'product_preview_info' => 'Sélectionnez un produit à des fins de prévisualisation uniquement',
         'color_scheme_label' => 'Schéma de couleurs',
         'color_scheme_info' => 'Remplacer le schéma de couleurs de la section pour ce bloc',
 
@@ -13,17 +14,8 @@ return [
         'margin_label' => 'Marge extérieure',
     ],
 
-    'product' => [
-        'settings' => [
-            'product_info' => 'Sélectionnez un produit à afficher',
-        ],
-    ],
-
-    'product-card-group' => [
-        'name' => 'Groupe de cartes produit',
-    ],
-
     'divider' => [
+        'description' => 'Une ligne horizontale pour séparer le contenu',
         'settings' => [
             'thickness_label' => 'Épaisseur',
             'thickness_info' => 'Définir l\'épaisseur de la ligne de séparation',
@@ -44,49 +36,18 @@ return [
                 'center' => 'Centre',
                 'right' => 'Droite',
             ],
-
-            'padding_header' => 'Marge intérieure',
-            'padding_top_label' => 'Haut',
-            'padding_bottom_label' => 'Bas',
         ],
     ],
 
     'richtext' => [
+        'description' => 'Contenu texte riche avec mise en forme',
         'settings' => [
             'content_label' => 'Contenu',
-
-            'layout_header' => 'Disposition',
-
-            'width_label' => 'Largeur',
-            'width_options' => [
-                'fit' => 'Ajuster au contenu',
-                'fill' => 'Remplir',
-            ],
-
-            'max_width_label' => 'Largeur maximale',
-            'max_width_options' => [
-                'narrow' => 'Étroit (Prose)',
-                'normal' => 'Normal',
-                'wide' => 'Large',
-                'none' => 'Aucune',
-            ],
-
-            'alignment_label' => 'Alignement',
-            'alignment_options' => [
-                'left' => 'Gauche',
-                'center' => 'Centre',
-                'right' => 'Droite',
-            ],
-
-            'padding_header' => 'Marge intérieure',
-            'padding_top_label' => 'Haut',
-            'padding_bottom_label' => 'Bas',
-            'padding_left_label' => 'Gauche',
-            'padding_right_label' => 'Droite',
         ],
     ],
 
     'text' => [
+        'description' => 'Texte brut avec options de typographie et de couleur',
         'settings' => [
             'text_label' => 'Contenu du texte',
 
@@ -133,13 +94,6 @@ return [
             'text_color_label' => 'Couleur personnalisée',
 
             'appearance_header' => 'Apparence',
-
-            'padding_header' => 'Marge intérieure',
-
-            'padding_top_label' => 'Haut',
-            'padding_bottom_label' => 'Bas',
-            'padding_left_label' => 'Gauche',
-            'padding_right_label' => 'Droite',
         ],
 
         'presets' => [
@@ -158,6 +112,7 @@ return [
     ],
 
     'icon' => [
+        'description' => 'Afficher une icône avec taille et couleur personnalisables',
         'settings' => [
             'icon_label' => 'Icône',
 
@@ -180,78 +135,8 @@ return [
         ],
     ],
 
-    'button' => [
-        'settings' => [
-            'label_label' => 'Étiquette du bouton',
-            'label_default' => 'Bouton',
-
-            'link_label' => 'URL du lien',
-
-            'open_in_new_tab_label' => 'Ouvrir dans un nouvel onglet',
-
-            'style_class_label' => 'Style du bouton',
-            'style_class_options' => [
-                'button' => 'Plein',
-                'outline' => 'Contour',
-                'link' => 'Lien',
-            ],
-
-            'size_label' => 'Taille',
-            'size_options' => [
-                'sm' => 'Petit',
-                'md' => 'Moyen',
-                'lg' => 'Grand',
-                'xl' => 'Très grand',
-            ],
-
-            'color_label' => 'Couleur',
-            'color_options' => [
-                'primary' => 'Primaire',
-                'secondary' => 'Secondaire',
-                'success' => 'Succès',
-                'danger' => 'Danger',
-                'warning' => 'Avertissement',
-                'info' => 'Info',
-            ],
-
-            'icon_label' => 'Icône',
-            'icon_info' => 'Ajouter une icône au bouton',
-
-            'circle_label' => 'Bouton circulaire',
-            'circle_info' => 'Rendre le bouton circulaire (icône uniquement)',
-
-            'square_label' => 'Bouton carré',
-            'square_info' => 'Rendre le bouton carré (icône uniquement)',
-
-            'block_label' => 'Pleine largeur',
-            'block_info' => 'Faire occuper toute la largeur du parent au bouton',
-
-            'width_label' => 'Largeur (Bureau)',
-            'width_options' => [
-                'fit_content' => 'Ajuster au contenu',
-                'custom' => 'Personnalisé',
-            ],
-
-            'custom_width_label' => 'Largeur personnalisée',
-
-            'width_mobile_label' => 'Largeur (Mobile)',
-            'width_mobile_options' => [
-                'fit_content' => 'Ajuster au contenu',
-                'custom' => 'Personnalisé',
-            ],
-
-            'custom_width_mobile_label' => 'Largeur mobile personnalisée',
-        ],
-
-        'presets' => [
-            'button' => [
-                'name' => 'Bouton',
-                'category' => 'Actions',
-            ],
-        ],
-    ],
-
     'link' => [
+        'description' => 'Un lien cliquable avec options de typographie',
         'settings' => [
             'text_label' => 'Texte du lien',
             'url_label' => 'URL',
@@ -270,11 +155,6 @@ return [
                 'hover' => 'Au survol',
                 'always' => 'Toujours',
             ],
-
-            'spacing_header' => 'Espacement',
-
-            'padding_top_label' => 'Marge intérieure haut',
-            'padding_bottom_label' => 'Marge intérieure bas',
         ],
 
         'presets' => [
@@ -286,41 +166,14 @@ return [
     ],
 
     'heading' => [
+        'description' => 'Un texte de titre avec niveau configurable',
         'text_label' => 'Texte du titre',
         'default_text' => 'Bienvenue dans notre boutique',
         'heading_level_label' => 'Niveau de titre',
     ],
 
-    'category' => [
-        'settings' => [
-            'category_label' => 'Catégorie',
-        ],
-    ],
-
-    'category-card' => [
-        'settings' => [
-            'category_label' => 'Catégorie',
-        ],
-        'presets' => [
-            'overlay' => [
-                'name' => 'Carte de catégorie avec superposition',
-            ],
-            'vertical_overlay' => [
-                'name' => 'Verticale avec superposition',
-                'category' => 'Catégorie',
-            ],
-            'vertical_below' => [
-                'name' => 'Verticale avec nom en dessous',
-                'category' => 'Catégorie',
-            ],
-            'simple_hover' => [
-                'name' => 'Survol simple',
-                'category' => 'Catégorie',
-            ],
-        ],
-    ],
-
     'category-image' => [
+        'description' => 'Afficher une image de bannière ou de logo de catégorie',
         'settings' => [
             'category_label' => 'Catégorie',
             'image_source_label' => 'Source de l\'image',
@@ -345,6 +198,7 @@ return [
     ],
 
     'category-name' => [
+        'description' => 'Afficher le nom de la catégorie',
         'settings' => [
             'category_label' => 'Catégorie',
             'tag_label' => 'Balise HTML',
@@ -358,127 +212,8 @@ return [
         ],
     ],
 
-    'feature' => [
-        'icon_label' => 'Icône',
-        'title_label' => 'Titre',
-        'text_label' => 'Description',
-    ],
-
-    'featured-product' => [
-        'product_label' => 'Produit',
-        'product_info' => 'Sélectionnez un produit à afficher',
-    ],
-
-    'footer-group' => [
-        'title_label' => 'Nom du groupe',
-        'title_default' => 'Groupe de liens',
-    ],
-
-    'footer-link' => [
-        'text_label' => 'Texte du lien',
-        'text_default' => 'Lien',
-        'link_label' => 'URL du lien',
-    ],
-
-    'collage-image' => [
-        'image_label' => 'Image',
-    ],
-
-    'collage-product' => [
-        'product_label' => 'Produit',
-    ],
-
-    'collage-category' => [
-        'category_label' => 'Sélectionner la catégorie',
-    ],
-
-    'collage-custom' => [
-        'image_label' => 'Image',
-        'title_label' => 'Titre',
-        'text_label' => 'Description',
-        'link_label' => 'URL du lien',
-        'link_text_label' => 'Texte du lien',
-    ],
-
-    'text-with-image-button' => [
-        'text_label' => 'Texte du bouton',
-        'url_label' => 'URL du bouton',
-        'text_default' => 'Texte du bouton',
-        'variant_label' => 'Variante du bouton',
-        'variant_primary' => 'Primaire',
-        'variant_secondary' => 'Secondaire',
-        'variant_accent' => 'Accent',
-        'variant_neutral' => 'Neutre',
-        'style_label' => 'Style du bouton',
-        'style_solid' => 'Plein',
-        'style_soft' => 'Doux',
-        'style_outline' => 'Contour',
-        'style_ghost' => 'Fantôme',
-    ],
-
-    'accordion' => [
-        'settings' => [
-            'icon_label' => 'Style d\'icône',
-            'icon_options' => [
-                'caret' => 'Flèche',
-                'plus' => 'Plus',
-            ],
-
-            'dividers_label' => 'Afficher les séparateurs',
-
-            'typography_label' => 'Typographie',
-            'typography_info' => 'Sélectionner le style de typographie',
-
-            'inherit_color_scheme_label' => 'Hériter du schéma de couleurs',
-            'color_scheme_label' => 'Schéma de couleurs',
-
-            'borders_header' => 'Bordures',
-
-            'border_label' => 'Style de bordure',
-            'border_options' => [
-                'none' => 'Aucune',
-                'solid' => 'Pleine',
-            ],
-
-            'border_width_label' => 'Épaisseur de bordure',
-            'border_opacity_label' => 'Opacité de bordure',
-            'border_radius_label' => 'Rayon de bordure',
-
-            'padding_header' => 'Marge intérieure',
-
-            'padding_top_label' => 'Haut',
-            'padding_bottom_label' => 'Bas',
-            'padding_left_label' => 'Gauche',
-            'padding_right_label' => 'Droite',
-        ],
-
-        'presets' => [
-            'accordion' => [
-                'name' => 'Accordéon',
-                'category' => 'Disposition',
-            ],
-        ],
-    ],
-
-    'accordion-row' => [
-        'settings' => [
-            'heading_label' => 'Titre',
-            'open_by_default_label' => 'Ouvert par défaut',
-
-            'icon_header' => 'Icône',
-
-            'icon_label' => 'Icône',
-            'width_label' => 'Largeur de l\'icône',
-        ],
-
-        'presets' => [
-            'accordion_row' => [
-                'name' => 'Ligne d\'accordéon',
-            ],
-        ],
-    ],
-
     'image' => [
+        'description' => 'Une image avec dimensionnement, bordures et effets de survol',
         'settings' => [
             'image_label' => 'Image',
             'link_label' => 'Lien',
@@ -557,15 +292,9 @@ return [
                 'xl' => 'Très grand',
                 '2xl' => '2x grand',
                 '3xl' => '3x grand',
+                '4xl' => '4x grand',
                 'full' => 'Complet',
             ],
-
-            'padding_header' => 'Marge intérieure',
-
-            'padding_top_label' => 'Haut',
-            'padding_bottom_label' => 'Bas',
-            'padding_left_label' => 'Gauche',
-            'padding_right_label' => 'Droite',
         ],
 
         'presets' => [
@@ -576,135 +305,8 @@ return [
         ],
     ],
 
-    'group' => [
-        'settings' => [
-            'layout_header' => 'Disposition',
-
-            'content_direction_label' => 'Direction',
-            'content_direction_options' => [
-                'row' => 'Ligne',
-                'column' => 'Colonne',
-            ],
-
-            'alignment_label' => 'Alignement',
-            'alignment_options' => [
-                'start' => 'Début',
-                'center' => 'Centre',
-                'end' => 'Fin',
-            ],
-
-            'gap_label' => 'Écart',
-
-            'size_header' => 'Taille',
-
-            'width_label' => 'Largeur',
-            'width_options' => [
-                'auto' => 'Auto',
-                'full' => 'Complet',
-            ],
-
-            'height_label' => 'Hauteur',
-            'height_options' => [
-                'auto' => 'Auto',
-                'full' => 'Complet',
-            ],
-
-            'padding_header' => 'Marge intérieure',
-
-            'padding_top_label' => 'Haut',
-            'padding_bottom_label' => 'Bas',
-            'padding_left_label' => 'Gauche',
-            'padding_right_label' => 'Droite',
-        ],
-
-        'presets' => [
-            'empty_group' => [
-                'name' => 'Groupe vide',
-                'category' => 'Disposition',
-            ],
-            'two_columns' => [
-                'name' => 'Deux colonnes',
-                'category' => 'Disposition',
-            ],
-        ],
-    ],
-
-    'product-media-gallery' => [
-        'settings' => [
-            'presentation_header' => 'Présentation',
-
-            'media_presentation_label' => 'Présentation des médias',
-            'media_presentation_options' => [
-                'carousel' => 'Carrousel',
-                'grid' => 'Grille',
-            ],
-            'media_presentation_info' => 'Choisissez comment afficher les images et vidéos du produit',
-
-            'grid_columns_label' => 'Colonnes de la grille',
-            'grid_columns_info' => 'Nombre de colonnes lors de l\'utilisation de la présentation en grille',
-
-            'image_gap_label' => 'Écart entre les images',
-            'image_gap_info' => 'Espace entre les images en vue grille',
-
-            'image_settings_header' => 'Paramètres d\'image',
-
-            'aspect_ratio_label' => 'Ratio d\'aspect',
-            'aspect_ratio_options' => [
-                'adapt' => 'Adapter à l\'image',
-                'square' => 'Carré (1:1)',
-                'portrait' => 'Portrait (2:3)',
-                'landscape' => 'Paysage (3:2)',
-            ],
-
-            'constrain_to_viewport_label' => 'Contraindre à la fenêtre',
-            'constrain_to_viewport_info' => 'Empêcher les images de dépasser la hauteur de l\'écran',
-
-            'media_fit_label' => 'Ajustement des médias',
-            'media_fit_options' => [
-                'contain' => 'Contenir',
-                'cover' => 'Couvrir',
-            ],
-
-            'media_radius_label' => 'Rayon des coins des médias',
-
-            'zoom_label' => 'Activer le zoom',
-            'zoom_info' => 'Permettre aux utilisateurs de zoomer sur les images des produits',
-
-            'layout_header' => 'Disposition',
-
-            'sticky_label' => 'Fixe',
-            'sticky_info' => 'Garder la galerie de médias visible lors du défilement',
-        ],
-    ],
-
-    'product-details' => [
-        'settings' => [
-            'layout_header' => 'Disposition',
-            'gap_label' => 'Écart',
-            'gap_info' => 'Espace entre les blocs enfants',
-
-            'sticky_label' => 'Fixe',
-            'sticky_info' => 'Garder les détails du produit visibles lors du défilement',
-
-            'spacing_header' => 'Espacement',
-            'padding_top_label' => 'Marge intérieure haut',
-            'padding_bottom_label' => 'Marge intérieure bas',
-            'padding_left_label' => 'Marge intérieure gauche',
-            'padding_right_label' => 'Marge intérieure droite',
-        ],
-    ],
-
-    'product-title' => [
-        'settings' => [
-            'tag_label' => 'Balise de titre',
-            'size_label' => 'Taille du titre',
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
-    ],
-
     'product-image' => [
+        'description' => 'Afficher l\'image du produit',
         'settings' => [
             'size_label' => 'Taille de l\'image',
             'size_options' => [
@@ -740,98 +342,8 @@ return [
         ],
     ],
 
-    'product-price' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
-    ],
-
-    'product-rating' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
-    ],
-
-    'product-short-description' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
-    ],
-
-    'product-quantity-selector' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
-    ],
-
-    'product-buy-buttons' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-            'enable_buy_now_label' => 'Activer le bouton "Acheter maintenant"',
-            'enable_buy_now_info' => 'Afficher un bouton "Acheter maintenant" séparé pour un paiement rapide',
-        ],
-    ],
-
-    'product-button' => [
-        'settings' => [
-            'action_label' => 'Action',
-            'action_options' => [
-                'cart' => 'Ajouter au panier',
-                'wishlist' => 'Ajouter aux favoris',
-                'compare' => 'Ajouter à la comparaison',
-            ],
-            'variant_label' => 'Variante',
-            'variant_options' => [
-                'solid' => 'Plein',
-                'outline' => 'Contour',
-                'soft' => 'Doux',
-                'link' => 'Lien',
-            ],
-            'size_label' => 'Taille',
-            'size_options' => [
-                'sm' => 'Petit',
-                'md' => 'Moyen',
-                'lg' => 'Grand',
-                'xl' => 'Très grand',
-            ],
-            'color_label' => 'Couleur',
-            'color_options' => [
-                'primary' => 'Primaire',
-                'secondary' => 'Secondaire',
-                'success' => 'Succès',
-                'danger' => 'Danger',
-                'warning' => 'Avertissement',
-                'info' => 'Info',
-            ],
-            'icon_label' => 'Icône',
-            'icon_info' => 'Icône facultative à afficher dans le bouton',
-            'circle_label' => 'Bouton circulaire',
-            'circle_info' => 'Rendre le bouton circulaire (icône uniquement)',
-            'square_label' => 'Bouton carré',
-            'square_info' => 'Rendre le bouton carré (icône uniquement)',
-            'block_label' => 'Pleine largeur',
-            'block_info' => 'Faire occuper toute la largeur du parent au bouton',
-        ],
-        'placeholder' => [
-            'cart' => 'Ajouter au panier',
-            'wishlist' => 'Ajouter aux favoris',
-            'compare' => 'Ajouter à la comparaison',
-        ],
-        'wishlist_disabled' => 'Favoris désactivés',
-        'compare_disabled' => 'Comparaison désactivée',
-    ],
-
     'product-labels' => [
+        'description' => 'Afficher les badges de vente et de nouveauté du produit',
         'settings' => [
             'layout_label' => 'Disposition',
             'layout_options' => [
@@ -870,139 +382,17 @@ return [
         'placeholder' => 'Aucune étiquette disponible',
     ],
 
-    'product-card' => [
-        'presets' => [
-            'vertical' => [
-                'name' => 'Carte verticale',
-                'category' => 'Cartes produit',
-            ],
-            'horizontal' => [
-                'name' => 'Carte horizontale',
-                'category' => 'Cartes produit',
-            ],
-            'overlay' => [
-                'name' => 'Carte avec superposition au survol',
-                'category' => 'Cartes produit',
-            ],
-        ],
+    'product-title' => [
+        'name' => 'Titre du produit',
+        'description' => 'Afficher le titre du produit',
     ],
 
     'product-description' => [
-        'settings' => [
-            'show_in_panel_label' => 'Afficher dans un panneau d\'accordéon',
-            'should_open_panel_label' => 'Ouvrir le panneau par défaut',
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
+        'description' => 'Afficher la description complète du produit',
     ],
 
-    'product-variant-picker' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
-    ],
-
-    'product-grouped-options' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
-    ],
-
-    'product-bundle-options' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
-    ],
-
-    'product-downloadable-options' => [
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Colonne de droite',
-            'position_under_gallery' => 'Sous la galerie',
-        ],
-    ],
-
-    'product-customizable-options' => [
-        'name' => 'Options personnalisables du produit',
-        'description' => 'Afficher les options personnalisables du produit avec ajustements de prix',
-    ],
-
-    'logo' => [
-        'name' => 'Logo',
-        'description' => 'Logo ou nom du site',
-        'settings' => [
-            'logo_text_label' => 'Texte du logo',
-            'logo_text_placeholder' => 'Affiché lorsqu\'aucune image de logo n\'est définie',
-            'logo_text_info' => 'Les images de logo sont configurées dans les paramètres du thème sous "Logo & Favicon"',
-        ],
-    ],
-
-    'header-nav' => [
-        'name' => 'Navigation',
-        'description' => 'Menu de navigation principal affiché dans l\'en-tête',
-        'settings' => [
-            'push_to_left' => 'Pousser cet élément au début',
-            'push_to_right' => 'Pousser cet élément à la fin',
-        ],
-    ],
-
-    'header-currency' => [
-        'name' => 'Sélecteur de devise',
-        'description' => 'Permet aux clients de basculer entre les devises disponibles',
-    ],
-
-    'header-locale' => [
-        'name' => 'Sélecteur de langue',
-        'description' => 'Permet aux clients de basculer entre les langues disponibles',
-        'settings' => [
-            'icon_label' => 'Icône',
-        ],
-    ],
-
-    'header-search' => [
-        'name' => 'Formulaire de recherche',
-        'description' => 'Champ de recherche de produits avec recherche d\'image optionnelle',
-        'settings' => [
-            'search_icon_label' => 'Icône de recherche',
-            'image_search_icon_label' => 'Icône de recherche d\'image',
-        ],
-    ],
-
-    'header-compare' => [
-        'name' => 'Comparaison',
-        'description' => 'Lien vers la page de comparaison de produits',
-        'settings' => [
-            'icon_label' => 'Icône',
-        ],
-    ],
-
-    'header-user' => [
-        'name' => 'Menu utilisateur',
-        'description' => 'Menu de compte utilisateur avec options de connexion/inscription',
-        'settings' => [
-            'icon_label' => 'Icône',
-            'guest_heading_label' => 'Titre affiché aux utilisateurs invités',
-            'guest_description_label' => 'Description affichée aux utilisateurs invités',
-            'guest_heading_default' => 'Bienvenue Invité',
-            'guest_description_default' => 'Gérer panier, commandes et favoris',
-        ],
-    ],
-
-    'header-cart' => [
-        'name' => 'Aperçu du panier',
-        'description' => 'Icône du panier avec aperçu du mini panier',
-        'settings' => [
-            'heading_label' => 'Titre',
-            'description_label' => 'Description',
-            'description_default' => 'Obtenez jusqu\'à 30% de réduction sur votre 1ère commande',
-        ],
+    'product-short-description' => [
+        'description' => 'Afficher la description courte du produit',
     ],
 
     'group' => [
@@ -1026,32 +416,18 @@ return [
                 'vertical' => 'Vertical',
             ],
 
-            'vertical_justify_label' => 'Position du contenu',
-            'vertical_justify_options' => [
-                'top' => 'Haut',
+            'flex_justify_label' => 'Position du contenu',
+            'flex_justify_options' => [
+                'start' => 'Début',
                 'center' => 'Centre',
                 'space_between' => 'Espace entre',
-                'bottom' => 'Bas',
+                'end' => 'Fin',
             ],
-            'vertical_align_label' => 'Alignement du contenu',
-            'vertical_align_options' => [
+            'flex_align_label' => 'Alignement du contenu',
+            'flex_align_options' => [
                 'start' => 'Début',
                 'center' => 'Centre',
                 'end' => 'Fin',
-            ],
-
-            'horizontal_justify_label' => 'Position du contenu',
-            'horizontal_justify_options' => [
-                'left' => 'Gauche',
-                'center' => 'Centre',
-                'space_between' => 'Espace entre',
-                'right' => 'Droite',
-            ],
-            'horizontal_align_label' => 'Alignement du contenu',
-            'horizontal_align_options' => [
-                'top' => 'Haut',
-                'center' => 'Centre',
-                'bottom' => 'Bas',
             ],
 
             'flex_wrap_label' => 'Retour à la ligne flex',
@@ -1085,17 +461,6 @@ return [
                 'auto' => 'Auto',
             ],
             'gap_label' => 'Écart',
-
-            // Spacing
-            'spacing_header' => 'Espacement',
-            'padding_top_label' => 'Marge intérieure haut',
-            'padding_bottom_label' => 'Marge intérieure bas',
-            'padding_left_label' => 'Marge intérieure gauche',
-            'padding_right_label' => 'Marge intérieure droite',
-            'margin_top_label' => 'Marge extérieure haut',
-            'margin_bottom_label' => 'Marge extérieure bas',
-            'margin_left_label' => 'Marge extérieure gauche',
-            'margin_right_label' => 'Marge extérieure droite',
 
             // Sizing
             'sizing_header' => 'Dimensionnement',
@@ -1182,6 +547,21 @@ return [
             'overlay_header' => 'Superposition',
             'is_overlay_label' => 'Positionner en superposition',
             'is_overlay_info' => 'Lorsqu\'activé, ce groupe sera positionné de manière absolue sur son parent',
+            'overlay_position_label' => 'Position de la superposition',
+            'overlay_position_options' => [
+                'full' => 'Couverture complète',
+                'top_left' => 'Haut gauche',
+                'top_center' => 'Haut centre',
+                'top_right' => 'Haut droite',
+                'middle_left' => 'Milieu gauche',
+                'middle_center' => 'Milieu centre',
+                'middle_right' => 'Milieu droite',
+                'bottom_left' => 'Bas gauche',
+                'bottom_center' => 'Bas centre',
+                'bottom_right' => 'Bas droite',
+                'top' => 'Haut (pleine largeur)',
+                'bottom' => 'Bas (pleine largeur)',
+            ],
             'overlay_visibility_label' => 'Visibilité de la superposition',
             'overlay_visibility_info' => 'Contrôler quand la superposition est visible',
             'overlay_visibility_options' => [
@@ -1231,6 +611,71 @@ return [
             ],
             'feature_icon' => [
                 'name' => 'Icône de fonctionnalité',
+            ],
+        ],
+    ],
+
+    'button' => [
+        'description' => 'Un bouton personnalisable avec des options de couleur, style et taille',
+        'settings' => [
+            'text_label' => 'Texte',
+            'url_label' => 'URL',
+            'open_in_new_tab_label' => 'Ouvrir dans un nouvel onglet',
+
+            'appearance_header' => 'Apparence',
+            'color_label' => 'Couleur',
+            'color_options' => [
+                'primary' => 'Primaire',
+                'secondary' => 'Secondaire',
+                'accent' => 'Accent',
+                'neutral' => 'Neutre',
+            ],
+            'style_label' => 'Style',
+            'style_options' => [
+                'filled' => 'Plein',
+                'soft' => 'Doux',
+                'outline' => 'Contour',
+                'ghost' => 'Fantôme',
+                'link' => 'Lien',
+            ],
+            'size_label' => 'Taille',
+            'size_options' => [
+                'xs' => 'Très petit',
+                'sm' => 'Petit',
+                'md' => 'Moyen',
+                'lg' => 'Grand',
+                'xl' => 'Très grand',
+            ],
+            'full_width_label' => 'Pleine largeur',
+
+            'icon_header' => 'Icône',
+            'icon_label' => 'Icône',
+            'icon_position_label' => 'Position de l\'icône',
+            'icon_position_options' => [
+                'left' => 'Gauche',
+                'right' => 'Droite',
+            ],
+        ],
+        'presets' => [
+            'primary' => [
+                'name' => 'Bouton primaire',
+                'category' => 'Basique',
+            ],
+            'outline' => [
+                'name' => 'Bouton contour',
+                'category' => 'Basique',
+            ],
+            'ghost' => [
+                'name' => 'Bouton fantôme',
+                'category' => 'Basique',
+            ],
+            'large_cta' => [
+                'name' => 'Grand CTA',
+                'category' => 'Basique',
+            ],
+            'small_soft' => [
+                'name' => 'Petit doux',
+                'category' => 'Basique',
             ],
         ],
     ],

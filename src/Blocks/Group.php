@@ -34,6 +34,11 @@ class Group extends SimpleBlock
 
     protected static string $category = 'Layout';
 
+    public static function description(): string
+    {
+        return _t('blocks.group.description');
+    }
+
     public static function settings(): array
     {
         return [
@@ -61,43 +66,24 @@ class Group extends SimpleBlock
                 ->asSegment()
                 ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
 
-            Select::make('vertical_justify_content', _t('blocks.group.settings.vertical_justify_label'))
+            Select::make('flex_justify', _t('blocks.group.settings.flex_justify_label'))
                 ->options([
-                    'start' => _t('blocks.group.settings.vertical_justify_options.top'),
-                    'center' => _t('blocks.group.settings.vertical_justify_options.center'),
-                    'between' => _t('blocks.group.settings.vertical_justify_options.space_between'),
-                    'end' => _t('blocks.group.settings.vertical_justify_options.bottom'),
+                    'start' => _t('blocks.group.settings.flex_justify_options.start'),
+                    'center' => _t('blocks.group.settings.flex_justify_options.center'),
+                    'between' => _t('blocks.group.settings.flex_justify_options.space_between'),
+                    'end' => _t('blocks.group.settings.flex_justify_options.end'),
                 ])
                 ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')->when('flex_direction', 'column')),
+                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
 
-            Select::make('vertical_align_items', _t('blocks.group.settings.vertical_align_label'))
+            Select::make('flex_align', _t('blocks.group.settings.flex_align_label'))
                 ->options([
-                    'start' => _t('blocks.group.settings.vertical_align_options.start'),
-                    'center' => _t('blocks.group.settings.vertical_align_options.center'),
-                    'end' => _t('blocks.group.settings.vertical_align_options.end'),
+                    'start' => _t('blocks.group.settings.flex_align_options.start'),
+                    'center' => _t('blocks.group.settings.flex_align_options.center'),
+                    'end' => _t('blocks.group.settings.flex_align_options.end'),
                 ])
                 ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')->when('flex_direction', 'column')),
-
-            Select::make('horizontal_justify_content', _t('blocks.group.settings.horizontal_justify_label'))
-                ->options([
-                    'start' => _t('blocks.group.settings.horizontal_justify_options.left'),
-                    'center' => _t('blocks.group.settings.horizontal_justify_options.center'),
-                    'between' => _t('blocks.group.settings.horizontal_justify_options.space_between'),
-                    'end' => _t('blocks.group.settings.horizontal_justify_options.right'),
-                ])
-                ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')->when('flex_direction', 'row')),
-
-            Select::make('horizontal_align_items', _t('blocks.group.settings.horizontal_align_label'))
-                ->options([
-                    'start' => _t('blocks.group.settings.horizontal_align_options.top'),
-                    'center' => _t('blocks.group.settings.horizontal_align_options.center'),
-                    'end' => _t('blocks.group.settings.horizontal_align_options.bottom'),
-                ])
-                ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')->when('flex_direction', 'row')),
+                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
 
             Range::make('flex_gap', _t('blocks.group.settings.gap_label'))
                 ->min(0)
@@ -119,17 +105,12 @@ class Group extends SimpleBlock
                 ->responsive()
                 ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'grid')),
 
-            Select::make('grid_rows', _t('blocks.group.settings.grid_rows_label'))
-                ->options([
-                    'auto' => _t('blocks.group.settings.grid_rows_options.auto'),
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                    '4' => '4',
-                    '5' => '5',
-                    '6' => '6',
-                ])
-                ->default('auto')
+            Range::make('grid_rows', _t('blocks.group.settings.grid_rows_label'))
+                ->min(1)
+                ->max(12)
+                ->step(1)
+                ->default(1)
+                ->responsive()
                 ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'grid')),
 
             Range::make('grid_gap', _t('blocks.group.settings.gap_label'))
@@ -185,6 +166,11 @@ class Group extends SimpleBlock
                     'lg' => 'LG (32rem)',
                     'xl' => 'XL (36rem)',
                     '2xl' => '2XL (42rem)',
+                    '3xl' => '3XL (48rem)',
+                    '4xl' => '4XL (56rem)',
+                    '5xl' => '5XL (64rem)',
+                    '6xl' => '6XL (72rem)',
+                    '7xl' => '7XL (80rem)',
                     'full' => _t('blocks.group.settings.max_width_options.full'),
                     'screen' => _t('blocks.group.settings.max_width_options.screen'),
                 ])
@@ -323,6 +309,24 @@ class Group extends SimpleBlock
             Checkbox::make('is_overlay', _t('blocks.group.settings.is_overlay_label'))
                 ->default(false)
                 ->info(_t('blocks.group.settings.is_overlay_info')),
+
+            Select::make('overlay_position', _t('blocks.group.settings.overlay_position_label'))
+                ->options([
+                    'full' => _t('blocks.group.settings.overlay_position_options.full'),
+                    'top-left' => _t('blocks.group.settings.overlay_position_options.top_left'),
+                    'top-center' => _t('blocks.group.settings.overlay_position_options.top_center'),
+                    'top-right' => _t('blocks.group.settings.overlay_position_options.top_right'),
+                    'middle-left' => _t('blocks.group.settings.overlay_position_options.middle_left'),
+                    'middle-center' => _t('blocks.group.settings.overlay_position_options.middle_center'),
+                    'middle-right' => _t('blocks.group.settings.overlay_position_options.middle_right'),
+                    'bottom-left' => _t('blocks.group.settings.overlay_position_options.bottom_left'),
+                    'bottom-center' => _t('blocks.group.settings.overlay_position_options.bottom_center'),
+                    'bottom-right' => _t('blocks.group.settings.overlay_position_options.bottom_right'),
+                    'top' => _t('blocks.group.settings.overlay_position_options.top'),
+                    'bottom' => _t('blocks.group.settings.overlay_position_options.bottom'),
+                ])
+                ->default('full')
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('is_overlay')),
 
             Select::make('overlay_visibility', _t('blocks.group.settings.overlay_visibility_label'))
                 ->options([
@@ -464,6 +468,7 @@ class Group extends SimpleBlock
         $this->mapSpacing($classes, $styles);
         $this->mapSizing($classes, $styles);
         $this->mapBorder($classes, $styles);
+        $this->mapBorderRadius($classes);
         $this->mapBackground($classes, $styles);
         $this->mapOverlay($classes, $styles);
 
@@ -476,7 +481,28 @@ class Group extends SimpleBlock
     protected function mapPosition(array &$classes, array &$styles): void
     {
         if ($this->block->settings->is_overlay ?? false) {
-            $classes[] = 'absolute inset-0';
+            $overlayPosition = $this->block->settings->overlay_position ?? 'full';
+
+            $positionClasses = match ($overlayPosition) {
+                'top-left' => 'absolute top-0 left-0',
+                'top-center' => 'absolute top-0 left-1/2 -translate-x-1/2',
+                'top-right' => 'absolute top-0 right-0',
+                'middle-left' => 'absolute top-1/2 left-0 -translate-y-1/2',
+                'middle-center' => 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+                'middle-right' => 'absolute top-1/2 right-0 -translate-y-1/2',
+                'bottom-left' => 'absolute bottom-0 left-0',
+                'bottom-center' => 'absolute bottom-0 left-1/2 -translate-x-1/2',
+                'bottom-right' => 'absolute bottom-0 right-0',
+                'top' => 'absolute top-0 left-0 right-0',
+                'bottom' => 'absolute bottom-0 left-0 right-0',
+                default => 'absolute inset-0',
+            };
+
+            $classes[] = $positionClasses;
+
+            if ($overlayPosition !== 'full') {
+                $classes[] = 'pointer-events-none [&>*]:pointer-events-auto';
+            }
 
             $overlayVisibility = $this->block->settings->overlay_visibility ?? 'always';
             if ($overlayVisibility === 'hover') {
@@ -535,8 +561,8 @@ class Group extends SimpleBlock
             });
         }
 
-        if ($s->get('vertical_justify_content')) {
-            $classes[] = Tailwind::responsive($s->vertical_justify_content, fn ($v) => match ($v) {
+        if ($s->get('flex_justify')) {
+            $classes[] = Tailwind::responsive($s->flex_justify, fn ($v) => match ($v) {
                 'start' => 'justify-start',
                 'center' => 'justify-center',
                 'between' => 'justify-between',
@@ -545,31 +571,12 @@ class Group extends SimpleBlock
             });
         }
 
-        if ($s->get('vertical_align_items')) {
-            $classes[] = Tailwind::responsive($s->vertical_align_items, fn ($v) => match ($v) {
+        if ($s->get('flex_align')) {
+            $classes[] = Tailwind::responsive($s->flex_align, fn ($v) => match ($v) {
                 'start' => 'items-start',
                 'center' => 'items-center',
                 'end' => 'items-end',
                 default => 'items-stretch',
-            });
-        }
-
-        if ($s->get('horizontal_justify_content')) {
-            $classes[] = Tailwind::responsive($s->horizontal_justify_content, fn ($v) => match ($v) {
-                'start' => 'justify-start',
-                'center' => 'justify-center',
-                'between' => 'justify-between',
-                'end' => 'justify-end',
-                default => 'justify-start',
-            });
-        }
-
-        if ($s->get('horizontal_align_items')) {
-            $classes[] = Tailwind::responsive($s->horizontal_align_items, fn ($v) => match ($v) {
-                'start' => 'items-start',
-                'center' => 'items-center',
-                'end' => 'items-end',
-                default => 'items-start',
             });
         }
 
@@ -579,29 +586,6 @@ class Group extends SimpleBlock
                 'wrap' => 'flex-wrap',
                 'wrap-reverse' => 'flex-wrap-reverse',
                 default => 'flex-nowrap',
-            });
-        }
-
-        if ($s->has('justify_content') && ! $s->has('vertical_justify_content') && ! $s->has('horizontal_justify_content')) {
-            $classes[] = Tailwind::responsive($s->justify_content, fn ($v) => match ($v) {
-                'start' => 'justify-start',
-                'end' => 'justify-end',
-                'center' => 'justify-center',
-                'between' => 'justify-between',
-                'around' => 'justify-around',
-                'evenly' => 'justify-evenly',
-                default => 'justify-start',
-            });
-        }
-
-        if ($s->has('align_items') && ! $s->has('vertical_align_items') && ! $s->has('horizontal_align_items')) {
-            $classes[] = Tailwind::responsive($s->align_items, fn ($v) => match ($v) {
-                'stretch' => 'items-stretch',
-                'start' => 'items-start',
-                'end' => 'items-end',
-                'center' => 'items-center',
-                'baseline' => 'items-baseline',
-                default => 'items-stretch',
             });
         }
 
@@ -617,7 +601,7 @@ class Group extends SimpleBlock
         }
 
         if ($this->block->settings->has('grid_rows')) {
-            $classes[] = Tailwind::responsive($this->block->settings->grid_rows, fn ($v) => $v === 'auto' ? 'grid-rows-auto' : "grid-rows-{$v}");
+            $classes[] = Tailwind::responsive($this->block->settings->grid_rows, fn ($v) => is_numeric($v) ? "grid-rows-{$v}" : 'grid-rows-1');
         }
 
         if ($this->block->settings->has('grid_gap')) {
@@ -691,6 +675,11 @@ class Group extends SimpleBlock
                     'lg' => 'max-w-lg',
                     'xl' => 'max-w-xl',
                     '2xl' => 'max-w-2xl',
+                    '3xl' => 'max-w-3xl',
+                    '4xl' => 'max-w-4xl',
+                    '5xl' => 'max-w-5xl',
+                    '6xl' => 'max-w-6xl',
+                    '7xl' => 'max-w-7xl',
                     'full' => 'max-w-full',
                     'screen' => 'max-w-screen',
                     default => '',
@@ -761,7 +750,10 @@ class Group extends SimpleBlock
             }
         }
 
-        // Border radius
+    }
+
+    protected function mapBorderRadius(array &$classes): void
+    {
         if ($this->block->settings->has('border_radius')) {
             $borderRadius = $this->block->settings->border_radius;
             if ($borderRadius !== 'none') {

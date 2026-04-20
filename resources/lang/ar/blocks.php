@@ -3,6 +3,7 @@
 return [
     'common' => [
         'product_label' => 'المنتج',
+        'product_preview_info' => 'اختر منتجاً لأغراض المعاينة فقط',
         'color_scheme_label' => 'نظام الألوان',
         'color_scheme_info' => 'تجاوز نظام ألوان القسم لهذا البلوك',
 
@@ -13,17 +14,8 @@ return [
         'margin_label' => 'الهامش',
     ],
 
-    'product' => [
-        'settings' => [
-            'product_info' => 'اختر منتجاً لعرضه',
-        ],
-    ],
-
-    'product-card-group' => [
-        'name' => 'مجموعة بطاقات المنتج',
-    ],
-
     'divider' => [
+        'description' => 'خط أفقي لفصل المحتوى',
         'settings' => [
             'thickness_label' => 'السماكة',
             'thickness_info' => 'حدد سماكة خط الفاصل',
@@ -44,49 +36,18 @@ return [
                 'center' => 'وسط',
                 'right' => 'يمين',
             ],
-
-            'padding_header' => 'الحشوة',
-            'padding_top_label' => 'أعلى',
-            'padding_bottom_label' => 'أسفل',
         ],
     ],
 
     'richtext' => [
+        'description' => 'محتوى نصي غني مع التنسيق',
         'settings' => [
             'content_label' => 'المحتوى',
-
-            'layout_header' => 'التخطيط',
-
-            'width_label' => 'العرض',
-            'width_options' => [
-                'fit' => 'ملائمة المحتوى',
-                'fill' => 'ملء',
-            ],
-
-            'max_width_label' => 'الحد الأقصى للعرض',
-            'max_width_options' => [
-                'narrow' => 'ضيق (نثر)',
-                'normal' => 'عادي',
-                'wide' => 'واسع',
-                'none' => 'بدون',
-            ],
-
-            'alignment_label' => 'المحاذاة',
-            'alignment_options' => [
-                'left' => 'يسار',
-                'center' => 'وسط',
-                'right' => 'يمين',
-            ],
-
-            'padding_header' => 'الحشوة',
-            'padding_top_label' => 'أعلى',
-            'padding_bottom_label' => 'أسفل',
-            'padding_left_label' => 'يسار',
-            'padding_right_label' => 'يمين',
         ],
     ],
 
     'text' => [
+        'description' => 'نص عادي مع خيارات الطباعة والألوان',
         'settings' => [
             'text_label' => 'محتوى النص',
 
@@ -133,13 +94,6 @@ return [
             'text_color_label' => 'لون مخصص',
 
             'appearance_header' => 'المظهر',
-
-            'padding_header' => 'الحشوة',
-
-            'padding_top_label' => 'أعلى',
-            'padding_bottom_label' => 'أسفل',
-            'padding_left_label' => 'يسار',
-            'padding_right_label' => 'يمين',
         ],
 
         'presets' => [
@@ -158,6 +112,7 @@ return [
     ],
 
     'icon' => [
+        'description' => 'عرض أيقونة بحجم ولون قابلين للتخصيص',
         'settings' => [
             'icon_label' => 'أيقونة',
 
@@ -180,78 +135,8 @@ return [
         ],
     ],
 
-    'button' => [
-        'settings' => [
-            'label_label' => 'تسمية الزر',
-            'label_default' => 'زر',
-
-            'link_label' => 'رابط URL',
-
-            'open_in_new_tab_label' => 'فتح في تبويب جديد',
-
-            'style_class_label' => 'نمط الزر',
-            'style_class_options' => [
-                'button' => 'صلب',
-                'outline' => 'محدد',
-                'link' => 'رابط',
-            ],
-
-            'size_label' => 'الحجم',
-            'size_options' => [
-                'sm' => 'صغير',
-                'md' => 'متوسط',
-                'lg' => 'كبير',
-                'xl' => 'كبير جداً',
-            ],
-
-            'color_label' => 'اللون',
-            'color_options' => [
-                'primary' => 'أساسي',
-                'secondary' => 'ثانوي',
-                'success' => 'نجاح',
-                'danger' => 'خطر',
-                'warning' => 'تحذير',
-                'info' => 'معلومات',
-            ],
-
-            'icon_label' => 'أيقونة',
-            'icon_info' => 'إضافة أيقونة إلى الزر',
-
-            'circle_label' => 'زر دائري',
-            'circle_info' => 'جعل الزر دائرياً (أيقونة فقط)',
-
-            'square_label' => 'زر مربع',
-            'square_info' => 'جعل الزر مربعاً (أيقونة فقط)',
-
-            'block_label' => 'عرض كامل',
-            'block_info' => 'جعل الزر يمتد على كامل عرض الحاوية',
-
-            'width_label' => 'العرض (سطح المكتب)',
-            'width_options' => [
-                'fit_content' => 'ملائمة المحتوى',
-                'custom' => 'مخصص',
-            ],
-
-            'custom_width_label' => 'عرض مخصص',
-
-            'width_mobile_label' => 'العرض (الجوال)',
-            'width_mobile_options' => [
-                'fit_content' => 'ملائمة المحتوى',
-                'custom' => 'مخصص',
-            ],
-
-            'custom_width_mobile_label' => 'عرض مخصص للجوال',
-        ],
-
-        'presets' => [
-            'button' => [
-                'name' => 'زر',
-                'category' => 'إجراءات',
-            ],
-        ],
-    ],
-
     'link' => [
+        'description' => 'رابط قابل للنقر مع خيارات الطباعة',
         'settings' => [
             'text_label' => 'نص الرابط',
             'url_label' => 'رابط URL',
@@ -270,11 +155,6 @@ return [
                 'hover' => 'عند التمرير',
                 'always' => 'دائماً',
             ],
-
-            'spacing_header' => 'التباعد',
-
-            'padding_top_label' => 'حشوة أعلى',
-            'padding_bottom_label' => 'حشوة أسفل',
         ],
 
         'presets' => [
@@ -286,41 +166,14 @@ return [
     ],
 
     'heading' => [
+        'description' => 'نص عنوان بمستوى قابل للتكوين',
         'text_label' => 'نص العنوان',
         'default_text' => 'مرحباً بكم في متجرنا',
         'heading_level_label' => 'مستوى العنوان',
     ],
 
-    'category' => [
-        'settings' => [
-            'category_label' => 'الفئة',
-        ],
-    ],
-
-    'category-card' => [
-        'settings' => [
-            'category_label' => 'الفئة',
-        ],
-        'presets' => [
-            'overlay' => [
-                'name' => 'بطاقة فئة مع تراكب',
-            ],
-            'vertical_overlay' => [
-                'name' => 'عمودي مع تراكب',
-                'category' => 'الفئة',
-            ],
-            'vertical_below' => [
-                'name' => 'عمودي مع الاسم أدناه',
-                'category' => 'الفئة',
-            ],
-            'simple_hover' => [
-                'name' => 'تمرير بسيط',
-                'category' => 'الفئة',
-            ],
-        ],
-    ],
-
     'category-image' => [
+        'description' => 'عرض صورة بانر أو شعار الفئة',
         'settings' => [
             'category_label' => 'الفئة',
             'image_source_label' => 'مصدر الصورة',
@@ -345,6 +198,7 @@ return [
     ],
 
     'category-name' => [
+        'description' => 'عرض اسم الفئة',
         'settings' => [
             'category_label' => 'الفئة',
             'tag_label' => 'وسم HTML',
@@ -358,127 +212,8 @@ return [
         ],
     ],
 
-    'feature' => [
-        'icon_label' => 'أيقونة',
-        'title_label' => 'العنوان',
-        'text_label' => 'الوصف',
-    ],
-
-    'featured-product' => [
-        'product_label' => 'المنتج',
-        'product_info' => 'اختر منتجاً لعرضه',
-    ],
-
-    'footer-group' => [
-        'title_label' => 'اسم المجموعة',
-        'title_default' => 'مجموعة روابط',
-    ],
-
-    'footer-link' => [
-        'text_label' => 'نص الرابط',
-        'text_default' => 'رابط',
-        'link_label' => 'رابط URL',
-    ],
-
-    'collage-image' => [
-        'image_label' => 'صورة',
-    ],
-
-    'collage-product' => [
-        'product_label' => 'المنتج',
-    ],
-
-    'collage-category' => [
-        'category_label' => 'اختر الفئة',
-    ],
-
-    'collage-custom' => [
-        'image_label' => 'صورة',
-        'title_label' => 'العنوان',
-        'text_label' => 'الوصف',
-        'link_label' => 'رابط URL',
-        'link_text_label' => 'نص الرابط',
-    ],
-
-    'text-with-image-button' => [
-        'text_label' => 'نص الزر',
-        'url_label' => 'رابط الزر',
-        'text_default' => 'نص الزر',
-        'variant_label' => 'نوع الزر',
-        'variant_primary' => 'أساسي',
-        'variant_secondary' => 'ثانوي',
-        'variant_accent' => 'تمييز',
-        'variant_neutral' => 'محايد',
-        'style_label' => 'نمط الزر',
-        'style_solid' => 'صلب',
-        'style_soft' => 'ناعم',
-        'style_outline' => 'محدد',
-        'style_ghost' => 'شفاف',
-    ],
-
-    'accordion' => [
-        'settings' => [
-            'icon_label' => 'نمط الأيقونة',
-            'icon_options' => [
-                'caret' => 'سهم',
-                'plus' => 'زائد',
-            ],
-
-            'dividers_label' => 'إظهار الفواصل',
-
-            'typography_label' => 'الطباعة',
-            'typography_info' => 'اختر نمط الطباعة',
-
-            'inherit_color_scheme_label' => 'وراثة نظام الألوان',
-            'color_scheme_label' => 'نظام الألوان',
-
-            'borders_header' => 'الحدود',
-
-            'border_label' => 'نمط الحدود',
-            'border_options' => [
-                'none' => 'بدون',
-                'solid' => 'صلب',
-            ],
-
-            'border_width_label' => 'سماكة الحدود',
-            'border_opacity_label' => 'شفافية الحدود',
-            'border_radius_label' => 'نصف قطر الحدود',
-
-            'padding_header' => 'الحشوة',
-
-            'padding_top_label' => 'أعلى',
-            'padding_bottom_label' => 'أسفل',
-            'padding_left_label' => 'يسار',
-            'padding_right_label' => 'يمين',
-        ],
-
-        'presets' => [
-            'accordion' => [
-                'name' => 'أكورديون',
-                'category' => 'التخطيط',
-            ],
-        ],
-    ],
-
-    'accordion-row' => [
-        'settings' => [
-            'heading_label' => 'العنوان',
-            'open_by_default_label' => 'فتح افتراضياً',
-
-            'icon_header' => 'أيقونة',
-
-            'icon_label' => 'أيقونة',
-            'width_label' => 'عرض الأيقونة',
-        ],
-
-        'presets' => [
-            'accordion_row' => [
-                'name' => 'صف أكورديون',
-            ],
-        ],
-    ],
-
     'image' => [
+        'description' => 'صورة مع خيارات الحجم والحدود وتأثيرات التمرير',
         'settings' => [
             'image_label' => 'صورة',
             'link_label' => 'رابط',
@@ -557,15 +292,9 @@ return [
                 'xl' => 'كبير جداً',
                 '2xl' => '2X كبير',
                 '3xl' => '3X كبير',
+                '4xl' => '4X كبير',
                 'full' => 'كامل',
             ],
-
-            'padding_header' => 'الحشوة',
-
-            'padding_top_label' => 'أعلى',
-            'padding_bottom_label' => 'أسفل',
-            'padding_left_label' => 'يسار',
-            'padding_right_label' => 'يمين',
         ],
 
         'presets' => [
@@ -576,135 +305,8 @@ return [
         ],
     ],
 
-    'group' => [
-        'settings' => [
-            'layout_header' => 'التخطيط',
-
-            'content_direction_label' => 'الاتجاه',
-            'content_direction_options' => [
-                'row' => 'صف',
-                'column' => 'عمود',
-            ],
-
-            'alignment_label' => 'المحاذاة',
-            'alignment_options' => [
-                'start' => 'بداية',
-                'center' => 'وسط',
-                'end' => 'نهاية',
-            ],
-
-            'gap_label' => 'الفجوة',
-
-            'size_header' => 'الحجم',
-
-            'width_label' => 'العرض',
-            'width_options' => [
-                'auto' => 'تلقائي',
-                'full' => 'كامل',
-            ],
-
-            'height_label' => 'الارتفاع',
-            'height_options' => [
-                'auto' => 'تلقائي',
-                'full' => 'كامل',
-            ],
-
-            'padding_header' => 'الحشوة',
-
-            'padding_top_label' => 'أعلى',
-            'padding_bottom_label' => 'أسفل',
-            'padding_left_label' => 'يسار',
-            'padding_right_label' => 'يمين',
-        ],
-
-        'presets' => [
-            'empty_group' => [
-                'name' => 'مجموعة فارغة',
-                'category' => 'التخطيط',
-            ],
-            'two_columns' => [
-                'name' => 'عمودين',
-                'category' => 'التخطيط',
-            ],
-        ],
-    ],
-
-    'product-media-gallery' => [
-        'settings' => [
-            'presentation_header' => 'العرض',
-
-            'media_presentation_label' => 'عرض الوسائط',
-            'media_presentation_options' => [
-                'carousel' => 'دوار',
-                'grid' => 'شبكة',
-            ],
-            'media_presentation_info' => 'اختر كيفية عرض صور ومقاطع الفيديو للمنتج',
-
-            'grid_columns_label' => 'أعمدة الشبكة',
-            'grid_columns_info' => 'عدد الأعمدة عند استخدام عرض الشبكة',
-
-            'image_gap_label' => 'فجوة الصورة',
-            'image_gap_info' => 'المسافة بين الصور في عرض الشبكة',
-
-            'image_settings_header' => 'إعدادات الصورة',
-
-            'aspect_ratio_label' => 'نسبة العرض إلى الارتفاع',
-            'aspect_ratio_options' => [
-                'adapt' => 'التكيف مع الصورة',
-                'square' => 'مربع (1:1)',
-                'portrait' => 'عمودي (2:3)',
-                'landscape' => 'أفقي (3:2)',
-            ],
-
-            'constrain_to_viewport_label' => 'تقييد إلى منفذ العرض',
-            'constrain_to_viewport_info' => 'منع الصور من تجاوز ارتفاع الشاشة',
-
-            'media_fit_label' => 'ملاءمة الوسائط',
-            'media_fit_options' => [
-                'contain' => 'احتواء',
-                'cover' => 'تغطية',
-            ],
-
-            'media_radius_label' => 'نصف قطر زاوية الوسائط',
-
-            'zoom_label' => 'تمكين التكبير',
-            'zoom_info' => 'السماح للمستخدمين بالتكبير في صور المنتج',
-
-            'layout_header' => 'التخطيط',
-
-            'sticky_label' => 'ثابت',
-            'sticky_info' => 'الحفاظ على معرض الوسائط مرئياً أثناء التمرير',
-        ],
-    ],
-
-    'product-details' => [
-        'settings' => [
-            'layout_header' => 'التخطيط',
-            'gap_label' => 'الفجوة',
-            'gap_info' => 'المسافة بين البلوكات الفرعية',
-
-            'sticky_label' => 'ثابت',
-            'sticky_info' => 'الحفاظ على تفاصيل المنتج مرئية أثناء التمرير',
-
-            'spacing_header' => 'التباعد',
-            'padding_top_label' => 'حشوة أعلى',
-            'padding_bottom_label' => 'حشوة أسفل',
-            'padding_left_label' => 'حشوة يسار',
-            'padding_right_label' => 'حشوة يمين',
-        ],
-    ],
-
-    'product-title' => [
-        'settings' => [
-            'tag_label' => 'وسم العنوان',
-            'size_label' => 'حجم العنوان',
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
-    ],
-
     'product-image' => [
+        'description' => 'عرض صورة المنتج',
         'settings' => [
             'size_label' => 'حجم الصورة',
             'size_options' => [
@@ -740,98 +342,8 @@ return [
         ],
     ],
 
-    'product-price' => [
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
-    ],
-
-    'product-rating' => [
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
-    ],
-
-    'product-short-description' => [
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
-    ],
-
-    'product-quantity-selector' => [
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
-    ],
-
-    'product-buy-buttons' => [
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-            'enable_buy_now_label' => 'تمكين زر اشترِ الآن',
-            'enable_buy_now_info' => 'إظهار زر "اشترِ الآن" منفصل للدفع السريع',
-        ],
-    ],
-
-    'product-button' => [
-        'settings' => [
-            'action_label' => 'الإجراء',
-            'action_options' => [
-                'cart' => 'أضف إلى السلة',
-                'wishlist' => 'أضف إلى المفضلة',
-                'compare' => 'أضف للمقارنة',
-            ],
-            'variant_label' => 'النوع',
-            'variant_options' => [
-                'solid' => 'صلب',
-                'outline' => 'محدد',
-                'soft' => 'ناعم',
-                'link' => 'رابط',
-            ],
-            'size_label' => 'الحجم',
-            'size_options' => [
-                'sm' => 'صغير',
-                'md' => 'متوسط',
-                'lg' => 'كبير',
-                'xl' => 'كبير جداً',
-            ],
-            'color_label' => 'اللون',
-            'color_options' => [
-                'primary' => 'أساسي',
-                'secondary' => 'ثانوي',
-                'success' => 'نجاح',
-                'danger' => 'خطر',
-                'warning' => 'تحذير',
-                'info' => 'معلومات',
-            ],
-            'icon_label' => 'أيقونة',
-            'icon_info' => 'أيقونة اختيارية لعرضها في الزر',
-            'circle_label' => 'زر دائري',
-            'circle_info' => 'جعل الزر دائرياً (أيقونة فقط)',
-            'square_label' => 'زر مربع',
-            'square_info' => 'جعل الزر مربعاً (أيقونة فقط)',
-            'block_label' => 'عرض كامل',
-            'block_info' => 'جعل الزر يمتد على كامل عرض الحاوية',
-        ],
-        'placeholder' => [
-            'cart' => 'أضف إلى السلة',
-            'wishlist' => 'أضف إلى المفضلة',
-            'compare' => 'أضف للمقارنة',
-        ],
-        'wishlist_disabled' => 'المفضلة معطلة',
-        'compare_disabled' => 'المقارنة معطلة',
-    ],
-
     'product-labels' => [
+        'description' => 'عرض شارات التخفيض والمنتج الجديد',
         'settings' => [
             'layout_label' => 'التخطيط',
             'layout_options' => [
@@ -870,139 +382,17 @@ return [
         'placeholder' => 'لا توجد تسميات متاحة',
     ],
 
-    'product-card' => [
-        'presets' => [
-            'vertical' => [
-                'name' => 'بطاقة عمودية',
-                'category' => 'بطاقات المنتج',
-            ],
-            'horizontal' => [
-                'name' => 'بطاقة أفقية',
-                'category' => 'بطاقات المنتج',
-            ],
-            'overlay' => [
-                'name' => 'بطاقة مع تراكب عند التمرير',
-                'category' => 'بطاقات المنتج',
-            ],
-        ],
+    'product-title' => [
+        'name' => 'عنوان المنتج',
+        'description' => 'عرض عنوان المنتج',
     ],
 
     'product-description' => [
-        'settings' => [
-            'show_in_panel_label' => 'إظهار في لوحة الأكورديون',
-            'should_open_panel_label' => 'فتح اللوحة افتراضياً',
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
+        'description' => 'عرض الوصف الكامل للمنتج',
     ],
 
-    'product-variant-picker' => [
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
-    ],
-
-    'product-grouped-options' => [
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
-    ],
-
-    'product-bundle-options' => [
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
-    ],
-
-    'product-downloadable-options' => [
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
-    ],
-
-    'product-customizable-options' => [
-        'name' => 'خيارات المنتج القابلة للتخصيص',
-        'description' => 'عرض خيارات المنتج القابلة للتخصيص مع تعديلات السعر',
-    ],
-
-    'logo' => [
-        'name' => 'الشعار',
-        'description' => 'شعار الموقع أو الاسم',
-        'settings' => [
-            'logo_text_label' => 'نص الشعار',
-            'logo_text_placeholder' => 'يُعرض عندما لا تكون هناك صورة شعار',
-            'logo_text_info' => 'يتم تكوين صور الشعار في إعدادات القالب تحت "الشعار والأيقونة المفضلة"',
-        ],
-    ],
-
-    'header-nav' => [
-        'name' => 'التنقل',
-        'description' => 'قائمة التنقل الرئيسية المعروضة في الرأس',
-        'settings' => [
-            'push_to_left' => 'دفع هذا العنصر إلى البداية',
-            'push_to_right' => 'دفع هذا العنصر إلى النهاية',
-        ],
-    ],
-
-    'header-currency' => [
-        'name' => 'محدد العملة',
-        'description' => 'يسمح للعملاء بالتبديل بين العملات المتاحة',
-    ],
-
-    'header-locale' => [
-        'name' => 'محدد اللغة',
-        'description' => 'يسمح للعملاء بالتبديل بين اللغات المتاحة',
-        'settings' => [
-            'icon_label' => 'أيقونة',
-        ],
-    ],
-
-    'header-search' => [
-        'name' => 'نموذج البحث',
-        'description' => 'حقل إدخال البحث عن المنتج مع بحث اختياري بالصورة',
-        'settings' => [
-            'search_icon_label' => 'أيقونة البحث',
-            'image_search_icon_label' => 'أيقونة البحث بالصورة',
-        ],
-    ],
-
-    'header-compare' => [
-        'name' => 'المقارنة',
-        'description' => 'رابط إلى صفحة مقارنة المنتجات',
-        'settings' => [
-            'icon_label' => 'أيقونة',
-        ],
-    ],
-
-    'header-user' => [
-        'name' => 'قائمة المستخدم',
-        'description' => 'قائمة حساب المستخدم مع خيارات تسجيل الدخول/التسجيل',
-        'settings' => [
-            'icon_label' => 'أيقونة',
-            'guest_heading_label' => 'عنوان يُعرض للمستخدمين الضيوف',
-            'guest_description_label' => 'وصف يُعرض للمستخدمين الضيوف',
-            'guest_heading_default' => 'مرحباً بك ضيفنا',
-            'guest_description_default' => 'إدارة السلة والطلبات والمفضلة',
-        ],
-    ],
-
-    'header-cart' => [
-        'name' => 'معاينة السلة',
-        'description' => 'أيقونة سلة التسوق مع معاينة السلة المصغرة',
-        'settings' => [
-            'heading_label' => 'العنوان',
-            'description_label' => 'الوصف',
-            'description_default' => 'احصل على خصم يصل إلى 30% على طلبك الأول',
-        ],
+    'product-short-description' => [
+        'description' => 'عرض الوصف المختصر للمنتج',
     ],
 
     'group' => [
@@ -1026,32 +416,18 @@ return [
                 'vertical' => 'عمودي',
             ],
 
-            'vertical_justify_label' => 'موضع المحتوى',
-            'vertical_justify_options' => [
-                'top' => 'أعلى',
+            'flex_justify_label' => 'موضع المحتوى',
+            'flex_justify_options' => [
+                'start' => 'بداية',
                 'center' => 'وسط',
                 'space_between' => 'مسافة بين',
-                'bottom' => 'أسفل',
+                'end' => 'نهاية',
             ],
-            'vertical_align_label' => 'محاذاة المحتوى',
-            'vertical_align_options' => [
+            'flex_align_label' => 'محاذاة المحتوى',
+            'flex_align_options' => [
                 'start' => 'بداية',
                 'center' => 'وسط',
                 'end' => 'نهاية',
-            ],
-
-            'horizontal_justify_label' => 'موضع المحتوى',
-            'horizontal_justify_options' => [
-                'left' => 'يسار',
-                'center' => 'وسط',
-                'space_between' => 'مسافة بين',
-                'right' => 'يمين',
-            ],
-            'horizontal_align_label' => 'محاذاة المحتوى',
-            'horizontal_align_options' => [
-                'top' => 'أعلى',
-                'center' => 'وسط',
-                'bottom' => 'أسفل',
             ],
 
             'flex_wrap_label' => 'التفاف Flex',
@@ -1085,17 +461,6 @@ return [
                 'auto' => 'تلقائي',
             ],
             'gap_label' => 'الفجوة',
-
-            // Spacing
-            'spacing_header' => 'التباعد',
-            'padding_top_label' => 'حشوة أعلى',
-            'padding_bottom_label' => 'حشوة أسفل',
-            'padding_left_label' => 'حشوة يسار',
-            'padding_right_label' => 'حشوة يمين',
-            'margin_top_label' => 'هامش أعلى',
-            'margin_bottom_label' => 'هامش أسفل',
-            'margin_left_label' => 'هامش يسار',
-            'margin_right_label' => 'هامش يمين',
 
             // Sizing
             'sizing_header' => 'الحجم',
@@ -1182,6 +547,21 @@ return [
             'overlay_header' => 'التراكب',
             'is_overlay_label' => 'الموضع كتراكب',
             'is_overlay_info' => 'عند التمكين، سيتم وضع هذه المجموعة بشكل مطلق فوق الحاوية الأم',
+            'overlay_position_label' => 'موضع التراكب',
+            'overlay_position_options' => [
+                'full' => 'تغطية كاملة',
+                'top_left' => 'أعلى يسار',
+                'top_center' => 'أعلى وسط',
+                'top_right' => 'أعلى يمين',
+                'middle_left' => 'وسط يسار',
+                'middle_center' => 'وسط',
+                'middle_right' => 'وسط يمين',
+                'bottom_left' => 'أسفل يسار',
+                'bottom_center' => 'أسفل وسط',
+                'bottom_right' => 'أسفل يمين',
+                'top' => 'أعلى (عرض كامل)',
+                'bottom' => 'أسفل (عرض كامل)',
+            ],
             'overlay_visibility_label' => 'رؤية التراكب',
             'overlay_visibility_info' => 'التحكم في متى يكون التراكب مرئياً',
             'overlay_visibility_options' => [
@@ -1231,6 +611,71 @@ return [
             ],
             'feature_icon' => [
                 'name' => 'أيقونة الميزة',
+            ],
+        ],
+    ],
+
+    'button' => [
+        'description' => 'زر قابل للتخصيص مع خيارات اللون والنمط والحجم',
+        'settings' => [
+            'text_label' => 'النص',
+            'url_label' => 'الرابط',
+            'open_in_new_tab_label' => 'فتح في علامة تبويب جديدة',
+
+            'appearance_header' => 'المظهر',
+            'color_label' => 'اللون',
+            'color_options' => [
+                'primary' => 'أساسي',
+                'secondary' => 'ثانوي',
+                'accent' => 'مميز',
+                'neutral' => 'محايد',
+            ],
+            'style_label' => 'النمط',
+            'style_options' => [
+                'filled' => 'مملوء',
+                'soft' => 'ناعم',
+                'outline' => 'محيط',
+                'ghost' => 'شبح',
+                'link' => 'رابط',
+            ],
+            'size_label' => 'الحجم',
+            'size_options' => [
+                'xs' => 'صغير جداً',
+                'sm' => 'صغير',
+                'md' => 'متوسط',
+                'lg' => 'كبير',
+                'xl' => 'كبير جداً',
+            ],
+            'full_width_label' => 'عرض كامل',
+
+            'icon_header' => 'الأيقونة',
+            'icon_label' => 'الأيقونة',
+            'icon_position_label' => 'موضع الأيقونة',
+            'icon_position_options' => [
+                'left' => 'يسار',
+                'right' => 'يمين',
+            ],
+        ],
+        'presets' => [
+            'primary' => [
+                'name' => 'زر أساسي',
+                'category' => 'أساسي',
+            ],
+            'outline' => [
+                'name' => 'زر محيط',
+                'category' => 'أساسي',
+            ],
+            'ghost' => [
+                'name' => 'زر شبح',
+                'category' => 'أساسي',
+            ],
+            'large_cta' => [
+                'name' => 'زر كبير',
+                'category' => 'أساسي',
+            ],
+            'small_soft' => [
+                'name' => 'زر صغير ناعم',
+                'category' => 'أساسي',
             ],
         ],
     ],
