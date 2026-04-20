@@ -25,6 +25,11 @@ class Image extends SimpleBlock
 
     protected static string $category = 'Media';
 
+    public static function description(): string
+    {
+        return _t('blocks.image.description');
+    }
+
     public static function settings(): array
     {
         return array_merge(
@@ -58,6 +63,7 @@ class Image extends SimpleBlock
                     'portrait' => _t('blocks.image.settings.aspect_ratio_options.portrait'),
                     'landscape' => _t('blocks.image.settings.aspect_ratio_options.landscape'),
                 ])
+                ->responsive()
                 ->default('adapt'),
 
             Select::make('object_fit', _t('blocks.image.settings.object_fit_label'))
@@ -134,6 +140,7 @@ class Image extends SimpleBlock
                     'xl' => 'XL',
                     '2xl' => '2XL',
                     '3xl' => '3XL',
+                    '4xl' => '4XL',
                     'full' => _t('blocks.image.settings.border_radius_options.full'),
                 ])
                 ->default('none'),
@@ -209,7 +216,7 @@ class Image extends SimpleBlock
     {
         return Tailwind::responsive(
             $this->block->settings->width ?? 'fill',
-            fn ($v) => match ($v) {
+            fn($v) => match ($v) {
                 'fit-content' => 'w-fit',
                 'fill' => 'w-full',
                 'custom' => '',
@@ -251,12 +258,12 @@ class Image extends SimpleBlock
 
     protected function getAspectRatioClass(): string
     {
-        return match ($this->block->settings->aspect_ratio ?? 'adapt') {
+        return Tailwind::responsive($this->block->settings->aspect_ratio ?? 'adapt', [
             'square' => 'aspect-square',
             'portrait' => 'aspect-[3/4]',
             'landscape' => 'aspect-[4/3]',
-            default => '',
-        };
+            'adapt' => '',
+        ]);
     }
 
     protected function getObjectFitClass(): string
@@ -314,6 +321,7 @@ class Image extends SimpleBlock
             'xl' => 'rounded-xl',
             '2xl' => 'rounded-2xl',
             '3xl' => 'rounded-3xl',
+            '4xl' => 'rounded-[2rem]',
             'full' => 'rounded-full',
             default => '',
         };
@@ -327,7 +335,7 @@ class Image extends SimpleBlock
 
         return Tailwind::responsive(
             $this->block->settings->padding,
-            fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
+            fn($v) => Tailwind::buildSpacingClasses($v, 'p')
         );
     }
 

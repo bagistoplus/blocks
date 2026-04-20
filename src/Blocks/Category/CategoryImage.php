@@ -16,6 +16,11 @@ class CategoryImage extends Image
 
     protected static string $category = 'Category';
 
+    public static function description(): string
+    {
+        return _t('blocks.category-image.description');
+    }
+
     public static function settings(): array
     {
         return array_merge(
@@ -39,7 +44,7 @@ class CategoryImage extends Image
         $category = $this->block->settings->category ?? $this->context('category');
 
         if (!$category) {
-            return ['image' => null, 'alt' => ''];
+            return array_merge(parent::getViewData(), ['image' => null, 'alt' => '']);
         }
 
         $imageUrl = match ($this->block->settings->image_source) {
@@ -47,10 +52,10 @@ class CategoryImage extends Image
             default => $category->banner_url ?? $category->logo_url,
         };
 
-        return [
+        return array_merge(parent::getViewData(), [
             'image' => $imageUrl,
-            'alt' => $category->name
-        ];
+            'alt' => $category->name,
+        ]);
     }
 
     public function share(): array

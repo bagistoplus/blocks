@@ -16,7 +16,7 @@
 @else
   <div
     {{ $block->editor_attributes }}
-    class="{{ $containerClasses }} flex min-h-56 items-center justify-center bg-gray-200"
+    class="{{ $containerClasses }} flex items-center justify-center bg-gray-200"
     @if ($containerStyles) style="{{ $containerStyles }}" @endif
     {{ $attributes }}
   >

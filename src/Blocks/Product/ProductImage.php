@@ -16,6 +16,11 @@ class ProductImage extends Image
 
     protected static string $category = 'Product';
 
+    public static function description(): string
+    {
+        return _t('blocks.product-image.description');
+    }
+
     public static function settings(): array
     {
         return array_merge(
@@ -48,7 +53,7 @@ class ProductImage extends Image
         $product = $this->block->settings->product ?? $this->context('product');
 
         if (! $product) {
-            return ['image' => null, 'alt' => ''];
+            return array_merge(parent::getViewData(), ['image' => null, 'alt' => '']);
         }
 
         $productResource = (new \Webkul\Shop\Http\Resources\ProductResource($product))->resolve();
@@ -67,9 +72,9 @@ class ProductImage extends Image
             default => $imageData['medium_image_url'],
         };
 
-        return [
+        return array_merge(parent::getViewData(), [
             'image' => $imageUrl,
             'alt' => $productResource['name'],
-        ];
+        ]);
     }
 }
