@@ -18,5 +18,6 @@ class BasicBlocksServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'basic-blocks');
 
         Visual::discoverBlocksIn(__DIR__.'/Blocks', 'BagistoPlus\\BasicBlocks\\Blocks');
+        Visual::discoverBlocksIn(__DIR__.'/Sections', 'BagistoPlus\\BasicBlocks\\Sections');
     }
 }
