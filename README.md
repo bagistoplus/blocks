@@ -31,6 +31,32 @@ This package provides basic blocks for the Bagisto Visual Editor. Once installed
 
 Simply use the drag-and-drop interface to add blocks to your pages and customize them through the visual editor.
 
+## Host Theme Integration
+
+Most blocks work with zero configuration. The **Button** block has one required setup step, and the **Icon** block supports optional customization.
+
+### Button block
+
+The Button block ships with a stylesheet that is not auto-included. Themes must import it into their Tailwind entry at the `components` layer:
+
+```css
+@import '../../../vendor/bagistoplus/basic-blocks/resources/assets/css/button.css' layer(components);
+```
+
+Adjust the relative path to match your theme's CSS file location.
+
+The color variants (`.btn-primary`, `.btn-secondary`, etc.) pick up the semantic color scheme tokens already provided by the `bagistoplus/visual` package, so no extra setup is needed beyond what every Bagisto visual theme already does.
+
+**Optional**: override the button's CSS custom properties (`--btn-radius`, `--btn-border-width`, `--btn-font-size`, `--btn-letter-spacing`, `--btn-text-transform`, and the shadow/inset variables) to customize appearance. The full list is in [resources/assets/css/button.css](resources/assets/css/button.css).
+
+If the stylesheet is not imported, Button blocks render as unstyled inline links.
+
+### Icon block
+
+No setup is required. The `bagistoplus/visual` package every Bagisto visual theme depends on already registers `blade-ui-kit/blade-icons` along with the Lucide and Heroicons sets, so the default `lucide-*` icons work out of the box.
+
+**Optional**: theme developers who want additional icon sets (e.g. Tabler, Feather) can `composer require` them in the theme. Any set registered with blade-icons becomes selectable in the Icon block from the visual editor.
+
 ## Technology Stack
 
 The blocks in this package are built using:
