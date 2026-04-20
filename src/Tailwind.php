@@ -71,41 +71,14 @@ class Tailwind
         $left = $value->left ?? 0;
 
         if ($top == $right && $right == $bottom && $bottom == $left) {
-            return $top > 0 ? "{$prefix}-{$top}" : '';
+            return "{$prefix}-{$top}";
         }
 
         if ($top == $bottom && $left == $right) {
-            $result = [];
-
-            if ($top > 0) {
-                $result[] = "{$prefix}y-{$top}";
-            }
-
-            if ($left > 0) {
-                $result[] = "{$prefix}x-{$left}";
-            }
-
-            return implode(' ', $result);
+            return "{$prefix}y-{$top} {$prefix}x-{$left}";
         }
 
-        $result = [];
-        if ($top > 0) {
-            $result[] = "{$prefix}t-{$top}";
-        }
-
-        if ($right > 0) {
-            $result[] = "{$prefix}e-{$right}";
-        }
-
-        if ($bottom > 0) {
-            $result[] = "{$prefix}b-{$bottom}";
-        }
-
-        if ($left > 0) {
-            $result[] = "{$prefix}s-{$left}";
-        }
-
-        return implode(' ', $result);
+        return "{$prefix}t-{$top} {$prefix}e-{$right} {$prefix}b-{$bottom} {$prefix}s-{$left}";
     }
 
     /**
@@ -124,7 +97,7 @@ class Tailwind
         $styles = [];
 
         foreach ($rv->all() as $breakpoint => $val) {
-            if ($val === null || $val <= 0) {
+            if ($val === null || $val < 0) {
                 continue;
             }
 
