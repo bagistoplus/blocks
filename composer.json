@@ -32,6 +32,8 @@
     },
     "require-dev": {
         "bagistoplus/visual": "^2.0@dev",
+        "captainhook/captainhook": "^5.25",
+        "captainhook/plugin-composer": "^5.3",
         "larastan/larastan": "^3.0",
         "laravel/pint": "^1.14",
         "nunomaduro/collision": "^8.8",
@@ -41,7 +43,8 @@
         "pestphp/pest-plugin-laravel": "^3.0",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan-deprecation-rules": "^2.0",
-        "phpstan/phpstan-phpunit": "^2.0"
+        "phpstan/phpstan-phpunit": "^2.0",
+        "ramsey/conventional-commits": "^1.6"
     },
     "autoload": {
         "psr-4": {
@@ -69,6 +72,7 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
+            "captainhook/plugin-composer": true,
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
         }
