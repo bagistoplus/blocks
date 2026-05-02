@@ -4,6 +4,7 @@ namespace BagistoPlus\BasicBlocks\Sections;
 
 use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\SimpleSection;
+use BagistoPlus\Visual\Data\BlockData;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Color;
 use BagistoPlus\Visual\Settings\ColorScheme;
@@ -14,8 +15,6 @@ use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Typography;
-
-use BagistoPlus\Visual\Data\BlockData;
 
 use function BagistoPlus\BasicBlocks\_t;
 
@@ -118,8 +117,7 @@ class FlexSection extends SimpleSection
                 ->step(50)
                 ->default(600)
                 ->unit('px')
-                ->visibleWhen(fn($rule) => $rule->when('section_height', 'custom')),
-
+                ->visibleWhen(fn ($rule) => $rule->when('section_height', 'custom')),
 
             Header::make(_t('sections.flex-section.settings.appearance_header')),
 
@@ -137,13 +135,13 @@ class FlexSection extends SimpleSection
 
             Color::make('background_color', _t('sections.flex-section.settings.background_color_label'))
                 ->default('#000000ff')
-                ->visibleWhen(fn($rule) => $rule->when('background_type', 'color')),
+                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'color')),
 
             Gradient::make('background_gradient', _t('sections.flex-section.settings.background_gradient_label'))
-                ->visibleWhen(fn($rule) => $rule->when('background_type', 'gradient')),
+                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'gradient')),
 
             Image::make('background_image', _t('sections.flex-section.settings.background_image_label'))
-                ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
+                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
 
             Select::make('background_position', _t('sections.flex-section.settings.background_position_label'))
                 ->options([
@@ -154,7 +152,7 @@ class FlexSection extends SimpleSection
                     'right' => _t('sections.flex-section.settings.background_position_options.right'),
                 ])
                 ->default('center')
-                ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
+                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
 
             Select::make('background_size', _t('sections.flex-section.settings.background_size_label'))
                 ->options([
@@ -163,7 +161,7 @@ class FlexSection extends SimpleSection
                     'auto' => _t('sections.flex-section.settings.background_size_options.auto'),
                 ])
                 ->default('cover')
-                ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
+                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
 
             Select::make('background_repeat', _t('sections.flex-section.settings.background_repeat_label'))
                 ->options([
@@ -173,7 +171,7 @@ class FlexSection extends SimpleSection
                     'repeat-y' => _t('sections.flex-section.settings.background_repeat_options.repeat_y'),
                 ])
                 ->default('no-repeat')
-                ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
+                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
 
             Checkbox::make('border', _t('sections.flex-section.settings.border_label'))
                 ->default(false),
@@ -184,7 +182,7 @@ class FlexSection extends SimpleSection
                 ->step(1)
                 ->default(1)
                 ->unit('px')
-                ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
 
             Range::make('border_opacity', _t('sections.flex-section.settings.border_opacity_label'))
                 ->min(0)
@@ -192,7 +190,7 @@ class FlexSection extends SimpleSection
                 ->step(5)
                 ->default(100)
                 ->unit('%')
-                ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
 
             Select::make('border_radius', _t('sections.flex-section.settings.border_radius_label'))
                 ->options([
@@ -216,14 +214,14 @@ class FlexSection extends SimpleSection
                 ])
                 ->default('solid')
                 ->asSegment()
-                ->visibleWhen(fn($rule) => $rule->whenTruthy('toggle_overlay')),
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('toggle_overlay')),
 
             Color::make('overlay_color', _t('sections.flex-section.settings.overlay_color_label'))
                 ->default('rgba(0, 0, 0, 0.5)')
-                ->visibleWhen(fn($rule) => $rule->whenTruthy('toggle_overlay')->when('overlay_style', 'solid')),
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('toggle_overlay')->when('overlay_style', 'solid')),
 
             Gradient::make('overlay_gradient', _t('sections.flex-section.settings.overlay_gradient_label'))
-                ->visibleWhen(fn($rule) => $rule->whenTruthy('toggle_overlay')->when('overlay_style', 'gradient')),
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('toggle_overlay')->when('overlay_style', 'gradient')),
 
             Header::make(_t('blocks.common.spacing_header')),
 
@@ -272,7 +270,7 @@ class FlexSection extends SimpleSection
             'md' => 'h-[37.5rem]',
             'lg' => 'h-[50rem]',
             'screen' => 'h-screen',
-            'custom' => 'h-[' . ($s->section_height_custom ?? 600) . 'px]',
+            'custom' => 'h-['.($s->section_height_custom ?? 600).'px]',
             default => 'h-auto',
         });
     }
@@ -377,7 +375,7 @@ class FlexSection extends SimpleSection
 
         // Flex direction
         $flexDir = $s->flex_direction ?? ['_default' => 'column'];
-        $classes[] = Tailwind::responsive($flexDir, fn($v) => match ($v) {
+        $classes[] = Tailwind::responsive($flexDir, fn ($v) => match ($v) {
             'row' => 'flex-row',
             'column' => 'flex-col',
             default => 'flex-col',
@@ -385,7 +383,7 @@ class FlexSection extends SimpleSection
 
         // Justify content
         if ($s->get('flex_justify')) {
-            $classes[] = Tailwind::responsive($s->flex_justify, fn($v) => match ($v) {
+            $classes[] = Tailwind::responsive($s->flex_justify, fn ($v) => match ($v) {
                 'start' => 'justify-start',
                 'center' => 'justify-center',
                 'between' => 'justify-between',
@@ -396,7 +394,7 @@ class FlexSection extends SimpleSection
 
         // Align items
         if ($s->get('flex_align')) {
-            $classes[] = Tailwind::responsive($s->flex_align, fn($v) => match ($v) {
+            $classes[] = Tailwind::responsive($s->flex_align, fn ($v) => match ($v) {
                 'start' => 'items-start',
                 'center' => 'items-center',
                 'end' => 'items-end',
@@ -406,11 +404,11 @@ class FlexSection extends SimpleSection
 
         // Gap
         $gap = $s->flex_gap ?? ['_default' => 4];
-        $classes[] = Tailwind::responsive($gap, fn($v) => "gap-{$v}");
+        $classes[] = Tailwind::responsive($gap, fn ($v) => "gap-{$v}");
 
         // Padding
         if ($s->has('padding')) {
-            $classes[] = Tailwind::responsive($s->padding, fn($v) => Tailwind::buildSpacingClasses($v, 'p'));
+            $classes[] = Tailwind::responsive($s->padding, fn ($v) => Tailwind::buildSpacingClasses($v, 'p'));
         }
 
         return implode(' ', array_filter($classes));

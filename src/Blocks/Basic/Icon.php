@@ -2,11 +2,11 @@
 
 namespace BagistoPlus\BasicBlocks\Blocks\Basic;
 
+use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Color;
 use BagistoPlus\Visual\Settings\Icon as IconSetting;
 use BagistoPlus\Visual\Settings\Range;
-use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Settings\Select;
 
 use function BagistoPlus\BasicBlocks\_t;

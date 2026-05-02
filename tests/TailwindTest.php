@@ -167,7 +167,7 @@ describe('buildResponsiveStyleFor', function () {
         $result = Tailwind::buildResponsiveStyleFor(50, 'w', 'width');
 
         expect($result['classes'])->toBe('w-(--width)');
-        expect($result['styles'])->toBe(['--width: 50%']);
+        expect($result['styles'])->toBe('--width: 50%');
     });
 
     it('builds responsive classes and styles', function () {
@@ -176,18 +176,14 @@ describe('buildResponsiveStyleFor', function () {
         $result = Tailwind::buildResponsiveStyleFor($value, 'w', 'width');
 
         expect($result['classes'])->toBe('w-(--width) tablet:w-(--width-tablet) desktop:w-(--width-desktop)');
-        expect($result['styles'])->toBe([
-            '--width: 100%',
-            '--width-tablet: 50%',
-            '--width-desktop: 33%',
-        ]);
+        expect($result['styles'])->toBe('--width: 100%; --width-tablet: 50%; --width-desktop: 33%');
     });
 
     it('uses custom unit', function () {
         $result = Tailwind::buildResponsiveStyleFor(100, 'h', 'height', 'px');
 
         expect($result['classes'])->toBe('h-(--height)');
-        expect($result['styles'])->toBe(['--height: 100px']);
+        expect($result['styles'])->toBe('--height: 100px');
     });
 
     it('skips null values', function () {
@@ -196,10 +192,7 @@ describe('buildResponsiveStyleFor', function () {
         $result = Tailwind::buildResponsiveStyleFor($value, 'w', 'width');
 
         expect($result['classes'])->toBe('w-(--width) desktop:w-(--width-desktop)');
-        expect($result['styles'])->toBe([
-            '--width: 100%',
-            '--width-desktop: 50%',
-        ]);
+        expect($result['styles'])->toBe('--width: 100%; --width-desktop: 50%');
     });
 
     it('includes zero and negative values', function () {
@@ -208,7 +201,7 @@ describe('buildResponsiveStyleFor', function () {
         $result = Tailwind::buildResponsiveStyleFor($value, 'w', 'width');
 
         expect($result['classes'])->toBe('w-(--width) tablet:w-(--width-tablet) desktop:w-(--width-desktop)');
-        expect($result['styles'])->toBe(['--width: 0%', '--width-tablet: -10%', '--width-desktop: 50%']);
+        expect($result['styles'])->toBe('--width: 0%; --width-tablet: -10%; --width-desktop: 50%');
     });
 
     it('returns zero-valued result when zero is the only valid input', function () {
@@ -217,6 +210,6 @@ describe('buildResponsiveStyleFor', function () {
         $result = Tailwind::buildResponsiveStyleFor($value, 'w', 'width');
 
         expect($result['classes'])->toBe('w-(--width)');
-        expect($result['styles'])->toBe(['--width: 0%']);
+        expect($result['styles'])->toBe('--width: 0%');
     });
 });

@@ -89,7 +89,7 @@ class Tailwind
      * @param  string  $prefix  Tailwind class prefix (e.g., 'w', 'h')
      * @param  string  $property  CSS property name (e.g., 'width', 'height')
      * @param  string  $unit  Unit to append to values (default: '%')
-     * @return array ['classes' => string, 'styles' => array]
+     * @return array ['classes' => string, 'styles' => string]
      */
     public static function buildResponsiveStyleFor($value, string $prefix, string $property, string $unit = '%'): array
     {
@@ -116,7 +116,7 @@ class Tailwind
 
         return [
             'classes' => implode(' ', $classes),
-            'styles' => $styles,
+            'styles' => implode('; ', $styles),
         ];
     }
 }

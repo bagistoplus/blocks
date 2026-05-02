@@ -43,7 +43,7 @@ class CategoryImage extends Image
     {
         $category = $this->block->settings->category ?? $this->context('category');
 
-        if (!$category) {
+        if (! $category) {
             return array_merge(parent::getViewData(), ['image' => null, 'alt' => '']);
         }
 

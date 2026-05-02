@@ -66,7 +66,7 @@ class Text extends SimpleBlock
                     'right' => _t('blocks.text.settings.alignment_options.right'),
                 ])
                 ->default('left')
-                ->visibleWhen(fn($rule) => $rule->when('width', 'fill'))
+                ->visibleWhen(fn ($rule) => $rule->when('width', 'fill'))
                 ->responsive(),
 
             Header::make(_t('blocks.text.settings.typography_header')),
@@ -95,7 +95,7 @@ class Text extends SimpleBlock
 
             Color::make('text_color', _t('blocks.text.settings.text_color_label'))
                 ->default('#000000FF')
-                ->visibleWhen(fn($rule) => $rule->when('color', 'custom')),
+                ->visibleWhen(fn ($rule) => $rule->when('color', 'custom')),
 
             Header::make(_t('blocks.common.spacing_header')),
 
@@ -156,7 +156,7 @@ class Text extends SimpleBlock
         $color = $this->block->settings->color ?? 'default';
 
         if ($color === 'custom') {
-            return 'color: ' . ($this->block->settings->text_color ?? '#000000FF') . ';';
+            return 'color: '.($this->block->settings->text_color ?? '#000000FF').';';
         }
 
         return '';
@@ -169,7 +169,7 @@ class Text extends SimpleBlock
     {
         return Tailwind::responsive(
             $this->block->settings->width ?? 'fit',
-            fn($v) => match ($v) {
+            fn ($v) => match ($v) {
                 'fill' => 'w-full',
                 'fit' => 'w-fit',
                 default => 'w-fit',
@@ -198,7 +198,7 @@ class Text extends SimpleBlock
     {
         return Tailwind::responsive(
             $this->block->settings->alignment ?? 'left',
-            fn($v) => match ($v) {
+            fn ($v) => match ($v) {
                 'left' => 'text-left',
                 'center' => 'text-center',
                 'right' => 'text-right',
@@ -243,7 +243,7 @@ class Text extends SimpleBlock
 
         return Tailwind::responsive(
             $this->block->settings->padding,
-            fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+            fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
         );
     }
 
@@ -258,7 +258,7 @@ class Text extends SimpleBlock
 
         return Tailwind::responsive(
             $this->block->settings->margin,
-            fn($v) => Tailwind::buildSpacingClasses($v, 'm')
+            fn ($v) => Tailwind::buildSpacingClasses($v, 'm')
         );
     }
 

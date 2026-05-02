@@ -204,8 +204,9 @@ class Image extends SimpleBlock
     {
         $customWidthData = $this->getCustomWidthData();
         $borderStyles = $this->getBorderStyles();
+        $customWidthStyle = $customWidthData['styles'] ?? '';
 
-        $allStyles = array_filter(array_merge($borderStyles, $customWidthData['styles']));
+        $allStyles = array_filter(array_merge($borderStyles, [$customWidthStyle]));
 
         return ! empty($allStyles) ? implode('; ', $allStyles) : '';
     }
@@ -267,7 +268,7 @@ class Image extends SimpleBlock
             );
         }
 
-        return ['classes' => '', 'styles' => []];
+        return ['classes' => '', 'styles' => ''];
     }
 
     protected function getHeightClass(): string

@@ -13,12 +13,12 @@ use BagistoPlus\Visual\Settings\Image;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
+use BagistoPlus\Visual\Settings\Support\GradientValue;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use Craftile\Core\Data\ResponsiveValue;
 use matthieumastadenis\couleur\ColorFactory;
 use matthieumastadenis\couleur\ColorInterface;
-use BagistoPlus\Visual\Settings\Support\GradientValue;
 
 use function BagistoPlus\BasicBlocks\_t;
 
@@ -644,7 +644,9 @@ class Group extends SimpleBlock
                     property: 'width'
                 );
                 $classes[] = $customWidthData['classes'];
-                $styles = array_merge($styles, $customWidthData['styles']);
+                if (! empty($customWidthData['styles'])) {
+                    $styles[] = $customWidthData['styles'];
+                }
             }
 
             $classes[] = Tailwind::responsive($width, fn ($v) => match ($v) {

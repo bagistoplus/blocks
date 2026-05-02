@@ -17,7 +17,6 @@ class ButtonSettingsSchema
             'btn_radius' => 6,
             'btn_border_width' => 0,
 
-
             'btn_shadow_x' => 0,
             'btn_shadow_y' => 0,
             'btn_shadow_blur' => 0,
@@ -38,7 +37,6 @@ class ButtonSettingsSchema
         'neumorphism' => [
             'btn_radius' => 16,
             'btn_border_width' => 0,
-
 
             'btn_shadow_x' => 6,
             'btn_shadow_y' => 6,
@@ -61,7 +59,6 @@ class ButtonSettingsSchema
             'btn_radius' => 0,
             'btn_border_width' => 3,
 
-
             'btn_shadow_x' => 4,
             'btn_shadow_y' => 4,
             'btn_shadow_blur' => 0,
@@ -82,7 +79,6 @@ class ButtonSettingsSchema
         'glassmorphism' => [
             'btn_radius' => 12,
             'btn_border_width' => 1,
-
 
             'btn_shadow_x' => 0,
             'btn_shadow_y' => 4,

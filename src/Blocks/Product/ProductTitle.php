@@ -29,7 +29,7 @@ class ProductTitle extends Heading
         // Get parent settings and filter out the 'text' setting
         $parentSettings = array_filter(
             parent::settings(),
-            fn($setting) => ! isset($setting->id) || $setting->id !== 'text'
+            fn ($setting) => ! isset($setting->id) || $setting->id !== 'text'
         );
 
         return array_merge(
