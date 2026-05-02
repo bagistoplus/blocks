@@ -91,12 +91,12 @@ describe('buildSpacingClasses', function () {
         expect($result)->toBe('p-4');
     });
 
-    it('returns empty string when all sides are zero', function () {
+    it('returns explicit zero class when all sides are zero', function () {
         $value = (object) ['top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0];
 
         $result = Tailwind::buildSpacingClasses($value, 'p');
 
-        expect($result)->toBe('');
+        expect($result)->toBe('p-0');
     });
 
     it('returns x/y classes when opposite sides match', function () {
@@ -107,20 +107,20 @@ describe('buildSpacingClasses', function () {
         expect($result)->toBe('py-2 px-4');
     });
 
-    it('returns only y class when x sides are zero', function () {
+    it('returns y and explicit zero x classes when x sides are zero', function () {
         $value = (object) ['top' => 2, 'right' => 0, 'bottom' => 2, 'left' => 0];
 
         $result = Tailwind::buildSpacingClasses($value, 'm');
 
-        expect($result)->toBe('my-2');
+        expect($result)->toBe('my-2 mx-0');
     });
 
-    it('returns only x class when y sides are zero', function () {
+    it('returns x and explicit zero y classes when y sides are zero', function () {
         $value = (object) ['top' => 0, 'right' => 4, 'bottom' => 0, 'left' => 4];
 
         $result = Tailwind::buildSpacingClasses($value, 'm');
 
-        expect($result)->toBe('mx-4');
+        expect($result)->toBe('my-0 mx-4');
     });
 
     it('returns individual side classes when all sides differ', function () {
@@ -131,20 +131,20 @@ describe('buildSpacingClasses', function () {
         expect($result)->toBe('pt-1 pe-2 pb-3 ps-4');
     });
 
-    it('skips zero values for individual sides', function () {
+    it('includes explicit zero values for individual sides', function () {
         $value = (object) ['top' => 1, 'right' => 0, 'bottom' => 3, 'left' => 0];
 
         $result = Tailwind::buildSpacingClasses($value, 'm');
 
-        expect($result)->toBe('mt-1 mb-3');
+        expect($result)->toBe('mt-1 me-0 mb-3 ms-0');
     });
 
-    it('handles missing properties with default of zero', function () {
+    it('handles missing properties with explicit zero defaults', function () {
         $value = (object) ['top' => 4];
 
         $result = Tailwind::buildSpacingClasses($value, 'p');
 
-        expect($result)->toBe('pt-4');
+        expect($result)->toBe('pt-4 pe-0 pb-0 ps-0');
     });
 
     it('works with margin prefix', function () {
@@ -196,21 +196,21 @@ describe('buildResponsiveStyleFor', function () {
         ]);
     });
 
-    it('skips zero and negative values', function () {
+    it('includes zero values and skips negative values', function () {
         $value = ['_default' => 0, 'tablet' => -10, 'desktop' => 50];
 
         $result = Tailwind::buildResponsiveStyleFor($value, 'w', 'width');
 
-        expect($result['classes'])->toBe('desktop:w-(--width-desktop)');
-        expect($result['styles'])->toBe(['--width-desktop: 50%']);
+        expect($result['classes'])->toBe('w-(--width) desktop:w-(--width-desktop)');
+        expect($result['styles'])->toBe(['--width: 0%', '--width-desktop: 50%']);
     });
 
-    it('returns empty result when all values are invalid', function () {
+    it('returns zero-valued result when zero is the only valid input', function () {
         $value = ['_default' => 0, 'tablet' => null];
 
         $result = Tailwind::buildResponsiveStyleFor($value, 'w', 'width');
 
-        expect($result['classes'])->toBe('');
-        expect($result['styles'])->toBe([]);
+        expect($result['classes'])->toBe('w-(--width)');
+        expect($result['styles'])->toBe(['--width: 0%']);
     });
 });
