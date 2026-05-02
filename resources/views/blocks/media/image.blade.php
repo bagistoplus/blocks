@@ -1,8 +1,10 @@
 <x-basic-blocks::image-block
   :block="$block"
   :image="$image"
+  :link="$link"
   :alt="$alt"
   :container-classes="$containerClasses"
+  :link-classes="$linkClasses"
   :container-styles="$containerStyles"
   :image-classes="$imageClasses"
 />

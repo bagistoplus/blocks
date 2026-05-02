@@ -2,18 +2,18 @@
 
 namespace BagistoPlus\BasicBlocks\Blocks\Media;
 
+use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Image as ImageSetting;
+use BagistoPlus\Visual\Settings\Link;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Text;
 
 use function BagistoPlus\BasicBlocks\_t;
-
-use BagistoPlus\BasicBlocks\Tailwind;
 
 class Image extends SimpleBlock
 {
@@ -42,6 +42,9 @@ class Image extends SimpleBlock
     {
         return [
             ImageSetting::make('image', _t('blocks.image.settings.image_label'))
+                ->default(null),
+
+            Link::make('link', _t('blocks.image.settings.link_label'))
                 ->default(null),
 
             Text::make('alt', _t('blocks.image.settings.alt_label'))
@@ -87,7 +90,7 @@ class Image extends SimpleBlock
                 ->min(0)->max(100)->step(1)
                 ->default(100)
                 ->unit('%')
-                ->visibleWhen(fn($rule) => $rule->when('width', 'custom'))
+                ->visibleWhen(fn ($rule) => $rule->when('width', 'custom'))
                 ->responsive(),
 
             Select::make('height', _t('blocks.image.settings.height_label'))
@@ -96,7 +99,7 @@ class Image extends SimpleBlock
                     'fill' => _t('blocks.image.settings.height_options.fill'),
                 ])
                 ->default('fit')
-                ->visibleWhen(fn($rule) => $rule->when('aspect_ratio', 'adapt')),
+                ->visibleWhen(fn ($rule) => $rule->when('aspect_ratio', 'adapt')),
 
             Checkbox::make('hover_zoom', _t('blocks.image.settings.hover_zoom_label'))
                 ->default(false)
@@ -112,7 +115,7 @@ class Image extends SimpleBlock
                 ])
                 ->default(105)
                 ->asSegment()
-                ->visibleWhen(fn($rule) => $rule->whenTruthy('hover_zoom')),
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('hover_zoom')),
 
             // Borders Header
             Header::make(_t('blocks.image.settings.borders_header')),
@@ -123,13 +126,13 @@ class Image extends SimpleBlock
             Range::make('border_width', _t('blocks.image.settings.border_width_label'))
                 ->min(0)->max(8)->step(1)
                 ->default(1)
-                ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
 
             Range::make('border_opacity', _t('blocks.image.settings.border_opacity_label'))
                 ->min(0)->max(100)->step(5)
                 ->default(100)
                 ->unit('%')
-                ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
 
             Select::make('border_radius', _t('blocks.image.settings.border_radius_label'))
                 ->options([
@@ -159,11 +162,18 @@ class Image extends SimpleBlock
     {
         return [
             'image' => $this->block->settings->image,
+            'link' => $this->block->settings->link ?? null,
             'alt' => $this->block->settings->alt ?? '',
             'containerClasses' => $this->getContainerClasses(),
+            'linkClasses' => $this->getLinkClasses(),
             'containerStyles' => $this->getContainerStyles(),
             'imageClasses' => $this->getImageClasses(),
         ];
+    }
+
+    protected function getLinkClasses(): string
+    {
+        return trim('block '.$this->getContainerClasses());
     }
 
     protected function getContainerClasses(): string
@@ -216,7 +226,7 @@ class Image extends SimpleBlock
     {
         return Tailwind::responsive(
             $this->block->settings->width ?? 'fill',
-            fn($v) => match ($v) {
+            fn ($v) => match ($v) {
                 'fit-content' => 'w-fit',
                 'fill' => 'w-full',
                 'custom' => '',
@@ -335,7 +345,7 @@ class Image extends SimpleBlock
 
         return Tailwind::responsive(
             $this->block->settings->padding,
-            fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+            fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
         );
     }
 
