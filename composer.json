@@ -12,12 +12,6 @@
         "bagisto theme"
     ],
     "homepage": "https://github.com/bagistoplus/basic-blocks",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../visual"
-        }
-    ],
     "license": "MIT",
     "authors": [
         {
@@ -33,7 +27,6 @@
     "require-dev": {
         "bagistoplus/visual": "^2.0@dev",
         "captainhook/captainhook": "^5.25",
-        "captainhook/plugin-composer": "^5.3",
         "larastan/larastan": "^3.0",
         "laravel/pint": "^1.14",
         "nunomaduro/collision": "^8.8",
@@ -62,7 +55,11 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": "@composer run prepare",
+        "post-autoload-dump": [
+            "@composer run prepare",
+            "@composer run captainhook:install"
+        ],
+        "captainhook:install": "@php -r \"if (is_dir('.git') && is_file('vendor/bin/captainhook')) { passthru('vendor/bin/captainhook install -f -s --quiet'); }\"",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
@@ -72,7 +69,6 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "captainhook/plugin-composer": true,
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
         }

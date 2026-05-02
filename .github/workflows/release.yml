@@ -12,16 +12,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Conventional Changelog Action
-        uses: TriPSs/conventional-changelog-action@v5
+        uses: TriPSs/conventional-changelog-action@v6
         with:
           github-token: ${{ github.token }}
           output-file: "CHANGELOG.md"
-          version-file: "false"
           tag-prefix: 'v'
           release-count: '0'
           skip-on-empty: true

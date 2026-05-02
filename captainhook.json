@@ -31,7 +31,7 @@
                 "conditions": []
             },
             {
-                "action": "composer analyse",
+                "action": "composer analyse -- --memory-limit=512M",
                 "options": {},
                 "conditions": []
             }
