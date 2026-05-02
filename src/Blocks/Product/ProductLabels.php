@@ -7,6 +7,7 @@ use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use Webkul\Shop\Http\Resources\ProductResource;
 
 use function BagistoPlus\BasicBlocks\_t;
 
@@ -90,7 +91,7 @@ class ProductLabels extends SimpleBlock
         $labels = [];
 
         if ($product) {
-            $productResource = (new \Webkul\Shop\Http\Resources\ProductResource($product))->resolve();
+            $productResource = (new ProductResource($product))->resolve();
 
             if ($productResource['on_sale']) {
                 $labels[] = [

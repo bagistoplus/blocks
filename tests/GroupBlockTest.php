@@ -3,6 +3,7 @@
 use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Data\BlockData;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Fluent;
 use Illuminate\Support\HtmlString;
 
 class TestableGroupBlock extends Group
@@ -38,7 +39,7 @@ function renderGroupBlock(array $settings = []): string
     $block = (object) [
         'id' => 'group-block',
         'editor_attributes' => new HtmlString('data-editor="group-block"'),
-        'settings' => new \Illuminate\Support\Fluent($settings),
+        'settings' => new Fluent($settings),
     ];
 
     $viewData = (new TestableGroupBlock)->viewDataFor($settings);
@@ -152,7 +153,8 @@ it('renders group as anchor when link is a non-empty string', function () {
 
 it('renders group as anchor when link is a stringable object', function () {
     $html = renderGroupBlock([
-        'link' => new class () implements \Stringable {
+        'link' => new class implements Stringable
+        {
             public function __toString(): string
             {
                 return 'https://example.com/from-object';

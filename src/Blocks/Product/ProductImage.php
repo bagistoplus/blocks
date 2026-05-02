@@ -5,6 +5,7 @@ namespace BagistoPlus\BasicBlocks\Blocks\Product;
 use BagistoPlus\BasicBlocks\Blocks\Media\Image;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
 use BagistoPlus\Visual\Settings\Select;
+use Webkul\Shop\Http\Resources\ProductResource;
 
 use function BagistoPlus\BasicBlocks\_t;
 
@@ -56,7 +57,7 @@ class ProductImage extends Image
             return array_merge(parent::getViewData(), ['image' => null, 'alt' => '']);
         }
 
-        $productResource = (new \Webkul\Shop\Http\Resources\ProductResource($product))->resolve();
+        $productResource = (new ProductResource($product))->resolve();
 
         $imageData = $productResource['base_image'];
 

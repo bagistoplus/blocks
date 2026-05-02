@@ -2,6 +2,7 @@
 
 namespace BagistoPlus\BasicBlocks\Sections;
 
+use BagistoPlus\BasicBlocks\Presets\CustomSection;
 use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\SimpleSection;
 use BagistoPlus\Visual\Data\BlockData;
@@ -241,7 +242,7 @@ class FlexSection extends SimpleSection
     public static function presets(): array
     {
         return [
-            \BagistoPlus\BasicBlocks\Presets\CustomSection::class,
+            CustomSection::class,
         ];
     }
 
