@@ -306,7 +306,7 @@ class Image extends SimpleBlock
         $classes = [];
         $borderWidth = $this->block->settings->border_width ?? 1;
         $classes[] = $borderWidth === 1 ? 'border' : "border-{$borderWidth}";
-        $classes[] = 'border-current';
+        $classes[] = 'border-current/(--img-border-opacity)';
 
         return $classes;
     }
@@ -317,15 +317,13 @@ class Image extends SimpleBlock
             return [];
         }
 
-        $styles = [];
         $borderOpacity = $this->block->settings->border_opacity ?? 100;
 
-        if ($borderOpacity < 100) {
-            $opacity = $borderOpacity / 100;
-            $styles[] = "border-color: rgba(currentColor, {$opacity})";
+        if (! is_numeric($borderOpacity) || $borderOpacity < 0 || $borderOpacity > 100) {
+            $borderOpacity = 100;
         }
 
-        return $styles;
+        return ["--img-border-opacity: {$borderOpacity}%"];
     }
 
     protected function getBorderRadiusClass(): string

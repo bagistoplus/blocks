@@ -156,3 +156,63 @@ it('renders placeholder classes around the inline placeholder svg', function () 
         ->toContain('class="transition-transform duration-300 hover:scale-125 group-hover:scale-125 h-full w-full"')
         ->toContain('<svg');
 });
+
+it('uses a tailwind css variable class for image border opacity', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'border' => true,
+        'border_width' => 1,
+        'border_opacity' => 50,
+    ]);
+
+    expect($viewData['containerClasses'])
+        ->toContain('border')
+        ->toContain('border-current/(--img-border-opacity)')
+        ->and($viewData['containerStyles'])
+        ->toContain('--img-border-opacity: 50%')
+        ->not->toContain('border-color');
+});
+
+it('emits full image border opacity as a percentage variable', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'border' => true,
+        'border_width' => 1,
+        'border_opacity' => 100,
+    ]);
+
+    expect($viewData['containerClasses'])
+        ->toContain('border-current/(--img-border-opacity)')
+        ->and($viewData['containerStyles'])
+        ->toContain('--img-border-opacity: 100%')
+        ->not->toContain('border-color');
+});
+
+it('falls back to full image border opacity for invalid values', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'border' => true,
+        'border_width' => 1,
+        'border_opacity' => 999,
+    ]);
+
+    expect($viewData['containerClasses'])
+        ->toContain('border-current/(--img-border-opacity)')
+        ->and($viewData['containerStyles'])
+        ->toContain('--img-border-opacity: 100%');
+});
+
+it('does not emit image border opacity data when border is disabled', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'border' => false,
+        'border_width' => 1,
+        'border_opacity' => 50,
+    ]);
+
+    expect($viewData['containerClasses'])
+        ->not->toContain('border-current/(--img-border-opacity)')
+        ->and($viewData['containerStyles'])
+        ->not->toContain('--img-border-opacity')
+        ->not->toContain('border-color');
+});
