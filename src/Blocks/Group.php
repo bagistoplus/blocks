@@ -13,11 +13,8 @@ use BagistoPlus\Visual\Settings\Image;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
-use BagistoPlus\Visual\Settings\Support\GradientValue;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
-use Craftile\Core\Data\ResponsiveValue;
-use matthieumastadenis\couleur\ColorFactory;
 use matthieumastadenis\couleur\ColorInterface;
 
 use function BagistoPlus\BasicBlocks\_t;
@@ -64,7 +61,7 @@ class Group extends SimpleBlock
                 ->default('row')
                 ->responsive()
                 ->asSegment()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
 
             Select::make('flex_justify', _t('blocks.group.settings.flex_justify_label'))
                 ->options([
@@ -74,7 +71,7 @@ class Group extends SimpleBlock
                     'end' => _t('blocks.group.settings.flex_justify_options.end'),
                 ])
                 ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
 
             Select::make('flex_align', _t('blocks.group.settings.flex_align_label'))
                 ->options([
@@ -83,7 +80,7 @@ class Group extends SimpleBlock
                     'end' => _t('blocks.group.settings.flex_align_options.end'),
                 ])
                 ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
 
             Range::make('flex_gap', _t('blocks.group.settings.gap_label'))
                 ->min(0)
@@ -91,7 +88,7 @@ class Group extends SimpleBlock
                 ->step(1)
                 ->default(4)
                 ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
 
             ColorScheme::make('color_scheme', _t('blocks.common.color_scheme_label'))
                 ->info(_t('blocks.common.color_scheme_info')),
@@ -103,7 +100,7 @@ class Group extends SimpleBlock
                 ->step(1)
                 ->default(3)
                 ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'grid')),
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'grid')),
 
             Range::make('grid_rows', _t('blocks.group.settings.grid_rows_label'))
                 ->min(1)
@@ -111,7 +108,7 @@ class Group extends SimpleBlock
                 ->step(1)
                 ->default(1)
                 ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'grid')),
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'grid')),
 
             Range::make('grid_gap', _t('blocks.group.settings.gap_label'))
                 ->min(0)
@@ -119,7 +116,7 @@ class Group extends SimpleBlock
                 ->step(1)
                 ->default(4)
                 ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'grid')),
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'grid')),
 
             // Spacing
             Header::make(_t('blocks.common.spacing_header')),
@@ -148,7 +145,7 @@ class Group extends SimpleBlock
                 ->default(100)
                 ->unit('%')
                 ->responsive()
-                ->visibleWhen(fn ($rule) => $rule->when('width', 'custom')),
+                ->visibleWhen(fn($rule) => $rule->when('width', 'custom')),
 
             Range::make('min_width', _t('blocks.group.settings.min_width_label'))
                 ->min(0)
@@ -192,7 +189,7 @@ class Group extends SimpleBlock
                 ->step(10)
                 ->default(400)
                 ->unit('px')
-                ->visibleWhen(fn ($rule) => $rule->when('height', 'custom')),
+                ->visibleWhen(fn($rule) => $rule->when('height', 'custom')),
 
             Range::make('min_height', _t('blocks.group.settings.min_height_label'))
                 ->min(0)
@@ -213,7 +210,7 @@ class Group extends SimpleBlock
                 ->step(1)
                 ->default(1)
                 ->unit('px')
-                ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
+                ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
 
             Select::make('border_style', _t('blocks.group.settings.border_style_label'))
                 ->options([
@@ -223,19 +220,11 @@ class Group extends SimpleBlock
                 ])
                 ->default('solid')
                 ->asSegment()
-                ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
+                ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
 
             Color::make('border_color', _t('blocks.group.settings.border_color_label'))
                 ->default('currentColor')
-                ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
-
-            Range::make('border_opacity', _t('blocks.group.settings.border_opacity_label'))
-                ->min(0)
-                ->max(100)
-                ->step(5)
-                ->default(100)
-                ->unit('%')
-                ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
+                ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
 
             Select::make('border_radius', _t('blocks.group.settings.border_radius_label'))
                 ->options([
@@ -265,13 +254,13 @@ class Group extends SimpleBlock
 
             Color::make('background_color', _t('blocks.group.settings.background_color_label'))
                 ->default('rgba(0, 0, 0, 0)')
-                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'color')),
+                ->visibleWhen(fn($rule) => $rule->when('background_type', 'color')),
 
             Gradient::make('background_gradient', _t('blocks.group.settings.background_gradient_label'))
-                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'gradient')),
+                ->visibleWhen(fn($rule) => $rule->when('background_type', 'gradient')),
 
             Image::make('background_image', _t('blocks.group.settings.background_image_label'))
-                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
+                ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
 
             Select::make('background_position', _t('blocks.group.settings.background_position_label'))
                 ->options([
@@ -282,7 +271,7 @@ class Group extends SimpleBlock
                     'right' => _t('blocks.group.settings.background_position_options.right'),
                 ])
                 ->default('center')
-                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
+                ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
 
             Select::make('background_size', _t('blocks.group.settings.background_size_label'))
                 ->options([
@@ -291,7 +280,7 @@ class Group extends SimpleBlock
                     'auto' => _t('blocks.group.settings.background_size_options.auto'),
                 ])
                 ->default('cover')
-                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
+                ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
 
             Select::make('background_repeat', _t('blocks.group.settings.background_repeat_label'))
                 ->options([
@@ -301,7 +290,7 @@ class Group extends SimpleBlock
                     'repeat-y' => _t('blocks.group.settings.background_repeat_options.repeat_y'),
                 ])
                 ->default('no-repeat')
-                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
+                ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
 
             // Overlay
             Header::make(_t('blocks.group.settings.overlay_header')),
@@ -326,7 +315,7 @@ class Group extends SimpleBlock
                     'bottom' => _t('blocks.group.settings.overlay_position_options.bottom'),
                 ])
                 ->default('full')
-                ->visibleWhen(fn ($rule) => $rule->whenTruthy('is_overlay')),
+                ->visibleWhen(fn($rule) => $rule->whenTruthy('is_overlay')),
 
             Select::make('overlay_visibility', _t('blocks.group.settings.overlay_visibility_label'))
                 ->options([
@@ -335,7 +324,7 @@ class Group extends SimpleBlock
                 ])
                 ->default('always')
                 ->info(_t('blocks.group.settings.overlay_visibility_info'))
-                ->visibleWhen(fn ($rule) => $rule->whenTruthy('is_overlay')),
+                ->visibleWhen(fn($rule) => $rule->whenTruthy('is_overlay')),
 
             Select::make('overlay_hover_target', _t('blocks.group.settings.overlay_hover_target_label'))
                 ->options([
@@ -345,14 +334,14 @@ class Group extends SimpleBlock
                 ])
                 ->default('parent')
                 ->info(_t('blocks.group.settings.overlay_hover_target_info'))
-                ->visibleWhen(fn ($rule) => $rule->whenTruthy('is_overlay')->when('overlay_visibility', 'hover')),
+                ->visibleWhen(fn($rule) => $rule->whenTruthy('is_overlay')->when('overlay_visibility', 'hover')),
 
             Range::make('z_index', _t('blocks.group.settings.z_index_label'))
                 ->min(0)
                 ->max(50)
                 ->step(1)
                 ->default(10)
-                ->visibleWhen(fn ($rule) => $rule->whenTruthy('is_overlay')),
+                ->visibleWhen(fn($rule) => $rule->whenTruthy('is_overlay')),
 
             Select::make('position', _t('blocks.group.settings.position_label'))
                 ->options([
@@ -362,7 +351,7 @@ class Group extends SimpleBlock
                     'fixed' => _t('blocks.group.settings.position_options.fixed'),
                 ])
                 ->default('static')
-                ->visibleWhen(fn ($rule) => $rule->whenFalsy('is_overlay')),
+                ->visibleWhen(fn($rule) => $rule->whenFalsy('is_overlay')),
         ];
     }
 
@@ -509,7 +498,7 @@ class Group extends SimpleBlock
                 $hoverTarget = $this->block->settings->overlay_hover_target ?? 'parent';
 
                 if (str_starts_with($hoverTarget, 'group/')) {
-                    $hoverPrefix = 'group-hover/'.substr($hoverTarget, 6);
+                    $hoverPrefix = 'group-hover/' . substr($hoverTarget, 6);
                 } elseif ($hoverTarget === 'group') {
                     $hoverPrefix = 'group-hover';
                 } else {
@@ -552,7 +541,7 @@ class Group extends SimpleBlock
         $s = $this->block->settings;
 
         if ($s->has('flex_direction')) {
-            $classes[] = Tailwind::responsive($s->flex_direction, fn ($v) => match ($v) {
+            $classes[] = Tailwind::responsive($s->flex_direction, fn($v) => match ($v) {
                 'row' => 'flex-row',
                 'row-reverse' => 'flex-row-reverse',
                 'column' => 'flex-col',
@@ -562,7 +551,7 @@ class Group extends SimpleBlock
         }
 
         if ($s->get('flex_justify')) {
-            $classes[] = Tailwind::responsive($s->flex_justify, fn ($v) => match ($v) {
+            $classes[] = Tailwind::responsive($s->flex_justify, fn($v) => match ($v) {
                 'start' => 'justify-start',
                 'center' => 'justify-center',
                 'between' => 'justify-between',
@@ -572,7 +561,7 @@ class Group extends SimpleBlock
         }
 
         if ($s->get('flex_align')) {
-            $classes[] = Tailwind::responsive($s->flex_align, fn ($v) => match ($v) {
+            $classes[] = Tailwind::responsive($s->flex_align, fn($v) => match ($v) {
                 'start' => 'items-start',
                 'center' => 'items-center',
                 'end' => 'items-end',
@@ -581,7 +570,7 @@ class Group extends SimpleBlock
         }
 
         if ($s->has('flex_wrap')) {
-            $classes[] = Tailwind::responsive($s->flex_wrap, fn ($v) => match ($v) {
+            $classes[] = Tailwind::responsive($s->flex_wrap, fn($v) => match ($v) {
                 'nowrap' => 'flex-nowrap',
                 'wrap' => 'flex-wrap',
                 'wrap-reverse' => 'flex-wrap-reverse',
@@ -590,22 +579,22 @@ class Group extends SimpleBlock
         }
 
         if ($s->has('flex_gap')) {
-            $classes[] = Tailwind::responsive($s->flex_gap, fn ($v) => "gap-{$v}");
+            $classes[] = Tailwind::responsive($s->flex_gap, fn($v) => "gap-{$v}");
         }
     }
 
     protected function mapGridProperties(array &$classes): void
     {
         if ($this->block->settings->has('grid_columns')) {
-            $classes[] = Tailwind::responsive($this->block->settings->grid_columns, fn ($v) => is_numeric($v) ? "grid-cols-{$v}" : (string) $v);
+            $classes[] = Tailwind::responsive($this->block->settings->grid_columns, fn($v) => is_numeric($v) ? "grid-cols-{$v}" : (string) $v);
         }
 
         if ($this->block->settings->has('grid_rows')) {
-            $classes[] = Tailwind::responsive($this->block->settings->grid_rows, fn ($v) => is_numeric($v) ? "grid-rows-{$v}" : 'grid-rows-1');
+            $classes[] = Tailwind::responsive($this->block->settings->grid_rows, fn($v) => is_numeric($v) ? "grid-rows-{$v}" : 'grid-rows-1');
         }
 
         if ($this->block->settings->has('grid_gap')) {
-            $classes[] = Tailwind::responsive($this->block->settings->grid_gap, fn ($v) => "gap-{$v}");
+            $classes[] = Tailwind::responsive($this->block->settings->grid_gap, fn($v) => "gap-{$v}");
         }
     }
 
@@ -614,11 +603,11 @@ class Group extends SimpleBlock
         $s = $this->block->settings;
 
         if ($s->has('padding')) {
-            $classes[] = Tailwind::responsive($s->padding, fn ($v) => Tailwind::buildSpacingClasses($v, 'p'));
+            $classes[] = Tailwind::responsive($s->padding, fn($v) => Tailwind::buildSpacingClasses($v, 'p'));
         }
 
         if ($s->has('margin')) {
-            $classes[] = Tailwind::responsive($s->margin, fn ($v) => Tailwind::buildSpacingClasses($v, 'm'));
+            $classes[] = Tailwind::responsive($s->margin, fn($v) => Tailwind::buildSpacingClasses($v, 'm'));
         }
     }
 
@@ -649,7 +638,7 @@ class Group extends SimpleBlock
                 }
             }
 
-            $classes[] = Tailwind::responsive($width, fn ($v) => match ($v) {
+            $classes[] = Tailwind::responsive($width, fn($v) => match ($v) {
                 'full' => 'w-full',
                 'fit' => 'w-fit',
                 'screen' => 'w-screen',
@@ -670,7 +659,7 @@ class Group extends SimpleBlock
         if ($this->block->settings->has('max_width')) {
             $maxWidth = $this->block->settings->max_width;
             if ($maxWidth !== 'none') {
-                $classes[] = Tailwind::responsive($maxWidth, fn ($v) => match ($v) {
+                $classes[] = Tailwind::responsive($maxWidth, fn($v) => match ($v) {
                     'xs' => 'max-w-xs',
                     'sm' => 'max-w-sm',
                     'md' => 'max-w-md',
@@ -696,7 +685,7 @@ class Group extends SimpleBlock
                 $customHeight = $this->block->settings->custom_height;
                 $styles[] = "height: {$customHeight}px";
             } elseif ($height !== 'auto') {
-                $classes[] = Tailwind::responsive($height, fn ($v) => match ($v) {
+                $classes[] = Tailwind::responsive($height, fn($v) => match ($v) {
                     'full' => 'h-full',
                     'fit' => 'h-fit',
                     'screen' => 'h-screen',
@@ -732,26 +721,29 @@ class Group extends SimpleBlock
 
         // Border style
         if ($this->block->settings->has('border_style')) {
-            $classes[] = "border-{$this->block->settings->border_style}";
+            $classes[] = match ($this->block->settings->border_style) {
+                'dashed' => 'border-dashed',
+                'dotted' => 'border-dotted',
+                default => 'border-solid',
+            };
         }
 
-        // Border color with opacity
-        if ($this->block->settings->has('border_color')) {
-            $borderColor = $this->parseColor($this->block->settings->border_color);
+        $rawBorderColor = $this->block->settings->border_color ?? null;
+        $resolvedBorderColor = match (true) {
+            $rawBorderColor instanceof ColorInterface => trim((string) $rawBorderColor),
+            is_string($rawBorderColor) => trim($rawBorderColor),
+            default => '',
+        };
 
-            if ($borderColor) {
-                if ($this->block->settings->has('border_opacity')) {
-                    $opacity = $this->block->settings->border_opacity / 100;
-                    $rgb = $borderColor->toRgb();
-                    $coords = $rgb->coordinates();
-                    $colorStr = "rgba({$coords[0]}, {$coords[1]}, {$coords[2]}, {$opacity})";
-                    $styles[] = "border-color: {$colorStr}";
-                } else {
-                    $styles[] = "border-color: {$borderColor}";
-                }
-            }
+        if ($resolvedBorderColor === '') {
+            $resolvedBorderColor = 'currentColor';
         }
 
+        if (strtolower($resolvedBorderColor) === 'currentcolor') {
+            $classes[] = 'border-current';
+        } else {
+            $styles[] = "border-color: {$resolvedBorderColor}";
+        }
     }
 
     protected function mapBorderRadius(array &$classes): void
@@ -759,7 +751,7 @@ class Group extends SimpleBlock
         if ($this->block->settings->has('border_radius')) {
             $borderRadius = $this->block->settings->border_radius;
             if ($borderRadius !== 'none') {
-                $classes[] = Tailwind::responsive($borderRadius, fn ($v) => match ($v) {
+                $classes[] = Tailwind::responsive($borderRadius, fn($v) => match ($v) {
                     'sm' => 'rounded-sm',
                     'md' => 'rounded-md',
                     'lg' => 'rounded-lg',
@@ -810,84 +802,5 @@ class Group extends SimpleBlock
     protected function mapOverlay(array &$classes, array &$styles): void
     {
         // Overlay positioning is handled in mapPosition()
-    }
-
-    protected function parseColor($color)
-    {
-        if ($color === null || $color === false || $color === true || $color === '' || is_array($color)) {
-            return null;
-        }
-
-        if ($color instanceof ColorInterface) {
-            return $color;
-        }
-
-        if (! is_string($color)) {
-            return null;
-        }
-
-        $color = trim($color);
-        if ($color === '' || $color === 'false' || $color === 'true') {
-            return null;
-        }
-
-        try {
-            return ColorFactory::new($color);
-        } catch (\Throwable $e) {
-            return null;
-        }
-    }
-
-    protected function parseGradient($gradient)
-    {
-        if ($gradient === null || $gradient === false || $gradient === true || $gradient === '') {
-            return null;
-        }
-
-        if ($gradient instanceof GradientValue) {
-            return $gradient;
-        }
-
-        if (is_array($gradient)) {
-            try {
-                return new GradientValue($gradient);
-            } catch (\Throwable $e) {
-                return null;
-            }
-        }
-
-        if (is_string($gradient)) {
-            return $gradient;
-        }
-
-        return null;
-    }
-
-    protected function toResponsiveValue($value): ResponsiveValue
-    {
-        if ($value instanceof ResponsiveValue) {
-            return $value;
-        }
-
-        if (is_array($value) && isset($value['_default'])) {
-            return new ResponsiveValue($value);
-        }
-
-        return new ResponsiveValue(['_default' => $value]);
-    }
-
-    protected function responsiveValuesEqual($a, $b): bool
-    {
-        $ra = $this->toResponsiveValue($a);
-        $rb = $this->toResponsiveValue($b);
-
-        $keys = array_unique(array_merge(array_keys($ra->all()), array_keys($rb->all())));
-        foreach ($keys as $k) {
-            if ($ra->get($k) != $rb->get($k)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }

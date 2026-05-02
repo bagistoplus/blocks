@@ -52,7 +52,7 @@
             "BagistoPlus\\BasicBlocks\\Database\\Factories\\": "database/factories/"
         },
         "files": [
-           "src/helpers.php"
+            "src/helpers.php"
         ]
     },
     "autoload-dev": {
