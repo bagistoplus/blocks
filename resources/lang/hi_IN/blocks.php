@@ -583,6 +583,9 @@ return [
                 'absolute' => 'पूर्ण',
                 'fixed' => 'स्थिर',
             ],
+            'link_header' => 'लिंक',
+            'link_label' => 'लिंक',
+            'open_in_new_tab_label' => 'नई टैब में खोलें',
         ],
         'presets' => [
             'basic' => [

@@ -583,6 +583,9 @@ return [
                 'absolute' => 'Absolue',
                 'fixed' => 'Fixe',
             ],
+            'link_header' => 'Lien',
+            'link_label' => 'Lien',
+            'open_in_new_tab_label' => 'Ouvrir dans un nouvel onglet',
         ],
         'presets' => [
             'basic' => [

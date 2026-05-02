@@ -13,6 +13,7 @@ use BagistoPlus\Visual\Settings\Image;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
+use BagistoPlus\Visual\Settings\Link;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use matthieumastadenis\couleur\ColorInterface;
@@ -352,6 +353,15 @@ class Group extends SimpleBlock
                 ])
                 ->default('static')
                 ->visibleWhen(fn($rule) => $rule->whenFalsy('is_overlay')),
+
+            // Link
+            Header::make(_t('blocks.group.settings.link_header')),
+
+            Link::make('link', _t('blocks.group.settings.link_label'))
+                ->default(null),
+
+            Checkbox::make('open_in_new_tab', _t('blocks.group.settings.open_in_new_tab_label'))
+                ->default(false),
         ];
     }
 
@@ -428,7 +438,15 @@ class Group extends SimpleBlock
 
     public function getViewData(): array
     {
-        return $this->generateClasses();
+        $link = $this->normalizedLink();
+        $openInNewTab = (bool) ($this->block->settings->open_in_new_tab ?? false);
+
+        return array_merge($this->generateClasses(), [
+            'link' => $link,
+            'isLinkable' => $link !== null,
+            'linkTarget' => $link !== null && $openInNewTab ? '_blank' : null,
+            'linkRel' => $link !== null && $openInNewTab ? 'noopener noreferrer' : null,
+        ]);
     }
 
     protected function generateClasses(): array
@@ -802,5 +820,22 @@ class Group extends SimpleBlock
     protected function mapOverlay(array &$classes, array &$styles): void
     {
         // Overlay positioning is handled in mapPosition()
+    }
+
+    protected function normalizedLink(): ?string
+    {
+        $rawLink = $this->block->settings->link ?? null;
+
+        if (is_string($rawLink)) {
+            $link = $rawLink;
+        } elseif ($rawLink instanceof \Stringable) {
+            $link = (string) $rawLink;
+        } else {
+            return null;
+        }
+
+        $link = trim($link);
+
+        return $link === '' ? null : $link;
     }
 }

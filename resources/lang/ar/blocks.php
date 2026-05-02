@@ -583,6 +583,9 @@ return [
                 'absolute' => 'مطلق',
                 'fixed' => 'ثابت',
             ],
+            'link_header' => 'الرابط',
+            'link_label' => 'الرابط',
+            'open_in_new_tab_label' => 'فتح في علامة تبويب جديدة',
         ],
         'presets' => [
             'basic' => [
