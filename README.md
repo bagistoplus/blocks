@@ -33,23 +33,23 @@ Simply use the drag-and-drop interface to add blocks to your pages and customize
 
 ## Host Theme Integration
 
-Most blocks work with zero configuration. The **Button** block has one required setup step, and the **Icon** block supports optional customization.
+Most blocks work with zero configuration. This package also ships an optional shared stylesheet entry for packaged block styles.
 
-### Button block
+### Shared stylesheet (optional)
 
-The Button block ships with a stylesheet that is not auto-included. Themes must import it into their Tailwind entry at the `components` layer:
+Themes can import the package stylesheet entry:
 
 ```css
-@import '../../../vendor/bagistoplus/basic-blocks/resources/assets/css/button.css' layer(components);
+@import '../../../vendor/bagistoplus/basic-blocks/resources/assets/css/index.css';
 ```
 
 Adjust the relative path to match your theme's CSS file location.
 
-The color variants (`.btn-primary`, `.btn-secondary`, etc.) pick up the semantic color scheme tokens already provided by the `bagistoplus/visual` package, so no extra setup is needed beyond what every Bagisto visual theme already does.
+This file contains the packaged block CSS (including button styles) and Tailwind source hints used by those styles.
 
-**Optional**: override the button's CSS custom properties (`--btn-radius`, `--btn-border-width`, `--btn-font-size`, `--btn-letter-spacing`, `--btn-text-transform`, and the shadow/inset variables) to customize appearance. The full list is in [resources/assets/css/button.css](resources/assets/css/button.css).
+For button customization, override the button CSS custom properties (`--btn-radius`, `--btn-border-width`, `--btn-font-size`, `--btn-letter-spacing`, `--btn-text-transform`, and the shadow/inset variables). The full list is in [resources/assets/css/index.css](resources/assets/css/index.css).
 
-If the stylesheet is not imported, Button blocks render as unstyled inline links.
+If the stylesheet is not imported, blocks still function; packaged visual styles are simply not applied.
 
 ### Icon block
 
