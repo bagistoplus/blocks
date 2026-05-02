@@ -5,5 +5,6 @@
   :container-classes="$containerClasses"
   :container-styles="$containerStyles"
   :image-classes="$imageClasses"
+  :placeholder-classes="$placeholderClasses"
   placeholder="resources/assets/images/product-placeholder.svg"
 />

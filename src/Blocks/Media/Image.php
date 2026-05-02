@@ -168,6 +168,7 @@ class Image extends SimpleBlock
             'linkClasses' => $this->getLinkClasses(),
             'containerStyles' => $this->getContainerStyles(),
             'imageClasses' => $this->getImageClasses(),
+            'placeholderClasses' => $this->getPlaceholderClasses(),
         ];
     }
 
@@ -217,6 +218,17 @@ class Image extends SimpleBlock
             'h-full',
             'w-full',
             'object-center',
+        ];
+
+        return implode(' ', array_filter($classes));
+    }
+
+    protected function getPlaceholderClasses(): string
+    {
+        $classes = [
+            $this->getHoverZoomClasses(),
+            'h-full',
+            'w-full',
         ];
 
         return implode(' ', array_filter($classes));
@@ -357,8 +369,14 @@ class Image extends SimpleBlock
             return '';
         }
 
-        $hoverZoomScale = $this->block->settings->hover_zoom_scale ?? '105';
+        $scaleClasses = match ((string) ($this->block->settings->hover_zoom_scale ?? '105')) {
+            '100' => 'hover:scale-100 group-hover:scale-100',
+            '110' => 'hover:scale-110 group-hover:scale-110',
+            '125' => 'hover:scale-125 group-hover:scale-125',
+            '150' => 'hover:scale-150 group-hover:scale-150',
+            default => 'hover:scale-105 group-hover:scale-105',
+        };
 
-        return "transition-transform duration-300 hover:scale-{$hoverZoomScale} group-hover:scale-{$hoverZoomScale}";
+        return "transition-transform duration-300 {$scaleClasses}";
     }
 }

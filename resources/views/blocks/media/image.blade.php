@@ -7,4 +7,5 @@
   :link-classes="$linkClasses"
   :container-styles="$containerStyles"
   :image-classes="$imageClasses"
+  :placeholder-classes="$placeholderClasses"
 />

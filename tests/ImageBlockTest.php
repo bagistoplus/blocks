@@ -3,8 +3,23 @@
 use BagistoPlus\BasicBlocks\Blocks\Category\CategoryImage;
 use BagistoPlus\BasicBlocks\Blocks\Media\Image;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductImage;
+use BagistoPlus\Visual\Data\BlockData;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
+
+class TestableImageBlock extends Image
+{
+    public function viewDataFor(array $properties): array
+    {
+        $this->setBlockData(BlockData::make([
+            'id' => 'image-block',
+            'type' => '@basic-blocks/image',
+            'properties' => $properties,
+        ]));
+
+        return $this->getViewData();
+    }
+}
 
 function settingIds(array $settings): array
 {
@@ -15,8 +30,11 @@ function settingIds(array $settings): array
         ->all();
 }
 
-function renderImageBlock(?string $image = 'https://example.com/image.jpg', ?string $link = null): string
-{
+function renderImageBlock(
+    ?string $image = 'https://example.com/image.jpg',
+    ?string $link = null,
+    string $placeholderClasses = 'h-full w-full',
+): string {
     $block = (object) [
         'editor_attributes' => new HtmlString('data-editor="image-block"'),
     ];
@@ -32,9 +50,10 @@ function renderImageBlock(?string $image = 'https://example.com/image.jpg', ?str
   link-classes="block relative overflow-hidden"
   container-styles="width: 100%"
   image-classes="h-full w-full"
+  :placeholder-classes="$placeholderClasses"
 />
 BLADE,
-        compact('block', 'image', 'link')
+        compact('block', 'image', 'link', 'placeholderClasses')
     );
 }
 
@@ -76,4 +95,64 @@ it('renders a clickable placeholder when link is configured without an image', f
         ->toContain('href="https://example.com/page"')
         ->toContain('<svg')
         ->not->toContain('<img');
+});
+
+it('uses literal hover zoom classes for real images', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'hover_zoom' => true,
+        'hover_zoom_scale' => '105',
+    ]);
+
+    expect($viewData['imageClasses'])
+        ->toContain('transition-transform duration-300')
+        ->toContain('hover:scale-105')
+        ->toContain('group-hover:scale-105');
+});
+
+it('maps non-default hover zoom scales to literal classes', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'hover_zoom' => true,
+        'hover_zoom_scale' => '125',
+    ]);
+
+    expect($viewData['imageClasses'])
+        ->toContain('hover:scale-125')
+        ->toContain('group-hover:scale-125');
+});
+
+it('falls back to default hover zoom classes for unknown scales', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'hover_zoom' => true,
+        'hover_zoom_scale' => '999',
+    ]);
+
+    expect($viewData['imageClasses'])
+        ->toContain('hover:scale-105')
+        ->toContain('group-hover:scale-105');
+});
+
+it('does not include hover zoom classes when disabled', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'hover_zoom' => false,
+        'hover_zoom_scale' => '125',
+    ]);
+
+    expect($viewData['imageClasses'])
+        ->not->toContain('hover:scale-')
+        ->not->toContain('group-hover:scale-');
+});
+
+it('renders placeholder classes around the inline placeholder svg', function () {
+    $html = renderImageBlock(
+        image: null,
+        placeholderClasses: 'transition-transform duration-300 hover:scale-125 group-hover:scale-125 h-full w-full',
+    );
+
+    expect($html)
+        ->toContain('class="transition-transform duration-300 hover:scale-125 group-hover:scale-125 h-full w-full"')
+        ->toContain('<svg');
 });

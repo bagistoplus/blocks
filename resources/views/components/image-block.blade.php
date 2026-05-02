@@ -7,6 +7,7 @@
     'linkClasses' => '',
     'containerStyles' => '',
     'imageClasses' => '',
+    'placeholderClasses' => '',
     'placeholder' => 'resources/assets/images/image-placeholder.svg',
 ])
 
@@ -54,7 +55,9 @@
         {{ $attributes }}
       >
   @endif
-  @bb_svg($placeholder)
+  <div class="{{ $placeholderClasses }}">
+    @bb_svg($placeholder)
+  </div>
   @if ($link)
     </a>
   @else
