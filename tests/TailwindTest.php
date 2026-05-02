@@ -1,6 +1,7 @@
 <?php
 
 use BagistoPlus\BasicBlocks\Tailwind;
+use BagistoPlus\Visual\Settings\Support\SpacingValue;
 use Craftile\Core\Data\ResponsiveValue;
 
 describe('toResponsiveValue', function () {
@@ -83,8 +84,13 @@ describe('responsive', function () {
 });
 
 describe('buildSpacingClasses', function () {
+    function spacingValue(array $value): SpacingValue
+    {
+        return new SpacingValue($value);
+    }
+
     it('returns single class when all sides are equal', function () {
-        $value = (object) ['top' => 4, 'right' => 4, 'bottom' => 4, 'left' => 4];
+        $value = spacingValue(['top' => 4, 'right' => 4, 'bottom' => 4, 'left' => 4]);
 
         $result = Tailwind::buildSpacingClasses($value, 'p');
 
@@ -92,7 +98,7 @@ describe('buildSpacingClasses', function () {
     });
 
     it('returns explicit zero class when all sides are zero', function () {
-        $value = (object) ['top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0];
+        $value = spacingValue(['top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0]);
 
         $result = Tailwind::buildSpacingClasses($value, 'p');
 
@@ -100,7 +106,7 @@ describe('buildSpacingClasses', function () {
     });
 
     it('returns x/y classes when opposite sides match', function () {
-        $value = (object) ['top' => 2, 'right' => 4, 'bottom' => 2, 'left' => 4];
+        $value = spacingValue(['top' => 2, 'right' => 4, 'bottom' => 2, 'left' => 4]);
 
         $result = Tailwind::buildSpacingClasses($value, 'p');
 
@@ -108,7 +114,7 @@ describe('buildSpacingClasses', function () {
     });
 
     it('returns y and explicit zero x classes when x sides are zero', function () {
-        $value = (object) ['top' => 2, 'right' => 0, 'bottom' => 2, 'left' => 0];
+        $value = spacingValue(['top' => 2, 'right' => 0, 'bottom' => 2, 'left' => 0]);
 
         $result = Tailwind::buildSpacingClasses($value, 'm');
 
@@ -116,7 +122,7 @@ describe('buildSpacingClasses', function () {
     });
 
     it('returns x and explicit zero y classes when y sides are zero', function () {
-        $value = (object) ['top' => 0, 'right' => 4, 'bottom' => 0, 'left' => 4];
+        $value = spacingValue(['top' => 0, 'right' => 4, 'bottom' => 0, 'left' => 4]);
 
         $result = Tailwind::buildSpacingClasses($value, 'm');
 
@@ -124,7 +130,7 @@ describe('buildSpacingClasses', function () {
     });
 
     it('returns individual side classes when all sides differ', function () {
-        $value = (object) ['top' => 1, 'right' => 2, 'bottom' => 3, 'left' => 4];
+        $value = spacingValue(['top' => 1, 'right' => 2, 'bottom' => 3, 'left' => 4]);
 
         $result = Tailwind::buildSpacingClasses($value, 'p');
 
@@ -132,7 +138,7 @@ describe('buildSpacingClasses', function () {
     });
 
     it('includes explicit zero values for individual sides', function () {
-        $value = (object) ['top' => 1, 'right' => 0, 'bottom' => 3, 'left' => 0];
+        $value = spacingValue(['top' => 1, 'right' => 0, 'bottom' => 3, 'left' => 0]);
 
         $result = Tailwind::buildSpacingClasses($value, 'm');
 
@@ -140,7 +146,7 @@ describe('buildSpacingClasses', function () {
     });
 
     it('handles missing properties with explicit zero defaults', function () {
-        $value = (object) ['top' => 4];
+        $value = spacingValue(['top' => 4]);
 
         $result = Tailwind::buildSpacingClasses($value, 'p');
 
@@ -148,7 +154,7 @@ describe('buildSpacingClasses', function () {
     });
 
     it('works with margin prefix', function () {
-        $value = (object) ['top' => 8, 'right' => 8, 'bottom' => 8, 'left' => 8];
+        $value = spacingValue(['top' => 8, 'right' => 8, 'bottom' => 8, 'left' => 8]);
 
         $result = Tailwind::buildSpacingClasses($value, 'm');
 
@@ -196,13 +202,13 @@ describe('buildResponsiveStyleFor', function () {
         ]);
     });
 
-    it('includes zero values and skips negative values', function () {
+    it('includes zero and negative values', function () {
         $value = ['_default' => 0, 'tablet' => -10, 'desktop' => 50];
 
         $result = Tailwind::buildResponsiveStyleFor($value, 'w', 'width');
 
-        expect($result['classes'])->toBe('w-(--width) desktop:w-(--width-desktop)');
-        expect($result['styles'])->toBe(['--width: 0%', '--width-desktop: 50%']);
+        expect($result['classes'])->toBe('w-(--width) tablet:w-(--width-tablet) desktop:w-(--width-desktop)');
+        expect($result['styles'])->toBe(['--width: 0%', '--width-tablet: -10%', '--width-desktop: 50%']);
     });
 
     it('returns zero-valued result when zero is the only valid input', function () {

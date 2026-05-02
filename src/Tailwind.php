@@ -2,6 +2,7 @@
 
 namespace BagistoPlus\BasicBlocks;
 
+use BagistoPlus\Visual\Settings\Support\SpacingValue;
 use Craftile\Core\Data\ResponsiveValue;
 
 class Tailwind
@@ -59,11 +60,11 @@ class Tailwind
     /**
      * Build spacing classes from a spacing value object
      *
-     * @param  object  $value  Object with top, right, bottom, left properties
+     * @param  SpacingValue  $value  Object with top, right, bottom, left properties
      * @param  string  $prefix  Class prefix (p for padding, m for margin)
      * @return string Generated Tailwind classes
      */
-    public static function buildSpacingClasses($value, string $prefix): string
+    public static function buildSpacingClasses(SpacingValue $value, string $prefix): string
     {
         $top = $value->top ?? 0;
         $right = $value->right ?? 0;
@@ -97,7 +98,7 @@ class Tailwind
         $styles = [];
 
         foreach ($rv->all() as $breakpoint => $val) {
-            if ($val === null || $val < 0) {
+            if ($val === null) {
                 continue;
             }
 
