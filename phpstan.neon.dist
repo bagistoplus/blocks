@@ -4,6 +4,7 @@ includes:
 parameters:
     level: 5
     universalObjectCratesClasses:
+        - BagistoPlus\Visual\Data\BlockData
         - Craftile\Laravel\PropertyBag
         - Craftile\Core\Data\PropertyBag
     paths:
