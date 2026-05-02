@@ -259,7 +259,7 @@ class Image extends SimpleBlock
             }
         }
 
-        if ($hasCustomWidth && $this->block->settings->custom_width) {
+        if ($hasCustomWidth && $this->block->settings->custom_width !== null) {
             return Tailwind::buildResponsiveStyleFor(
                 value: $this->block->settings->custom_width,
                 prefix: 'w',
@@ -304,7 +304,7 @@ class Image extends SimpleBlock
         }
 
         $classes = [];
-        $borderWidth = $this->block->settings->border_width ?? 1;
+        $borderWidth = (int) ($this->block->settings->border_width ?? 1);
         $classes[] = $borderWidth === 1 ? 'border' : "border-{$borderWidth}";
         $classes[] = 'border-current/(--img-border-opacity)';
 

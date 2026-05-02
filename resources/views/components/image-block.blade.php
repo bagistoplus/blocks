@@ -44,14 +44,14 @@
       {{ $block->editor_attributes }}
       href="{{ $link }}"
       class="{{ $linkClasses }}"
-      style="@if ($containerStyles) {{ $containerStyles }} @endif"
+      @if ($containerStyles) style="{{ $containerStyles }}" @endif
       {{ $attributes }}
     >
     @else
       <div
         {{ $block->editor_attributes }}
         class="{{ $containerClasses }}"
-        style="@if ($containerStyles) {{ $containerStyles }} @endif"
+        @if ($containerStyles) style="{{ $containerStyles }}" @endif
         {{ $attributes }}
       >
   @endif

@@ -34,6 +34,7 @@ function renderImageBlock(
     ?string $image = 'https://example.com/image.jpg',
     ?string $link = null,
     string $placeholderClasses = 'h-full w-full',
+    string $containerStyles = 'width: 100%',
 ): string {
     $block = (object) [
         'editor_attributes' => new HtmlString('data-editor="image-block"'),
@@ -48,13 +49,18 @@ function renderImageBlock(
   alt="Image alt"
   container-classes="relative overflow-hidden"
   link-classes="block relative overflow-hidden"
-  container-styles="width: 100%"
+  :container-styles="$containerStyles"
   image-classes="h-full w-full"
   :placeholder-classes="$placeholderClasses"
 />
 BLADE,
-        compact('block', 'image', 'link', 'placeholderClasses')
+        compact('block', 'image', 'link', 'placeholderClasses', 'containerStyles')
     );
+}
+
+function classTokens(string $classes): array
+{
+    return preg_split('/\s+/', trim($classes), flags: PREG_SPLIT_NO_EMPTY);
 }
 
 it('adds a link setting to the base image block', function () {
@@ -215,4 +221,60 @@ it('does not emit image border opacity data when border is disabled', function (
         ->and($viewData['containerStyles'])
         ->not->toContain('--img-border-opacity')
         ->not->toContain('border-color');
+});
+
+it('renders zero custom width as responsive width data', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'width' => 'custom',
+        'custom_width' => 0,
+    ]);
+
+    expect(classTokens($viewData['containerClasses']))
+        ->toContain('w-(--width)')
+        ->and($viewData['containerStyles'])
+        ->toContain('--width: 0%');
+});
+
+it('normalizes string border width one to the base border class', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'border' => true,
+        'border_width' => '1',
+    ]);
+
+    expect(classTokens($viewData['containerClasses']))
+        ->toContain('border')
+        ->not->toContain('border-1');
+});
+
+it('renders non-one numeric border widths as exact tailwind border classes', function (int|string $borderWidth, string $expectedClass) {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'border' => true,
+        'border_width' => $borderWidth,
+    ]);
+
+    expect(classTokens($viewData['containerClasses']))->toContain($expectedClass);
+})->with([
+    'numeric zero' => [0, 'border-0'],
+    'string two' => ['2', 'border-2'],
+    'numeric eight' => [8, 'border-8'],
+]);
+
+it('does not render an empty style attribute for placeholders without styles', function () {
+    $html = renderImageBlock(image: null, containerStyles: '');
+
+    expect($html)
+        ->toContain('<div')
+        ->toContain('<svg')
+        ->not->toContain('style=""');
+});
+
+it('renders placeholder styles when container styles are present', function () {
+    $html = renderImageBlock(image: null, containerStyles: 'width: 50%');
+
+    expect($html)
+        ->toContain('style="width: 50%"')
+        ->toContain('<svg');
 });
