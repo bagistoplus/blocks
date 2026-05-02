@@ -111,11 +111,11 @@ class ButtonSettingsSchema
      */
     public static function style(string $style): array
     {
-        $defaults = static::STYLES[$style] ?? static::STYLES['flat'];
+        $defaults = self::STYLES[$style] ?? self::STYLES['flat'];
 
         return [
             'name' => 'basic-blocks::settings.button.name',
-            'settings' => static::buildSettings($defaults),
+            'settings' => self::buildSettings($defaults),
         ];
     }
 
@@ -156,7 +156,7 @@ class ButtonSettingsSchema
      */
     public static function styles(): array
     {
-        return static::STYLES;
+        return self::STYLES;
     }
 
     /**
