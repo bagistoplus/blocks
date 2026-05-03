@@ -650,6 +650,8 @@ return [
                 'xl' => 'Extra Large',
             ],
             'full_width_label' => 'Full Width',
+            'circle_label' => 'Circle',
+            'square_label' => 'Square',
 
             'icon_header' => 'Icon',
             'icon_label' => 'Icon',

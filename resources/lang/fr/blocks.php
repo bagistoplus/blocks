@@ -650,6 +650,8 @@ return [
                 'xl' => 'Très grand',
             ],
             'full_width_label' => 'Pleine largeur',
+            'circle_label' => 'Cercle',
+            'square_label' => 'Carré',
 
             'icon_header' => 'Icône',
             'icon_label' => 'Icône',

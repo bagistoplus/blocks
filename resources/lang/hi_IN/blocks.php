@@ -650,6 +650,8 @@ return [
                 'xl' => 'बहुत बड़ा',
             ],
             'full_width_label' => 'पूर्ण चौड़ाई',
+            'circle_label' => 'वृत्त',
+            'square_label' => 'वर्ग',
 
             'icon_header' => 'आइकन',
             'icon_label' => 'आइकन',

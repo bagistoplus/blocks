@@ -75,6 +75,14 @@ class Button extends SimpleBlock
                 ->asSwitch()
                 ->default(false),
 
+            Checkbox::make('circle', _t('blocks.button.settings.circle_label'))
+                ->asSwitch()
+                ->default(false),
+
+            Checkbox::make('square', _t('blocks.button.settings.square_label'))
+                ->asSwitch()
+                ->default(false),
+
             Header::make(_t('blocks.button.settings.icon_header')),
 
             Icon::make('icon', _t('blocks.button.settings.icon_label')),
@@ -146,6 +154,8 @@ class Button extends SimpleBlock
             'variant' => $s->style ?? 'filled',
             'size' => $s->size ?? 'md',
             'fullWidth' => $s->full_width ?? false,
+            'circle' => $s->circle ?? false,
+            'square' => $s->square ?? false,
             'url' => $s->url ?? '#',
             'target' => $openInNewTab ? '_blank' : null,
             'rel' => $openInNewTab ? 'noopener noreferrer' : null,

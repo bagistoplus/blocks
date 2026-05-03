@@ -3,6 +3,8 @@
   :variant="$variant"
   :size="$size"
   :block="$fullWidth"
+  :circle="$circle"
+  :square="$square"
   :icon="$icon"
   :icon-position="$iconPosition"
   :raw-attributes="$block->editor_attributes . ' ' . $block->liveUpdate('text')"

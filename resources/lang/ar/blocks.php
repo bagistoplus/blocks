@@ -650,6 +650,8 @@ return [
                 'xl' => 'كبير جداً',
             ],
             'full_width_label' => 'عرض كامل',
+            'circle_label' => 'دائري',
+            'square_label' => 'مربع',
 
             'icon_header' => 'الأيقونة',
             'icon_label' => 'الأيقونة',
