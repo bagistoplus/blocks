@@ -2,10 +2,13 @@
 
 namespace BagistoPlus\BasicBlocks\Blocks\Basic;
 
+use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\ColorScheme;
+use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 
 use function BagistoPlus\BasicBlocks\_t;
 
@@ -51,6 +54,13 @@ class Divider extends SimpleBlock
 
             ColorScheme::make('color_scheme', _t('blocks.common.color_scheme_label'))
                 ->info(_t('blocks.common.color_scheme_info')),
+
+            Header::make(_t('blocks.common.padding_header')),
+
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
+                ->min(0)
+                ->max(24),
         ];
     }
 
@@ -62,6 +72,32 @@ class Divider extends SimpleBlock
             'thickness' => (int) ($settings->thickness ?? 1),
             'length' => (int) ($settings->length ?? 100),
             'isRounded' => ($settings->corner_radius ?? 'square') === 'rounded',
+            'wrapperClasses' => $this->getWrapperClasses(),
         ];
+    }
+
+    protected function getWrapperClasses(): string
+    {
+        $classes = [
+            'flex',
+            'items-center',
+            'justify-center',
+            'self-stretch',
+            $this->getPaddingClasses(),
+        ];
+
+        return implode(' ', array_filter($classes));
+    }
+
+    protected function getPaddingClasses(): string
+    {
+        if (! $this->block->settings->has('padding')) {
+            return '';
+        }
+
+        return Tailwind::responsive(
+            $this->block->settings->padding,
+            fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
+        );
     }
 }

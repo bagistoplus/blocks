@@ -22,6 +22,15 @@ describe('toResponsiveValue', function () {
         expect($result->all())->toBe(['_default' => 'base', 'tablet' => 'md']);
     });
 
+    it('wraps array with breakpoint keys into ResponsiveValue', function () {
+        $value = ['mobile' => 'base', 'tablet' => 'md'];
+
+        $result = Tailwind::toResponsiveValue($value);
+
+        expect($result)->toBeInstanceOf(ResponsiveValue::class);
+        expect($result->all())->toBe(['mobile' => 'base', 'tablet' => 'md']);
+    });
+
     it('wraps scalar value into ResponsiveValue with _default key', function () {
         $result = Tailwind::toResponsiveValue('test');
 
@@ -50,6 +59,14 @@ describe('responsive', function () {
         $result = Tailwind::responsive($value, fn ($v) => "text-{$v}");
 
         expect($result)->toBe('text-left tablet:text-center desktop:text-right');
+    });
+
+    it('prefixes each responsive class when callback returns multiple classes', function () {
+        $value = ['tablet' => 'inset'];
+
+        $result = Tailwind::responsive($value, fn () => 'py-4 px-6');
+
+        expect($result)->toBe('tablet:py-4 tablet:px-6');
     });
 
     it('skips null values', function () {

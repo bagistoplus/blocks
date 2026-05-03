@@ -7,6 +7,7 @@ use Craftile\Core\Data\ResponsiveValue;
 
 class Tailwind
 {
+    /** @var array<string, string> */
     protected static array $breakpointMap = [
         'mobile' => 'mobile',
         'tablet' => 'tablet',
@@ -14,14 +15,14 @@ class Tailwind
         '_default' => '', // base
     ];
 
-    public static function toResponsiveValue($value): ResponsiveValue
+    public static function toResponsiveValue(mixed $value): ResponsiveValue
     {
         if ($value instanceof ResponsiveValue) {
             return $value;
         }
 
         // If it's already an array with responsive keys, use it directly
-        if (is_array($value) && isset($value['_default'])) {
+        if (is_array($value) && array_intersect(array_keys($value), array_keys(static::$breakpointMap))) {
             return new ResponsiveValue($value);
         }
 
@@ -30,8 +31,10 @@ class Tailwind
 
     /**
      * Build responsive Tailwind classes from a value and callback
+     *
+     * @param  callable(mixed): mixed|array<int|string, mixed>|null  $callback
      */
-    public static function responsive($value, $callback): string
+    public static function responsive(mixed $value, callable|array|null $callback): string
     {
         $rv = static::toResponsiveValue($value);
         $classes = [];
@@ -51,7 +54,9 @@ class Tailwind
             }
 
             $prefix = static::$breakpointMap[$key] ?? '';
-            $classes[] = $prefix ? "{$prefix}:{$cls}" : $cls;
+            $classes[] = $prefix
+                ? implode(' ', array_map(fn (string $class) => "{$prefix}:{$class}", preg_split('/\s+/', trim($cls), flags: PREG_SPLIT_NO_EMPTY)))
+                : $cls;
         }
 
         return implode(' ', $classes);
@@ -60,9 +65,7 @@ class Tailwind
     /**
      * Build spacing classes from a spacing value object
      *
-     * @param  SpacingValue  $value  Object with top, right, bottom, left properties
-     * @param  string  $prefix  Class prefix (p for padding, m for margin)
-     * @return string Generated Tailwind classes
+     * @param  non-empty-string  $prefix  Class prefix (p for padding, m for margin)
      */
     public static function buildSpacingClasses(SpacingValue $value, string $prefix): string
     {
@@ -85,13 +88,12 @@ class Tailwind
     /**
      * Build responsive CSS classes and inline styles for a CSS property
      *
-     * @param  ResponsiveValue|mixed  $value  Responsive value
-     * @param  string  $prefix  Tailwind class prefix (e.g., 'w', 'h')
-     * @param  string  $property  CSS property name (e.g., 'width', 'height')
+     * @param  non-empty-string  $prefix  Tailwind class prefix (e.g., 'w', 'h')
+     * @param  non-empty-string  $property  CSS property name (e.g., 'width', 'height')
      * @param  string  $unit  Unit to append to values (default: '%')
-     * @return array ['classes' => string, 'styles' => string]
+     * @return array{classes: string, styles: string}
      */
-    public static function buildResponsiveStyleFor($value, string $prefix, string $property, string $unit = '%'): array
+    public static function buildResponsiveStyleFor(mixed $value, string $prefix, string $property, string $unit = '%'): array
     {
         $rv = static::toResponsiveValue($value);
         $classes = [];
