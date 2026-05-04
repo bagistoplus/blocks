@@ -22,6 +22,8 @@ use function BagistoPlus\BasicBlocks\_t;
 
 /**
  * @property-read BlockData $section
+ *
+ * @phpstan-property-read BlockData $section
  */
 class FlexSection extends SimpleSection
 {
