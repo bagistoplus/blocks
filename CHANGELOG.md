@@ -1,3 +1,30 @@
-# Changelog
+# 1.0.0 (2026-05-04)
 
-All notable changes to `basic-blocks` will be documented in this file.
+
+### Bug Fixes
+
+* emit zero spacing classes ([2b8b5a9](https://github.com/bagistoplus/blocks/commit/2b8b5a9dce39618b48998218102fd253422901f8))
+* handle image block edge cases ([48731e4](https://github.com/bagistoplus/blocks/commit/48731e44d67588159cc187b8e028395f3581d721))
+* **phpstan:** allow dynamic block settings access in blade ([657bc76](https://github.com/bagistoplus/blocks/commit/657bc76448c73c81090e5e8b875fe38dce022dcf))
+* stabilize image hover zoom classes ([467479d](https://github.com/bagistoplus/blocks/commit/467479d7b9273ea4d2490d60a192838bc619e78c))
+* type flex section section property ([25a9fe4](https://github.com/bagistoplus/blocks/commit/25a9fe48bea31ec743cf99f586ca1bdf1fdc9688))
+* use self access for private button settings members ([dae2d18](https://github.com/bagistoplus/blocks/commit/dae2d18ef61d3cccbb01691199db5df9c79eabd5))
+* use tailwind variable for image border opacity ([11bec22](https://github.com/bagistoplus/blocks/commit/11bec229e800ddc02660812defa6a092d5ccdc0e))
+
+
+### Features
+
+* add basic blocks package ([3c232b3](https://github.com/bagistoplus/blocks/commit/3c232b37de43a25c4b2f7a286085ef293fbcf318))
+* add block descriptions ([d44b47d](https://github.com/bagistoplus/blocks/commit/d44b47dc5285928c0af98e1060942dc0ff88273a))
+* add button block ([2e2d801](https://github.com/bagistoplus/blocks/commit/2e2d801f29d2938e535fdf4c2052219e1f3a4502))
+* add button shape settings ([e9ad8c0](https://github.com/bagistoplus/blocks/commit/e9ad8c0bb0d7b6aca9b7922bd75bd7d50048338d))
+* add divider padding setting ([9ad6c0d](https://github.com/bagistoplus/blocks/commit/9ad6c0dca0d2d3d2f83760e1b33fc40f48d80bc2))
+* add image block link setting ([5895e5b](https://github.com/bagistoplus/blocks/commit/5895e5bb1da7f9bf4114bcf5dc8ba82822bf259d))
+* add image placeholder assets ([d871577](https://github.com/bagistoplus/blocks/commit/d8715778ddb37577fd1fefff520602b98fa5a96c))
+* add section system ([9eb2f63](https://github.com/bagistoplus/blocks/commit/9eb2f6312955f1d0b2a5d27b70140aca36e89d13))
+* **blocks:** finalize group linkability updates ([0db2360](https://github.com/bagistoplus/blocks/commit/0db23607f1fe77b74a264d7294308d0f0dcceb02))
+* **group:** add linkable wrapper with new-tab option ([17022de](https://github.com/bagistoplus/blocks/commit/17022dedebffc281ae31a260a29eb5d5ee063736))
+* improve image style options ([31421ee](https://github.com/bagistoplus/blocks/commit/31421ee96ba93898ae78dafbea4192fa21e31aa9))
+
+
+
