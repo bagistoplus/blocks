@@ -19,12 +19,6 @@ composer require bagistoplus/basic-blocks
 
 That's it! The package will automatically register itself via Laravel's package auto-discovery.
 
-Optionally, you can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="basic-blocks-config"
-```
-
 ## Usage
 
 This package provides basic blocks for the Bagisto Visual Editor. Once installed, the blocks are automatically available in the visual editor interface at [visual.bagistoplus.com](https://visual.bagistoplus.com).
