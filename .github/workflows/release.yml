@@ -22,17 +22,17 @@ jobs:
         with:
           github-token: ${{ github.token }}
           output-file: "CHANGELOG.md"
-          tag-prefix: 'v'
-          fallback-version: '1.0.0'
-          release-count: '0'
+          tag-prefix: "v"
+          fallback-version: "1.0.0"
+          release-count: "0"
           skip-on-empty: true
           skip-version-file: true
-          git-message: 'docs: update CHANGELOG.md for {version} [skip ci]'
+          git-message: "docs: update CHANGELOG.md for {version} [skip ci]"
           pre-release: false
 
       - name: Create GitHub Release
         if: ${{ steps.changelog.outputs.skipped == 'false' }}
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.changelog.outputs.tag }}
           name: ${{ steps.changelog.outputs.tag }}
