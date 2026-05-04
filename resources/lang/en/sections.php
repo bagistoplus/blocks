@@ -101,7 +101,13 @@ return [
 
             'border_label' => 'Show Border',
             'border_width_label' => 'Border Width',
-            'border_opacity_label' => 'Border Opacity',
+            'border_style_label' => 'Border Style',
+            'border_style_options' => [
+                'solid' => 'Solid',
+                'dashed' => 'Dashed',
+                'dotted' => 'Dotted',
+            ],
+            'border_color_label' => 'Border Color',
 
             'border_radius_label' => 'Border Radius',
             'border_radius_options' => [
@@ -110,6 +116,8 @@ return [
                 'md' => 'Medium',
                 'lg' => 'Large',
                 'xl' => 'Extra Large',
+                '2xl' => '2X Large',
+                '3xl' => '3X Large',
                 'full' => 'Full',
             ],
 

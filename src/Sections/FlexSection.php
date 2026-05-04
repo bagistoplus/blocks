@@ -16,6 +16,7 @@ use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Typography;
+use matthieumastadenis\couleur\ColorInterface;
 
 use function BagistoPlus\BasicBlocks\_t;
 
@@ -37,15 +38,6 @@ class FlexSection extends SimpleSection
     public static function description(): string
     {
         return _t('sections.flex-section.description');
-    }
-
-    public function __get($name)
-    {
-        if ($name === 'section') {
-            return $this->block;
-        }
-
-        return null;
     }
 
     public static function settings(): array
@@ -118,6 +110,7 @@ class FlexSection extends SimpleSection
                 ->step(50)
                 ->default(600)
                 ->unit('px')
+                ->responsive()
                 ->visibleWhen(fn ($rule) => $rule->when('section_height', 'custom')),
 
             Header::make(_t('sections.flex-section.settings.appearance_header')),
@@ -185,12 +178,18 @@ class FlexSection extends SimpleSection
                 ->unit('px')
                 ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
 
-            Range::make('border_opacity', _t('sections.flex-section.settings.border_opacity_label'))
-                ->min(0)
-                ->max(100)
-                ->step(5)
-                ->default(100)
-                ->unit('%')
+            Select::make('border_style', _t('sections.flex-section.settings.border_style_label'))
+                ->options([
+                    'solid' => _t('sections.flex-section.settings.border_style_options.solid'),
+                    'dashed' => _t('sections.flex-section.settings.border_style_options.dashed'),
+                    'dotted' => _t('sections.flex-section.settings.border_style_options.dotted'),
+                ])
+                ->default('solid')
+                ->asSegment()
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
+
+            Color::make('border_color', _t('sections.flex-section.settings.border_color_label'))
+                ->default('currentColor')
                 ->visibleWhen(fn ($rule) => $rule->whenTruthy('border')),
 
             Select::make('border_radius', _t('sections.flex-section.settings.border_radius_label'))
@@ -200,6 +199,8 @@ class FlexSection extends SimpleSection
                     'md' => _t('sections.flex-section.settings.border_radius_options.md'),
                     'lg' => _t('sections.flex-section.settings.border_radius_options.lg'),
                     'xl' => _t('sections.flex-section.settings.border_radius_options.xl'),
+                    '2xl' => _t('sections.flex-section.settings.border_radius_options.2xl'),
+                    '3xl' => _t('sections.flex-section.settings.border_radius_options.3xl'),
                     'full' => _t('sections.flex-section.settings.border_radius_options.full'),
                 ])
                 ->default('none'),
@@ -249,53 +250,122 @@ class FlexSection extends SimpleSection
     public function getViewData(): array
     {
         $s = $this->section->settings;
+        $outerAttributes = $this->computeOuterAttributes();
+        $sectionHeightAttributes = $this->computeSectionHeightAttributes();
 
         return [
-            'outerClass' => $this->computeOuterClasses(),
-            'outerStyle' => $this->computeOuterStyles(),
-            'overlayStyle' => $this->computeOverlayStyles(),
-            'contentWidth' => $s->section_width === 'container' ? 'container mx-auto' : '',
-            'sectionHeight' => $this->computeSectionHeight(),
-            'flexClass' => $this->computeFlexClasses(),
-            'flexStyle' => $this->computeFlexStyles(),
+            'outerClasses' => $outerAttributes['classes'],
+            'outerStyles' => $outerAttributes['styles'],
+            'overlayStyles' => $this->computeOverlayStyles(),
+            'contentWidthClasses' => ($s->section_width ?? 'container') === 'container' ? 'container mx-auto' : '',
+            'sectionHeightClasses' => $sectionHeightAttributes['classes'],
+            'sectionHeightStyles' => $sectionHeightAttributes['styles'],
+            'flexClasses' => $this->computeFlexClasses(),
         ];
     }
 
-    protected function computeSectionHeight(): string
+    /**
+     * @return array{classes: string, styles: string}
+     */
+    protected function computeSectionHeightAttributes(): array
     {
         $s = $this->section->settings;
+        $height = Tailwind::toResponsiveValue($s->section_height ?? 'auto');
+        $customHeight = Tailwind::toResponsiveValue($s->section_height_custom ?? 600);
+        $heightClasses = [];
+        $customHeightValues = [];
 
-        return Tailwind::responsive($s->section_height, fn ($v) => match ($v) {
-            'xs' => 'h-[20rem]',
-            'sm' => 'h-[25rem]',
-            'md' => 'h-[37.5rem]',
-            'lg' => 'h-[50rem]',
-            'screen' => 'h-screen',
-            'custom' => 'h-['.($s->section_height_custom ?? 600).'px]',
-            default => 'h-auto',
-        });
+        foreach ($height->all() as $breakpoint => $value) {
+            if ($value === null) {
+                continue;
+            }
+
+            $prefix = $breakpoint === '_default' ? '' : "{$breakpoint}:";
+
+            if ($value === 'custom') {
+                $customHeightValues[$breakpoint] = $customHeight->get($breakpoint, $customHeight->value() ?? 600);
+
+                continue;
+            }
+
+            $heightClasses[] = $prefix.match ($value) {
+                'xs' => 'h-[20rem]',
+                'sm' => 'h-[25rem]',
+                'md' => 'h-[37.5rem]',
+                'lg' => 'h-[50rem]',
+                'screen' => 'h-screen',
+                default => 'h-auto',
+            };
+        }
+
+        $customHeightAttributes = $customHeightValues === []
+            ? ['classes' => '', 'styles' => '']
+            : Tailwind::buildResponsiveStyleFor(
+                value: $customHeightValues,
+                prefix: 'h',
+                property: 'height',
+                unit: 'px'
+            );
+
+        return [
+            'classes' => implode(' ', array_filter([
+                implode(' ', $heightClasses),
+                $customHeightAttributes['classes'],
+            ])),
+            'styles' => $customHeightAttributes['styles'],
+        ];
     }
 
-    protected function computeOuterClasses(): string
+    /**
+     * @return array{classes: string, styles: string}
+     */
+    protected function computeOuterAttributes(): array
     {
         $classes = [];
-        $s = $this->section->settings;
+        $styles = [];
 
-        // Border radius
-        if (isset($s->border_radius) && $s->border_radius !== 'none') {
-            $classes[] = match ($s->border_radius) {
+        $this->mapBorder($classes, $styles);
+        $this->mapBorderRadius($classes);
+        $this->mapBackground($classes, $styles);
+
+        return [
+            'classes' => implode(' ', array_filter($classes)),
+            'styles' => implode('; ', $styles),
+        ];
+    }
+
+    protected function mapBorderRadius(array &$classes): void
+    {
+        $s = $this->section->settings;
+        $borderRadius = $s->border_radius ?? 'none';
+
+        if ($borderRadius !== 'none') {
+            $classes[] = match ($borderRadius) {
                 'sm' => 'rounded-sm',
                 'md' => 'rounded-md',
                 'lg' => 'rounded-lg',
                 'xl' => 'rounded-xl',
+                '2xl' => 'rounded-2xl',
+                '3xl' => 'rounded-3xl',
                 'full' => 'rounded-full',
                 default => '',
             };
+            $classes[] = 'overflow-hidden';
         }
+    }
 
-        // Background image classes
+    protected function mapBackground(array &$classes, array &$styles): void
+    {
+        $s = $this->section->settings;
         $bgType = $s->background_type ?? 'none';
-        if ($bgType === 'image' && $s->background_image) {
+
+        if ($bgType === 'color' && $s->has('background_color') && $s->background_color) {
+            $styles[] = "background-color: {$s->background_color}";
+        } elseif ($bgType === 'gradient' && $s->has('background_gradient') && $s->background_gradient) {
+            $styles[] = "background-image: {$s->background_gradient}";
+        } elseif ($bgType === 'image' && $s->has('background_image') && $s->background_image) {
+            $styles[] = "background-image: url('{$s->background_image}')";
+
             $classes[] = match ($s->background_position ?? 'center') {
                 'top' => 'bg-top',
                 'bottom' => 'bg-bottom',
@@ -317,36 +387,46 @@ class FlexSection extends SimpleSection
                 default => 'bg-no-repeat',
             };
         }
-
-        return implode(' ', array_filter($classes));
     }
 
-    protected function computeOuterStyles(): string
+    protected function mapBorder(array &$classes, array &$styles): void
     {
-        $styles = [];
         $s = $this->section->settings;
 
-        // Background
-        $bgType = $s->background_type ?? 'none';
-
-        if ($bgType === 'color' && $s->background_color) {
-            $styles[] = "background-color: {$s->background_color}";
-        } elseif ($bgType === 'gradient' && $s->background_gradient) {
-            $styles[] = "background-image: {$s->background_gradient}";
-        } elseif ($bgType === 'image' && $s->background_image) {
-            $styles[] = "background-image: url('{$s->background_image}')";
+        if (! ($s->border ?? false)) {
+            return;
         }
 
-        // Border
-        if ($s->border ?? false) {
-            $borderWidth = $s->border_width ?? 1;
-            $borderOpacity = ($s->border_opacity ?? 100) / 100;
+        $borderWidth = $s->border_width ?? 1;
+        if ($borderWidth >= 0 && $borderWidth <= 8) {
+            $classes[] = $borderWidth === 1 ? 'border' : "border-{$borderWidth}";
+        } else {
             $styles[] = "border-width: {$borderWidth}px";
-            $styles[] = 'border-style: solid';
-            $styles[] = "border-color: rgba(var(--color-on-surface), {$borderOpacity})";
         }
 
-        return implode('; ', $styles);
+        $classes[] = match ($s->border_style ?? 'solid') {
+            'dashed' => 'border-dashed',
+            'dotted' => 'border-dotted',
+            default => 'border-solid',
+        };
+
+        $rawValues = $s->raw();
+        $rawBorderColor = $rawValues['border_color'] ?? null;
+        $resolvedBorderColor = match (true) {
+            $rawBorderColor instanceof ColorInterface => trim((string) $rawBorderColor),
+            is_string($rawBorderColor) => trim($rawBorderColor),
+            default => '',
+        };
+
+        if ($resolvedBorderColor === '') {
+            $resolvedBorderColor = 'currentColor';
+        }
+
+        if (strtolower($resolvedBorderColor) === 'currentcolor') {
+            $classes[] = 'border-current';
+        } else {
+            $styles[] = "border-color: {$resolvedBorderColor}";
+        }
     }
 
     protected function computeOverlayStyles(): string
@@ -360,9 +440,9 @@ class FlexSection extends SimpleSection
         $styles = [];
         $overlayStyle = $s->overlay_style ?? 'solid';
 
-        if ($overlayStyle === 'gradient' && $s->overlay_gradient) {
+        if ($overlayStyle === 'gradient' && $s->has('overlay_gradient') && $s->overlay_gradient) {
             $styles[] = "background-image: {$s->overlay_gradient}";
-        } elseif ($overlayStyle === 'solid' && $s->overlay_color) {
+        } elseif ($overlayStyle === 'solid' && $s->has('overlay_color') && $s->overlay_color) {
             $styles[] = "background-color: {$s->overlay_color}";
         }
 
@@ -413,10 +493,5 @@ class FlexSection extends SimpleSection
         }
 
         return implode(' ', array_filter($classes));
-    }
-
-    protected function computeFlexStyles(): string
-    {
-        return '';
     }
 }

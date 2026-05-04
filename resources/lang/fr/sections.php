@@ -101,7 +101,13 @@ return [
 
             'border_label' => 'Afficher la bordure',
             'border_width_label' => 'Largeur de la bordure',
-            'border_opacity_label' => 'Opacité de la bordure',
+            'border_style_label' => 'Style de bordure',
+            'border_style_options' => [
+                'solid' => 'Solide',
+                'dashed' => 'Tirets',
+                'dotted' => 'Pointillé',
+            ],
+            'border_color_label' => 'Couleur de bordure',
 
             'border_radius_label' => 'Rayon de bordure',
             'border_radius_options' => [
@@ -110,6 +116,8 @@ return [
                 'md' => 'Moyen',
                 'lg' => 'Grand',
                 'xl' => 'Très grand',
+                '2xl' => '2X très grand',
+                '3xl' => '3X très grand',
                 'full' => 'Complet',
             ],
 

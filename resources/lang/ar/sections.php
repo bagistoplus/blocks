@@ -101,7 +101,13 @@ return [
 
             'border_label' => 'إظهار الحدود',
             'border_width_label' => 'عرض الحدود',
-            'border_opacity_label' => 'شفافية الحدود',
+            'border_style_label' => 'نمط الحدود',
+            'border_style_options' => [
+                'solid' => 'صلب',
+                'dashed' => 'متقطع',
+                'dotted' => 'منقط',
+            ],
+            'border_color_label' => 'لون الحدود',
 
             'border_radius_label' => 'نصف قطر الحدود',
             'border_radius_options' => [
@@ -110,6 +116,8 @@ return [
                 'md' => 'متوسط',
                 'lg' => 'كبير',
                 'xl' => 'كبير جداً',
+                '2xl' => 'كبير جداً 2X',
+                '3xl' => 'كبير جداً 3X',
                 'full' => 'كامل',
             ],
 

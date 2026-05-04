@@ -101,7 +101,13 @@ return [
 
             'border_label' => 'बॉर्डर दिखाएं',
             'border_width_label' => 'बॉर्डर चौड़ाई',
-            'border_opacity_label' => 'बॉर्डर अपारदर्शिता',
+            'border_style_label' => 'बॉर्डर शैली',
+            'border_style_options' => [
+                'solid' => 'ठोस',
+                'dashed' => 'डैश',
+                'dotted' => 'बिंदु',
+            ],
+            'border_color_label' => 'बॉर्डर रंग',
 
             'border_radius_label' => 'बॉर्डर त्रिज्या',
             'border_radius_options' => [
@@ -110,6 +116,8 @@ return [
                 'md' => 'मध्यम',
                 'lg' => 'बड़ा',
                 'xl' => 'बहुत बड़ा',
+                '2xl' => '2X बहुत बड़ा',
+                '3xl' => '3X बहुत बड़ा',
                 'full' => 'पूर्ण',
             ],
 
