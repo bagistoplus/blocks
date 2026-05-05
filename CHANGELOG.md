@@ -1,4 +1,22 @@
-# 1.0.0 (2026-05-04)
+# [1.1.0](https://github.com/bagistoplus/blocks/compare/v1.0.0...v1.1.0) (2026-05-05)
+
+
+### Bug Fixes
+
+* require visual image metadata support ([21a2c7b](https://github.com/bagistoplus/blocks/commit/21a2c7b845bccbb00890604110df797adb615204))
+* require visual preset api support ([f10ec1c](https://github.com/bagistoplus/blocks/commit/f10ec1c6485697e0ff41eaa3af7768a7808c710a))
+* require visual spacing support ([f537d9d](https://github.com/bagistoplus/blocks/commit/f537d9d99803397033c8bc5f81f964dc263eca38))
+* require visual typography support ([eceb247](https://github.com/bagistoplus/blocks/commit/eceb24770ea2477061ca207577c4733068faf86a))
+
+
+### Features
+
+* support background image focal points ([ecadedb](https://github.com/bagistoplus/blocks/commit/ecadedb179113085eba925fb6ecdbda30a02b2ca))
+* support image block focal points ([6484e29](https://github.com/bagistoplus/blocks/commit/6484e2974da6a8ffc6a6b17721da11161eeadf01))
+
+
+
+# [1.0.0](https://github.com/bagistoplus/blocks/compare/3c232b37de43a25c4b2f7a286085ef293fbcf318...v1.0.0) (2026-05-04)
 
 
 ### Bug Fixes
