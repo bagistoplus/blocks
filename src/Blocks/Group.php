@@ -14,6 +14,7 @@ use BagistoPlus\Visual\Settings\Link;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
+use BagistoPlus\Visual\Settings\Support\ImageValue;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use matthieumastadenis\couleur\ColorInterface;
@@ -261,17 +262,6 @@ class Group extends SimpleBlock
                 ->visibleWhen(fn ($rule) => $rule->when('background_type', 'gradient')),
 
             Image::make('background_image', _t('blocks.group.settings.background_image_label'))
-                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
-
-            Select::make('background_position', _t('blocks.group.settings.background_position_label'))
-                ->options([
-                    'center' => _t('blocks.group.settings.background_position_options.center'),
-                    'top' => _t('blocks.group.settings.background_position_options.top'),
-                    'bottom' => _t('blocks.group.settings.background_position_options.bottom'),
-                    'left' => _t('blocks.group.settings.background_position_options.left'),
-                    'right' => _t('blocks.group.settings.background_position_options.right'),
-                ])
-                ->default('center')
                 ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
 
             Select::make('background_size', _t('blocks.group.settings.background_size_label'))
@@ -792,15 +782,11 @@ class Group extends SimpleBlock
         } elseif ($bgType === 'gradient' && $this->block->settings->has('background_gradient') && $this->block->settings->background_gradient) {
             $styles[] = "background-image: {$this->block->settings->background_gradient}";
         } elseif ($bgType === 'image' && $this->block->settings->has('background_image') && $this->block->settings->background_image) {
-            $styles[] = "background-image: url('{$this->block->settings->background_image}')";
+            /** @var ImageValue $backgroundImage */
+            $backgroundImage = $this->block->settings->background_image;
 
-            $classes[] = match ($this->block->settings->background_position ?? 'center') {
-                'top' => 'bg-top',
-                'bottom' => 'bg-bottom',
-                'left' => 'bg-left',
-                'right' => 'bg-right',
-                default => 'bg-center',
-            };
+            $styles[] = "background-image: url('{$backgroundImage}')";
+            $styles[] = "background-position: {$backgroundImage->objectPosition()}";
 
             $classes[] = match ($this->block->settings->background_size ?? 'cover') {
                 'contain' => 'bg-contain',

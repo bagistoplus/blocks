@@ -39,6 +39,16 @@ function flexSectionClassTokens(string $classes): array
     return preg_split('/\s+/', trim($classes), flags: PREG_SPLIT_NO_EMPTY);
 }
 
+function flexSectionPresetPropertyKeys(): array
+{
+    return collect(FlexSection::presets())
+        ->map(fn ($preset) => is_string($preset) ? new $preset : $preset)
+        ->flatMap(fn ($preset) => array_keys($preset->toArray()['properties'] ?? []))
+        ->unique()
+        ->values()
+        ->all();
+}
+
 function renderFlexSection(array $settings = []): string
 {
     $section = BlockData::make([
@@ -70,8 +80,14 @@ BLADE,
 it('uses group style border settings in flex section schema', function () {
     expect(flexSectionSettingIds(FlexSection::settings()))
         ->not->toContain('border_opacity')
+        ->not->toContain('background_position')
         ->toContain('border_style')
         ->toContain('border_color');
+});
+
+it('does not use removed background position setting in flex section presets', function () {
+    expect(flexSectionPresetPropertyKeys())
+        ->not->toContain('background_position');
 });
 
 it('makes custom section height responsive', function () {
@@ -160,6 +176,49 @@ it('does not add overflow hidden when border radius is none', function () {
 
     expect(flexSectionClassTokens($viewData['outerClasses']))
         ->not->toContain('overflow-hidden');
+});
+
+it('uses image focal point for background position', function () {
+    $viewData = (new TestableFlexSection)->viewDataFor([
+        'background_type' => 'image',
+        'background_image' => [
+            'path' => 'https://example.com/hero.jpg',
+            'focalPoint' => ['x' => 25, 'y' => 70],
+        ],
+    ]);
+
+    expect($viewData['outerStyles'])
+        ->toContain("background-image: url('https://example.com/hero.jpg')")
+        ->toContain('background-position: 25% 70%')
+        ->and(flexSectionClassTokens($viewData['outerClasses']))
+        ->not->toContain('bg-center')
+        ->not->toContain('bg-top');
+});
+
+it('uses center focal point for background images without explicit focal point', function () {
+    $viewData = (new TestableFlexSection)->viewDataFor([
+        'background_type' => 'image',
+        'background_image' => [
+            'path' => 'https://example.com/hero.jpg',
+        ],
+    ]);
+
+    expect($viewData['outerStyles'])
+        ->toContain('background-position: 50% 50%');
+});
+
+it('uses default focal point for string background images', function () {
+    $viewData = (new TestableFlexSection)->viewDataFor([
+        'background_type' => 'image',
+        'background_image' => 'https://example.com/legacy.jpg',
+        'background_position' => 'top',
+    ]);
+
+    expect(flexSectionClassTokens($viewData['outerClasses']))
+        ->not->toContain('bg-top')
+        ->and($viewData['outerStyles'])
+        ->toContain("background-image: url('https://example.com/legacy.jpg')")
+        ->toContain('background-position: 50% 50%');
 });
 
 it('renders responsive custom height with css variables', function () {

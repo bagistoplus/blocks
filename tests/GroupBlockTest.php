@@ -34,6 +34,15 @@ function groupClassTokens(string $classes): array
     return preg_split('/\s+/', trim($classes), flags: PREG_SPLIT_NO_EMPTY);
 }
 
+function groupPresetPropertyKeys(): array
+{
+    return collect(Group::presets())
+        ->flatMap(fn ($preset) => array_keys($preset->toArray()['properties'] ?? []))
+        ->unique()
+        ->values()
+        ->all();
+}
+
 function renderGroupBlock(array $settings = []): string
 {
     $block = (object) [
@@ -54,7 +63,13 @@ BLADE,
 
 it('does not expose border opacity in group settings', function () {
     expect(groupSettingIds(Group::settings()))
-        ->not->toContain('border_opacity');
+        ->not->toContain('border_opacity')
+        ->not->toContain('background_position');
+});
+
+it('does not use removed background position setting in group presets', function () {
+    expect(groupPresetPropertyKeys())
+        ->not->toContain('background_position');
 });
 
 it('exposes link settings in group schema', function () {
@@ -138,6 +153,49 @@ it('falls back to border-solid for unknown border style values', function () {
     expect(groupClassTokens($viewData['class']))
         ->toContain('border-solid')
         ->not->toContain('border-double');
+});
+
+it('uses image focal point for group background position', function () {
+    $viewData = (new TestableGroupBlock)->viewDataFor([
+        'background_type' => 'image',
+        'background_image' => [
+            'path' => 'https://example.com/hero.jpg',
+            'focalPoint' => ['x' => 25, 'y' => 70],
+        ],
+    ], '@basic-blocks/group');
+
+    expect($viewData['style'])
+        ->toContain("background-image: url('https://example.com/hero.jpg')")
+        ->toContain('background-position: 25% 70%')
+        ->and(groupClassTokens($viewData['class']))
+        ->not->toContain('bg-center')
+        ->not->toContain('bg-top');
+});
+
+it('uses center focal point for group background images without explicit focal point', function () {
+    $viewData = (new TestableGroupBlock)->viewDataFor([
+        'background_type' => 'image',
+        'background_image' => [
+            'path' => 'https://example.com/hero.jpg',
+        ],
+    ], '@basic-blocks/group');
+
+    expect($viewData['style'])
+        ->toContain('background-position: 50% 50%');
+});
+
+it('uses default focal point for string group background images', function () {
+    $viewData = (new TestableGroupBlock)->viewDataFor([
+        'background_type' => 'image',
+        'background_image' => 'https://example.com/legacy.jpg',
+        'background_position' => 'top',
+    ], '@basic-blocks/group');
+
+    expect(groupClassTokens($viewData['class']))
+        ->not->toContain('bg-top')
+        ->and($viewData['style'])
+        ->toContain("background-image: url('https://example.com/legacy.jpg')")
+        ->toContain('background-position: 50% 50%');
 });
 
 it('renders group as anchor when link is a non-empty string', function () {

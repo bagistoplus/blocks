@@ -15,6 +15,7 @@ use BagistoPlus\Visual\Settings\Image;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
+use BagistoPlus\Visual\Settings\Support\ImageValue;
 use BagistoPlus\Visual\Settings\Typography;
 use matthieumastadenis\couleur\ColorInterface;
 
@@ -137,17 +138,6 @@ class FlexSection extends SimpleSection
                 ->visibleWhen(fn ($rule) => $rule->when('background_type', 'gradient')),
 
             Image::make('background_image', _t('sections.flex-section.settings.background_image_label'))
-                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
-
-            Select::make('background_position', _t('sections.flex-section.settings.background_position_label'))
-                ->options([
-                    'center' => _t('sections.flex-section.settings.background_position_options.center'),
-                    'top' => _t('sections.flex-section.settings.background_position_options.top'),
-                    'bottom' => _t('sections.flex-section.settings.background_position_options.bottom'),
-                    'left' => _t('sections.flex-section.settings.background_position_options.left'),
-                    'right' => _t('sections.flex-section.settings.background_position_options.right'),
-                ])
-                ->default('center')
                 ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
 
             Select::make('background_size', _t('sections.flex-section.settings.background_size_label'))
@@ -366,15 +356,11 @@ class FlexSection extends SimpleSection
         } elseif ($bgType === 'gradient' && $s->has('background_gradient') && $s->background_gradient) {
             $styles[] = "background-image: {$s->background_gradient}";
         } elseif ($bgType === 'image' && $s->has('background_image') && $s->background_image) {
-            $styles[] = "background-image: url('{$s->background_image}')";
+            /** @var ImageValue $backgroundImage */
+            $backgroundImage = $s->background_image;
 
-            $classes[] = match ($s->background_position ?? 'center') {
-                'top' => 'bg-top',
-                'bottom' => 'bg-bottom',
-                'left' => 'bg-left',
-                'right' => 'bg-right',
-                default => 'bg-center',
-            };
+            $styles[] = "background-image: url('{$backgroundImage}')";
+            $styles[] = "background-position: {$backgroundImage->objectPosition()}";
 
             $classes[] = match ($s->background_size ?? 'cover') {
                 'contain' => 'bg-contain',
