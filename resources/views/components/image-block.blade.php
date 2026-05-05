@@ -7,6 +7,7 @@
     'linkClasses' => '',
     'containerStyles' => '',
     'imageClasses' => '',
+    'imageStyles' => '',
     'placeholderClasses' => '',
     'placeholder' => 'resources/assets/images/image-placeholder.svg',
 ])
@@ -32,6 +33,7 @@
     src="{{ $image }}"
     alt="{{ $alt }}"
     class="{{ $imageClasses }}"
+    @if ($imageStyles) style="{{ $imageStyles }}" @endif
   />
   @if ($link)
     </a>

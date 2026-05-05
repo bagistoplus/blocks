@@ -35,6 +35,7 @@ function renderImageBlock(
     ?string $link = null,
     string $placeholderClasses = 'h-full w-full',
     string $containerStyles = 'width: 100%',
+    string $imageStyles = '',
 ): string {
     $block = (object) [
         'editor_attributes' => new HtmlString('data-editor="image-block"'),
@@ -51,10 +52,11 @@ function renderImageBlock(
   link-classes="block relative overflow-hidden"
   :container-styles="$containerStyles"
   image-classes="h-full w-full"
+  :image-styles="$imageStyles"
   :placeholder-classes="$placeholderClasses"
 />
 BLADE,
-        compact('block', 'image', 'link', 'placeholderClasses', 'containerStyles')
+        compact('block', 'image', 'link', 'placeholderClasses', 'containerStyles', 'imageStyles')
     );
 }
 
@@ -114,6 +116,40 @@ it('uses literal hover zoom classes for real images', function () {
         ->toContain('transition-transform duration-300')
         ->toContain('hover:scale-105')
         ->toContain('group-hover:scale-105');
+});
+
+it('uses image focal point for object position', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => [
+            'path' => 'https://example.com/image.jpg',
+            'focalPoint' => ['x' => 25, 'y' => 70],
+        ],
+    ]);
+
+    expect($viewData['imageStyles'])
+        ->toBe('object-position: 25% 70%')
+        ->and(classTokens($viewData['imageClasses']))
+        ->not->toContain('object-center');
+});
+
+it('uses default focal point for image values without explicit focal point', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => [
+            'path' => 'https://example.com/image.jpg',
+        ],
+    ]);
+
+    expect($viewData['imageStyles'])
+        ->toBe('object-position: 50% 50%');
+});
+
+it('uses default focal point for string image values', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+    ]);
+
+    expect($viewData['imageStyles'])
+        ->toBe('object-position: 50% 50%');
 });
 
 it('maps non-default hover zoom scales to literal classes', function () {
@@ -269,6 +305,21 @@ it('does not render an empty style attribute for placeholders without styles', f
         ->toContain('<div')
         ->toContain('<svg')
         ->not->toContain('style=""');
+});
+
+it('does not render an empty image style attribute', function () {
+    $html = renderImageBlock(imageStyles: '');
+
+    expect($html)
+        ->toContain('<img')
+        ->not->toContain('style=""');
+});
+
+it('renders image styles when provided', function () {
+    $html = renderImageBlock(imageStyles: 'object-position: 25% 70%');
+
+    expect($html)
+        ->toContain('style="object-position: 25% 70%"');
 });
 
 it('renders placeholder styles when container styles are present', function () {

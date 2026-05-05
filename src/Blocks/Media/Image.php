@@ -11,6 +11,7 @@ use BagistoPlus\Visual\Settings\Link;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
+use BagistoPlus\Visual\Settings\Support\ImageValue;
 use BagistoPlus\Visual\Settings\Text;
 
 use function BagistoPlus\BasicBlocks\_t;
@@ -160,14 +161,17 @@ class Image extends SimpleBlock
 
     public function getViewData(): array
     {
+        $image = $this->block->settings->image;
+
         return [
-            'image' => $this->block->settings->image,
+            'image' => $image,
             'link' => $this->block->settings->link ?? null,
             'alt' => $this->block->settings->alt ?? '',
             'containerClasses' => $this->getContainerClasses(),
             'linkClasses' => $this->getLinkClasses(),
             'containerStyles' => $this->getContainerStyles(),
             'imageClasses' => $this->getImageClasses(),
+            'imageStyles' => $this->getImageStyles($image),
             'placeholderClasses' => $this->getPlaceholderClasses(),
         ];
     }
@@ -218,10 +222,19 @@ class Image extends SimpleBlock
             $this->getHoverZoomClasses(),
             'h-full',
             'w-full',
-            'object-center',
         ];
 
         return implode(' ', array_filter($classes));
+    }
+
+    protected function getImageStyles(mixed $image): string
+    {
+        if (! $image) {
+            return '';
+        }
+
+        /** @var ImageValue $image */
+        return "object-position: {$image->objectPosition()}";
     }
 
     protected function getPlaceholderClasses(): string
