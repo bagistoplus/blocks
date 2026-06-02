@@ -136,4 +136,61 @@ class Tailwind
             'styles' => implode('; ', $styles),
         ];
     }
+
+    /**
+     * Build responsive classes and CSS variable styles for settings with a custom option.
+     *
+     * @param  callable(mixed, string): string  $callback
+     * @param  non-empty-string  $customPrefix  Tailwind class prefix (e.g., 'w', 'h')
+     * @param  non-empty-string  $customProperty  CSS property name (e.g., 'width', 'height')
+     * @param  string  $customUnit  Unit to append to custom values
+     * @return array{classes: string, styles: string}
+     */
+    public static function responsiveWithCustomValue(
+        mixed $value,
+        mixed $customValue,
+        callable $callback,
+        string $customPrefix,
+        string $customProperty,
+        string $customUnit = '%',
+        mixed $customFallback = null,
+        string $customOption = 'custom',
+    ): array {
+        $customRv = static::toResponsiveValue($customValue);
+        $customValues = [];
+
+        $classes = static::responsive(
+            $value,
+            function (mixed $v, string $breakpoint) use (&$customValues, $customRv, $customFallback, $customOption, $callback): string {
+                if ($v === $customOption) {
+                    $customValues[$breakpoint] = $customRv->get(
+                        $breakpoint,
+                        $customFallback ?? $customRv->value()
+                    );
+
+                    return '';
+                }
+
+                return $callback($v, $breakpoint);
+            },
+            includeBreakpointsFrom: [$customValue],
+        );
+
+        $customData = $customValues === []
+            ? ['classes' => '', 'styles' => '']
+            : static::buildResponsiveStyleFor(
+                value: $customValues,
+                prefix: $customPrefix,
+                property: $customProperty,
+                unit: $customUnit,
+            );
+
+        return [
+            'classes' => implode(' ', array_filter([
+                trim($classes),
+                $customData['classes'],
+            ])),
+            'styles' => $customData['styles'],
+        ];
+    }
 }

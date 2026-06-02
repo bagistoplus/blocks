@@ -189,7 +189,8 @@ class Group extends SimpleBlock
                     'screen' => _t('blocks.group.settings.height_options.screen'),
                     'custom' => _t('blocks.group.settings.height_options.custom'),
                 ])
-                ->default('auto'),
+                ->default('auto')
+                ->responsive(),
 
             Range::make('custom_height', _t('blocks.group.settings.custom_height_label'))
                 ->min(0)
@@ -197,6 +198,7 @@ class Group extends SimpleBlock
                 ->step(10)
                 ->default(400)
                 ->unit('px')
+                ->responsive()
                 ->visibleWhen(fn ($rule) => $rule->when('height', 'custom')),
 
             Range::make('min_height', _t('blocks.group.settings.min_height_label'))
@@ -580,36 +582,28 @@ class Group extends SimpleBlock
     {
         // Width
         if ($this->block->settings->has('width')) {
-            $width = $this->block->settings->width;
+            ['classes' => $widthClass, 'styles' => $widthStyle] = Tailwind::responsiveWithCustomValue(
+                value: $this->block->settings->width,
+                customValue: $this->block->settings->custom_width ?? 100,
+                callback: fn ($v) => match ($v) {
+                    'full' => 'w-full',
+                    'fit' => 'w-fit',
+                    'screen' => 'w-screen',
+                    default => '',
+                },
+                customPrefix: 'w',
+                customProperty: 'width',
+                customUnit: '%',
+                customFallback: 100,
+            );
 
-            $widthRv = Tailwind::toResponsiveValue($width);
-            $hasCustomWidth = false;
-            foreach ($widthRv->all() as $val) {
-                if ($val === 'custom') {
-                    $hasCustomWidth = true;
-                    break;
-                }
+            if ($widthClass !== '') {
+                $classes[] = $widthClass;
             }
 
-            if ($hasCustomWidth && $this->block->settings->has('custom_width')) {
-                $customWidthData = Tailwind::buildResponsiveStyleFor(
-                    value: $this->block->settings->custom_width,
-                    prefix: 'w',
-                    property: 'width'
-                );
-                $classes[] = $customWidthData['classes'];
-                if (! empty($customWidthData['styles'])) {
-                    $styles[] = $customWidthData['styles'];
-                }
+            if ($widthStyle !== '') {
+                $styles[] = $widthStyle;
             }
-
-            $classes[] = Tailwind::responsive($width, fn ($v) => match ($v) {
-                'full' => 'w-full',
-                'fit' => 'w-fit',
-                'screen' => 'w-screen',
-                'custom' => '',
-                default => '',
-            });
         }
 
         // Min width
@@ -645,17 +639,27 @@ class Group extends SimpleBlock
 
         // Height
         if ($this->block->settings->has('height')) {
-            $height = $this->block->settings->height;
-            if ($height === 'custom' && $this->block->settings->has('custom_height')) {
-                $customHeight = $this->block->settings->custom_height;
-                $styles[] = "height: {$customHeight}px";
-            } elseif ($height !== 'auto') {
-                $classes[] = Tailwind::responsive($height, fn ($v) => match ($v) {
+            ['classes' => $heightClass, 'styles' => $heightStyle] = Tailwind::responsiveWithCustomValue(
+                value: $this->block->settings->height,
+                customValue: $this->block->settings->custom_height ?? 400,
+                callback: fn ($v) => match ($v) {
                     'full' => 'h-full',
                     'fit' => 'h-fit',
                     'screen' => 'h-screen',
                     default => '',
-                });
+                },
+                customPrefix: 'h',
+                customProperty: 'height',
+                customUnit: 'px',
+                customFallback: 400,
+            );
+
+            if ($heightClass !== '') {
+                $classes[] = $heightClass;
+            }
+
+            if ($heightStyle !== '') {
+                $styles[] = $heightStyle;
             }
         }
 

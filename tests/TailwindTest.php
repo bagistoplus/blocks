@@ -251,3 +251,85 @@ describe('buildResponsiveStyleFor', function () {
         expect($result['styles'])->toBe('--width: 0%');
     });
 });
+
+describe('responsiveWithCustomValue', function () {
+    it('builds normal responsive classes without custom styles', function () {
+        $result = Tailwind::responsiveWithCustomValue(
+            value: ['_default' => 'full', 'tablet' => 'fit'],
+            customValue: 320,
+            callback: fn ($v) => match ($v) {
+                'full' => 'h-full',
+                'fit' => 'h-fit',
+                default => '',
+            },
+            customPrefix: 'h',
+            customProperty: 'height',
+            customUnit: 'px',
+        );
+
+        expect($result['classes'])->toBe('h-full tablet:h-fit');
+        expect($result['styles'])->toBe('');
+    });
+
+    it('builds custom classes and styles for default custom value', function () {
+        $result = Tailwind::responsiveWithCustomValue(
+            value: 'custom',
+            customValue: 320,
+            callback: fn () => '',
+            customPrefix: 'h',
+            customProperty: 'height',
+            customUnit: 'px',
+        );
+
+        expect($result['classes'])->toBe('h-(--height)');
+        expect($result['styles'])->toBe('--height: 320px');
+    });
+
+    it('builds custom classes and styles for breakpoint custom value', function () {
+        $result = Tailwind::responsiveWithCustomValue(
+            value: ['_default' => 'full', 'tablet' => 'custom'],
+            customValue: ['_default' => 320, 'tablet' => 480],
+            callback: fn ($v) => match ($v) {
+                'full' => 'h-full',
+                default => '',
+            },
+            customPrefix: 'h',
+            customProperty: 'height',
+            customUnit: 'px',
+        );
+
+        expect($result['classes'])->toBe('h-full tablet:h-(--height-tablet)');
+        expect($result['styles'])->toBe('--height-tablet: 480px');
+    });
+
+    it('includes custom value breakpoints when value falls back to custom', function () {
+        $result = Tailwind::responsiveWithCustomValue(
+            value: ['_default' => 'custom'],
+            customValue: ['_default' => 320, 'tablet' => 480],
+            callback: fn () => '',
+            customPrefix: 'h',
+            customProperty: 'height',
+            customUnit: 'px',
+        );
+
+        expect($result['classes'])->toBe('h-(--height) tablet:h-(--height-tablet)');
+        expect($result['styles'])->toBe('--height: 320px; --height-tablet: 480px');
+    });
+
+    it('ignores custom value at breakpoints where value is not custom', function () {
+        $result = Tailwind::responsiveWithCustomValue(
+            value: ['_default' => 'custom', 'desktop' => 'full'],
+            customValue: ['_default' => 320, 'tablet' => 480, 'desktop' => 640],
+            callback: fn ($v) => match ($v) {
+                'full' => 'h-full',
+                default => '',
+            },
+            customPrefix: 'h',
+            customProperty: 'height',
+            customUnit: 'px',
+        );
+
+        expect($result['classes'])->toBe('desktop:h-full h-(--height) tablet:h-(--height-tablet)');
+        expect($result['styles'])->toBe('--height: 320px; --height-tablet: 480px');
+    });
+});

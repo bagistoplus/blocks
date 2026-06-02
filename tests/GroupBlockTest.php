@@ -97,6 +97,15 @@ it('exposes responsive flex reverse items setting in group schema', function () 
         ->toHaveKey('responsive', true);
 });
 
+it('exposes responsive height settings in group schema', function () {
+    expect(groupSetting('height'))
+        ->toHaveKey('default', 'auto')
+        ->toHaveKey('responsive', true)
+        ->and(groupSetting('custom_height'))
+        ->toHaveKey('default', 400)
+        ->toHaveKey('responsive', true);
+});
+
 it('exposes stretch as a group flex alignment option', function () {
     $options = collect(groupSetting('flex_align')['options'])
         ->pluck('value')
@@ -163,6 +172,69 @@ it('maps responsive flex reverse items with independent direction fallback', fun
         ->toContain('flex-row')
         ->toContain('tablet:flex-col')
         ->toContain('desktop:flex-row-reverse');
+});
+
+it('maps responsive custom group width to css variables', function () {
+    $viewData = (new TestableGroupBlock)->viewDataFor([
+        'width' => [
+            '_default' => 'custom',
+            'desktop' => 'full',
+        ],
+        'custom_width' => [
+            '_default' => 80,
+            'tablet' => 60,
+            'desktop' => 40,
+        ],
+    ]);
+
+    expect(groupClassTokens($viewData['class']))
+        ->toContain('w-(--width)')
+        ->toContain('tablet:w-(--width-tablet)')
+        ->toContain('desktop:w-full')
+        ->not->toContain('desktop:w-(--width-desktop)')
+        ->and($viewData['style'])
+        ->toContain('--width: 80%')
+        ->toContain('--width-tablet: 60%')
+        ->not->toContain('--width-desktop: 40%');
+});
+
+it('maps responsive group height classes', function () {
+    $viewData = (new TestableGroupBlock)->viewDataFor([
+        'height' => [
+            '_default' => 'auto',
+            'tablet' => 'full',
+            'desktop' => 'screen',
+        ],
+    ]);
+
+    expect(groupClassTokens($viewData['class']))
+        ->toContain('tablet:h-full')
+        ->toContain('desktop:h-screen')
+        ->not->toContain('h-auto');
+});
+
+it('maps responsive custom group height to css variables', function () {
+    $viewData = (new TestableGroupBlock)->viewDataFor([
+        'height' => [
+            '_default' => 'custom',
+            'desktop' => 'full',
+        ],
+        'custom_height' => [
+            '_default' => 320,
+            'tablet' => 480,
+            'desktop' => 640,
+        ],
+    ]);
+
+    expect(groupClassTokens($viewData['class']))
+        ->toContain('h-(--height)')
+        ->toContain('tablet:h-(--height-tablet)')
+        ->toContain('desktop:h-full')
+        ->not->toContain('desktop:h-(--height-desktop)')
+        ->and($viewData['style'])
+        ->toContain('--height: 320px')
+        ->toContain('--height-tablet: 480px')
+        ->not->toContain('--height-desktop: 640px');
 });
 
 it('emits border-current when group border color is currentColor', function () {
