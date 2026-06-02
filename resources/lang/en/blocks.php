@@ -415,7 +415,7 @@ return [
                 'horizontal' => 'Horizontal',
                 'vertical' => 'Vertical',
             ],
-            'reverse_items_label' => 'Reverse items',
+            'flex_reverse_items_label' => 'Reverse items',
 
             'flex_justify_label' => 'Content Position',
             'flex_justify_options' => [

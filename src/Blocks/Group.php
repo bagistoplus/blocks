@@ -79,11 +79,12 @@ class Group extends SimpleBlock
                     'start' => _t('blocks.group.settings.flex_align_options.start'),
                     'center' => _t('blocks.group.settings.flex_align_options.center'),
                     'end' => _t('blocks.group.settings.flex_align_options.end'),
+                    'stretch' => _t('blocks.group.settings.flex_align_options.stretch'),
                 ])
                 ->responsive()
                 ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
 
-            Checkbox::make('reverse_items', _t('blocks.group.settings.reverse_items_label'))
+            Checkbox::make('flex_reverse_items', _t('blocks.group.settings.flex_reverse_items_label'))
                 ->default(false)
                 ->responsive()
                 ->asSwitch()
@@ -494,7 +495,7 @@ class Group extends SimpleBlock
         $s = $this->block->settings;
 
         if ($s->has('flex_direction')) {
-            $reverseItems = Tailwind::toResponsiveValue($s->reverse_items ?? false);
+            $reverseItems = Tailwind::toResponsiveValue($s->flex_reverse_items ?? false);
 
             $classes[] = Tailwind::responsive(
                 $s->flex_direction,
@@ -518,6 +519,7 @@ class Group extends SimpleBlock
                 'start' => 'items-start',
                 'center' => 'items-center',
                 'end' => 'items-end',
+                'stretch' => 'items-stretch',
                 default => 'items-stretch',
             });
         }

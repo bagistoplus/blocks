@@ -415,7 +415,7 @@ return [
                 'horizontal' => 'क्षैतिज',
                 'vertical' => 'लंबवत',
             ],
-            'reverse_items_label' => 'आइटम उलटें',
+            'flex_reverse_items_label' => 'आइटम उलटें',
 
             'flex_justify_label' => 'सामग्री स्थिति',
             'flex_justify_options' => [

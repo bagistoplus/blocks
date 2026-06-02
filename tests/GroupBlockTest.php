@@ -89,19 +89,38 @@ it('exposes link settings in group schema', function () {
         ->toContain('open_in_new_tab');
 });
 
-it('exposes responsive reverse items setting in group schema', function () {
+it('exposes responsive flex reverse items setting in group schema', function () {
     expect(groupSettingIds(Group::settings()))
-        ->toContain('reverse_items')
-        ->and(groupSetting('reverse_items'))
+        ->toContain('flex_reverse_items')
+        ->and(groupSetting('flex_reverse_items'))
         ->toHaveKey('default', false)
         ->toHaveKey('responsive', true);
 });
 
-it('maps flex direction and reverse items classes', function (string $direction, bool $reverseItems, string $expectedClass) {
+it('exposes stretch as a group flex alignment option', function () {
+    $options = collect(groupSetting('flex_align')['options'])
+        ->pluck('value')
+        ->all();
+
+    expect($options)
+        ->toContain('stretch');
+});
+
+it('maps stretch flex alignment to items stretch class', function () {
+    $viewData = (new TestableGroupBlock)->viewDataFor([
+        'layout_type' => 'flex',
+        'flex_align' => 'stretch',
+    ]);
+
+    expect(groupClassTokens($viewData['class']))
+        ->toContain('items-stretch');
+});
+
+it('maps flex direction and flex reverse items classes', function (string $direction, bool $reverseItems, string $expectedClass) {
     $viewData = (new TestableGroupBlock)->viewDataFor([
         'layout_type' => 'flex',
         'flex_direction' => $direction,
-        'reverse_items' => $reverseItems,
+        'flex_reverse_items' => $reverseItems,
     ]);
 
     expect(groupClassTokens($viewData['class']))
@@ -117,7 +136,7 @@ it('keeps rendering legacy reverse flex direction values', function (string $dir
     $viewData = (new TestableGroupBlock)->viewDataFor([
         'layout_type' => 'flex',
         'flex_direction' => $direction,
-        'reverse_items' => false,
+        'flex_reverse_items' => false,
     ]);
 
     expect(groupClassTokens($viewData['class']))
@@ -127,14 +146,14 @@ it('keeps rendering legacy reverse flex direction values', function (string $dir
     'column reverse' => ['column-reverse', 'flex-col-reverse'],
 ]);
 
-it('maps responsive reverse items with independent direction fallback', function () {
+it('maps responsive flex reverse items with independent direction fallback', function () {
     $viewData = (new TestableGroupBlock)->viewDataFor([
         'layout_type' => 'flex',
         'flex_direction' => [
             '_default' => 'row',
             'tablet' => 'column',
         ],
-        'reverse_items' => [
+        'flex_reverse_items' => [
             '_default' => false,
             'desktop' => true,
         ],
