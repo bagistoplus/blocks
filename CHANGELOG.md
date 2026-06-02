@@ -1,3 +1,18 @@
+# [1.2.0](https://github.com/bagistoplus/blocks/compare/v1.1.0...v1.2.0) (2026-06-02)
+
+
+### Bug Fixes
+
+* remove duplicate flex section preset ([432c66d](https://github.com/bagistoplus/blocks/commit/432c66d6012cb9b413ae81387252f37432e27ceb))
+
+
+### Features
+
+* add reverse items setting to group ([9930eb3](https://github.com/bagistoplus/blocks/commit/9930eb387a2db62f3b298d448bc36952bb073f56))
+* add stretch alignment to group ([11f2d61](https://github.com/bagistoplus/blocks/commit/11f2d617a4d351faaeb6ba2c864df4ba79d08ba7))
+
+
+
 # [1.1.0](https://github.com/bagistoplus/blocks/compare/v1.0.0...v1.1.0) (2026-05-05)
 
 
