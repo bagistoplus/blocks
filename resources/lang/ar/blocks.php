@@ -415,6 +415,7 @@ return [
                 'horizontal' => 'أفقي',
                 'vertical' => 'عمودي',
             ],
+            'reverse_items_label' => 'عكس العناصر',
 
             'flex_justify_label' => 'موضع المحتوى',
             'flex_justify_options' => [

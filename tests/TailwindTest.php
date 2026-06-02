@@ -61,6 +61,27 @@ describe('responsive', function () {
         expect($result)->toBe('text-left tablet:text-center desktop:text-right');
     });
 
+    it('passes breakpoint to callable callback', function () {
+        $value = ['_default' => 'left', 'tablet' => 'center'];
+
+        $result = Tailwind::responsive($value, fn ($v, $breakpoint) => "text-{$breakpoint}-{$v}");
+
+        expect($result)->toBe('text-_default-left tablet:text-tablet-center');
+    });
+
+    it('includes breakpoints from extra responsive values', function () {
+        $value = ['_default' => 'left', 'tablet' => 'center'];
+        $extra = ['_default' => false, 'desktop' => true];
+
+        $result = Tailwind::responsive(
+            $value,
+            fn ($v, $breakpoint) => "text-{$breakpoint}-{$v}",
+            includeBreakpointsFrom: [$extra],
+        );
+
+        expect($result)->toBe('text-_default-left tablet:text-tablet-center desktop:text-desktop-left');
+    });
+
     it('prefixes each responsive class when callback returns multiple classes', function () {
         $value = ['tablet' => 'inset'];
 

@@ -83,6 +83,12 @@ class Group extends SimpleBlock
                 ->responsive()
                 ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
 
+            Checkbox::make('reverse_items', _t('blocks.group.settings.reverse_items_label'))
+                ->default(false)
+                ->responsive()
+                ->asSwitch()
+                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'flex')),
+
             Range::make('flex_gap', _t('blocks.group.settings.gap_label'))
                 ->min(0)
                 ->max(24)
@@ -488,13 +494,13 @@ class Group extends SimpleBlock
         $s = $this->block->settings;
 
         if ($s->has('flex_direction')) {
-            $classes[] = Tailwind::responsive($s->flex_direction, fn ($v) => match ($v) {
-                'row' => 'flex-row',
-                'row-reverse' => 'flex-row-reverse',
-                'column' => 'flex-col',
-                'column-reverse' => 'flex-col-reverse',
-                default => 'flex-row',
-            });
+            $reverseItems = Tailwind::toResponsiveValue($s->reverse_items ?? false);
+
+            $classes[] = Tailwind::responsive(
+                $s->flex_direction,
+                fn ($v, $breakpoint) => $this->flexDirectionClass($v, $reverseItems->get($breakpoint, false)),
+                includeBreakpointsFrom: [$reverseItems],
+            );
         }
 
         if ($s->get('flex_justify')) {
@@ -528,6 +534,16 @@ class Group extends SimpleBlock
         if ($s->has('flex_gap')) {
             $classes[] = Tailwind::responsive($s->flex_gap, fn ($v) => "gap-{$v}");
         }
+    }
+
+    protected function flexDirectionClass(mixed $direction, mixed $reverseItems): string
+    {
+        return match ($direction) {
+            'row-reverse' => 'flex-row-reverse',
+            'column-reverse' => 'flex-col-reverse',
+            'column' => $reverseItems ? 'flex-col-reverse' : 'flex-col',
+            default => $reverseItems ? 'flex-row-reverse' : 'flex-row',
+        };
     }
 
     protected function mapGridProperties(array &$classes): void

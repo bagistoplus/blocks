@@ -32,21 +32,36 @@ class Tailwind
     /**
      * Build responsive Tailwind classes from a value and callback
      *
-     * @param  callable(mixed): mixed|array<int|string, mixed>|null  $callback
+     * @param  callable(mixed, string): mixed|array<int|string, mixed>|null  $callback
+     * @param  array<int, mixed>  $includeBreakpointsFrom
      */
-    public static function responsive(mixed $value, callable|array|null $callback): string
+    public static function responsive(mixed $value, callable|array|null $callback, array $includeBreakpointsFrom = []): string
     {
         $rv = static::toResponsiveValue($value);
+        $values = $rv->all();
+        $breakpoints = array_keys($values);
         $classes = [];
 
-        foreach ($rv->all() as $key => $v) {
+        foreach ($includeBreakpointsFrom as $extraValue) {
+            foreach (array_keys(static::toResponsiveValue($extraValue)->all()) as $breakpoint) {
+                if (! in_array($breakpoint, $breakpoints, true)) {
+                    $breakpoints[] = $breakpoint;
+                }
+            }
+        }
+
+        foreach ($breakpoints as $key) {
+            $v = array_key_exists($key, $values)
+                ? $values[$key]
+                : $rv->get($key);
+
             if ($v === null) {
                 continue;
             }
 
             // Handle callable map or lookup map
             if (is_callable($callback)) {
-                $cls = $callback($v);
+                $cls = $callback($v, $key);
             } elseif (is_array($callback) && (is_string($v) || is_int($v))) {
                 $cls = $callback[$v] ?? (string) $v;
             } else {
