@@ -429,6 +429,7 @@ return [
                 'start' => 'Start',
                 'center' => 'Center',
                 'end' => 'End',
+                'stretch' => 'Stretch',
             ],
 
             'flex_wrap_label' => 'Flex Wrap',

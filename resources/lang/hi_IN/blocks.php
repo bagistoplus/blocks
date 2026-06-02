@@ -429,6 +429,7 @@ return [
                 'start' => 'शुरुआत',
                 'center' => 'केंद्र',
                 'end' => 'अंत',
+                'stretch' => 'खिंचाव',
             ],
 
             'flex_wrap_label' => 'फ्लेक्स रैप',

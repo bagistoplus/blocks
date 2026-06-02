@@ -429,6 +429,7 @@ return [
                 'start' => 'Début',
                 'center' => 'Centre',
                 'end' => 'Fin',
+                'stretch' => 'Étirer',
             ],
 
             'flex_wrap_label' => 'Retour à la ligne flex',

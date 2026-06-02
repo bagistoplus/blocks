@@ -429,6 +429,7 @@ return [
                 'start' => 'بداية',
                 'center' => 'وسط',
                 'end' => 'نهاية',
+                'stretch' => 'تمدد',
             ],
 
             'flex_wrap_label' => 'التفاف Flex',
