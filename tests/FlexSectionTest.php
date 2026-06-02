@@ -243,6 +243,25 @@ it('renders responsive custom height with css variables', function () {
         ->not->toContain('h-[600px]');
 });
 
+it('renders custom section height at custom value breakpoints when height falls back to custom', function () {
+    $viewData = (new TestableFlexSection)->viewDataFor([
+        'section_height' => [
+            '_default' => 'custom',
+        ],
+        'section_height_custom' => [
+            '_default' => 600,
+            'tablet' => 800,
+        ],
+    ]);
+
+    expect(flexSectionClassTokens($viewData['sectionHeightClasses']))
+        ->toContain('h-(--height)')
+        ->toContain('tablet:h-(--height-tablet)')
+        ->and($viewData['sectionHeightStyles'])
+        ->toContain('--height: 600px')
+        ->toContain('--height-tablet: 800px');
+});
+
 it('renders mixed responsive custom height only for custom breakpoints', function () {
     $viewData = (new TestableFlexSection)->viewDataFor([
         'section_height' => [

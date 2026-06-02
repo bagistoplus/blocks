@@ -186,7 +186,6 @@ class Image extends SimpleBlock
         $customWidthData = $this->getCustomWidthData();
 
         $classes = [
-            $this->getWidthClass(),
             $customWidthData['classes'],
             $this->getHeightClass(),
             $this->getAspectRatioClass(),
@@ -208,7 +207,7 @@ class Image extends SimpleBlock
     {
         $customWidthData = $this->getCustomWidthData();
         $borderStyles = $this->getBorderStyles();
-        $customWidthStyle = $customWidthData['styles'] ?? '';
+        $customWidthStyle = $customWidthData['styles'];
 
         $allStyles = array_filter(array_merge($borderStyles, [$customWidthStyle]));
 
@@ -248,40 +247,25 @@ class Image extends SimpleBlock
         return implode(' ', array_filter($classes));
     }
 
-    protected function getWidthClass(): string
-    {
-        return Tailwind::responsive(
-            $this->block->settings->width ?? 'fill',
-            fn ($v) => match ($v) {
-                'fit-content' => 'w-fit',
-                'fill' => 'w-full',
-                'custom' => '',
-                default => 'w-full',
-            }
-        );
-    }
-
+    /**
+     * @return array{classes: string, styles: string}
+     */
     protected function getCustomWidthData(): array
     {
-        $widthRv = Tailwind::toResponsiveValue($this->block->settings->width ?? 'fill');
-        $hasCustomWidth = false;
+        ['classes' => $classes, 'styles' => $styles] = Tailwind::responsiveWithCustomValue(
+            value: $this->block->settings->width ?? 'fill',
+            customValue: $this->block->settings->custom_width ?? 100,
+            callback: fn ($v) => match ($v) {
+                'fit-content' => 'w-fit',
+                'fill' => 'w-full',
+                default => 'w-full',
+            },
+            customPrefix: 'w',
+            customProperty: 'width',
+            customFallback: 100,
+        );
 
-        foreach ($widthRv->all() as $val) {
-            if ($val === 'custom') {
-                $hasCustomWidth = true;
-                break;
-            }
-        }
-
-        if ($hasCustomWidth && $this->block->settings->custom_width !== null) {
-            return Tailwind::buildResponsiveStyleFor(
-                value: $this->block->settings->custom_width,
-                prefix: 'w',
-                property: 'width'
-            );
-        }
-
-        return ['classes' => '', 'styles' => ''];
+        return compact('classes', 'styles');
     }
 
     protected function getHeightClass(): string

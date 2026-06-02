@@ -254,49 +254,26 @@ class FlexSection extends SimpleSection
     protected function computeSectionHeightAttributes(): array
     {
         $s = $this->section->settings;
-        $height = Tailwind::toResponsiveValue($s->section_height ?? 'auto');
-        $customHeight = Tailwind::toResponsiveValue($s->section_height_custom ?? 600);
-        $heightClasses = [];
-        $customHeightValues = [];
-
-        foreach ($height->all() as $breakpoint => $value) {
-            if ($value === null) {
-                continue;
-            }
-
-            $prefix = $breakpoint === '_default' ? '' : "{$breakpoint}:";
-
-            if ($value === 'custom') {
-                $customHeightValues[$breakpoint] = $customHeight->get($breakpoint, $customHeight->value() ?? 600);
-
-                continue;
-            }
-
-            $heightClasses[] = $prefix.match ($value) {
+        ['classes' => $classes, 'styles' => $styles] = Tailwind::responsiveWithCustomValue(
+            value: $s->section_height ?? 'auto',
+            customValue: $s->section_height_custom ?? 600,
+            callback: fn ($value) => match ($value) {
                 'xs' => 'h-[20rem]',
                 'sm' => 'h-[25rem]',
                 'md' => 'h-[37.5rem]',
                 'lg' => 'h-[50rem]',
                 'screen' => 'h-screen',
                 default => 'h-auto',
-            };
-        }
-
-        $customHeightAttributes = $customHeightValues === []
-            ? ['classes' => '', 'styles' => '']
-            : Tailwind::buildResponsiveStyleFor(
-                value: $customHeightValues,
-                prefix: 'h',
-                property: 'height',
-                unit: 'px'
-            );
+            },
+            customPrefix: 'h',
+            customProperty: 'height',
+            customUnit: 'px',
+            customFallback: 600,
+        );
 
         return [
-            'classes' => implode(' ', array_filter([
-                implode(' ', $heightClasses),
-                $customHeightAttributes['classes'],
-            ])),
-            'styles' => $customHeightAttributes['styles'],
+            'classes' => $classes,
+            'styles' => $styles,
         ];
     }
 

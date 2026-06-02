@@ -272,6 +272,31 @@ it('renders zero custom width as responsive width data', function () {
         ->toContain('--width: 0%');
 });
 
+it('renders responsive custom width only for custom image width breakpoints', function () {
+    $viewData = (new TestableImageBlock)->viewDataFor([
+        'image' => 'https://example.com/image.jpg',
+        'width' => [
+            '_default' => 'custom',
+            'desktop' => 'fill',
+        ],
+        'custom_width' => [
+            '_default' => 80,
+            'tablet' => 60,
+            'desktop' => 40,
+        ],
+    ]);
+
+    expect(classTokens($viewData['containerClasses']))
+        ->toContain('w-(--width)')
+        ->toContain('tablet:w-(--width-tablet)')
+        ->toContain('desktop:w-full')
+        ->not->toContain('desktop:w-(--width-desktop)')
+        ->and($viewData['containerStyles'])
+        ->toContain('--width: 80%')
+        ->toContain('--width-tablet: 60%')
+        ->not->toContain('--width-desktop: 40%');
+});
+
 it('normalizes string border width one to the base border class', function () {
     $viewData = (new TestableImageBlock)->viewDataFor([
         'image' => 'https://example.com/image.jpg',
