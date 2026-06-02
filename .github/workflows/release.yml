@@ -16,11 +16,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Import GPG key
+        id: import-gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.RELEASE_GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.RELEASE_GPG_PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
       - name: Conventional Changelog Action
         id: changelog
         uses: TriPSs/conventional-changelog-action@v6
         with:
           github-token: ${{ github.token }}
+          git-user-name: ${{ steps.import-gpg.outputs.name }}
+          git-user-email: ${{ steps.import-gpg.outputs.email }}
           output-file: "CHANGELOG.md"
           tag-prefix: "v"
           fallback-version: "1.0.0"
