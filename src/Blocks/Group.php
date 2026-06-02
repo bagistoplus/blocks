@@ -16,7 +16,6 @@ use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Support\ImageValue;
 use BagistoPlus\Visual\Support\Preset;
-use BagistoPlus\Visual\Support\PresetBlock;
 use matthieumastadenis\couleur\ColorInterface;
 
 use function BagistoPlus\BasicBlocks\_t;
@@ -362,66 +361,6 @@ class Group extends SimpleBlock
                 ->category(_t('blocks.group.presets.basic.category'))
                 ->settings([
                     'layout_type' => 'block',
-                ]),
-
-            Preset::make(_t('blocks.group.presets.centered.name'))
-                ->category(_t('blocks.group.presets.centered.category'))
-                ->settings([
-                    'max_width' => 'xl',
-                    'margin' => [
-                        'top' => 0,
-                        'right' => 'auto',
-                        'bottom' => 0,
-                        'left' => 'auto',
-                    ],
-                ]),
-
-            Preset::make(_t('blocks.group.presets.card.name'))
-                ->category(_t('blocks.group.presets.card.category'))
-                ->settings([
-                    'padding' => [
-                        'top' => 6,
-                        'right' => 6,
-                        'bottom' => 6,
-                        'left' => 6,
-                    ],
-                    'border' => true,
-                    'border_radius' => 'lg',
-                ]),
-
-            Preset::make(_t('blocks.group.presets.flex_row.name'))
-                ->category(_t('blocks.group.presets.flex_row.category'))
-                ->settings([
-                    'layout_type' => 'flex',
-                    'flex_direction' => 'row',
-                    'flex_gap' => 4,
-                ]),
-
-            Preset::make(_t('blocks.group.presets.grid.name'))
-                ->category(_t('blocks.group.presets.grid.category'))
-                ->settings([
-                    'layout_type' => 'grid',
-                    'grid_columns' => 3,
-                    'grid_gap' => 4,
-                ]),
-
-            Preset::make(_t('blocks.group.presets.overlay.name'))
-                ->category(_t('blocks.group.presets.overlay.category'))
-                ->settings([
-                    'is_overlay' => true,
-                    'background_color' => 'rgba(0, 0, 0, 0.5)',
-                    'padding' => [
-                        'top' => 8,
-                        'right' => 0,
-                        'bottom' => 8,
-                        'left' => 0,
-                    ],
-                ])
-                ->blocks([
-                    PresetBlock::make('@basic-blocks/text')
-                        ->settings([
-                            'text' => 'Overlay Content',
-                        ]),
                 ]),
         ];
     }

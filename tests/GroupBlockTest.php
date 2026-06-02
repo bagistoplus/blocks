@@ -34,11 +34,10 @@ function groupClassTokens(string $classes): array
     return preg_split('/\s+/', trim($classes), flags: PREG_SPLIT_NO_EMPTY);
 }
 
-function groupPresetPropertyKeys(): array
+function groupPresetProperties(): array
 {
     return collect(Group::presets())
-        ->flatMap(fn ($preset) => array_keys($preset->toArray()['properties'] ?? []))
-        ->unique()
+        ->map(fn ($preset) => $preset->toArray()['properties'] ?? [])
         ->values()
         ->all();
 }
@@ -67,9 +66,14 @@ it('does not expose border opacity in group settings', function () {
         ->not->toContain('background_position');
 });
 
-it('does not use removed background position setting in group presets', function () {
-    expect(groupPresetPropertyKeys())
-        ->not->toContain('background_position');
+it('only exposes the basic group preset', function () {
+    expect(groupPresetProperties())
+        ->toHaveCount(1)
+        ->sequence(
+            fn ($properties) => $properties->toBe([
+                'layout_type' => 'block',
+            ])
+        );
 });
 
 it('exposes link settings in group schema', function () {
