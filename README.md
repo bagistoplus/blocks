@@ -1,8 +1,8 @@
 # Basic Blocks for Bagisto Visual Editor
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bagistoplus/basic-blocks.svg?style=flat-square)](https://packagist.org/packages/bagistoplus/basic-blocks)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/bagistoplus/basic-blocks/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/bagistoplus/basic-blocks/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/bagistoplus/basic-blocks/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/bagistoplus/basic-blocks/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/bagistoplus/blocks/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/bagistoplus/blocks/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/bagistoplus/blocks/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/bagistoplus/blocks/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/bagistoplus/basic-blocks.svg?style=flat-square)](https://packagist.org/packages/bagistoplus/basic-blocks)
 
 A collection of essential, ready-to-use blocks for the [Bagisto Visual Editor](https://visual.bagistoplus.com). This package provides foundational building blocks for professional Bagisto storefronts. It comes pre-installed with fresh Bagisto visual themes, enabling drag-and-drop page building without writing code.
