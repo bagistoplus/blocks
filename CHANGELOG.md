@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/bagistoplus/blocks/compare/v1.2.0...v1.3.0) (2026-06-03)
+
+
+### Bug Fixes
+
+* add stretch flex alignment translations ([78c26cc](https://github.com/bagistoplus/blocks/commit/78c26cc053cfdaa3fc9e9502cda2a37166a3137a))
+
+
+### Features
+
+* make group height responsive ([3133d20](https://github.com/bagistoplus/blocks/commit/3133d20a797cd7b7b8650c4729ae7c5106757f5f))
+
+
+
 # [1.2.0](https://github.com/bagistoplus/blocks/compare/v1.1.0...v1.2.0) (2026-06-02)
 
 
