@@ -88,6 +88,30 @@ it('passes configured circle and square values through view data', function () {
         ->and($viewData['square'])->toBeTrue();
 });
 
+it('defaults icon position view data to left', function () {
+    $viewData = (new TestableButtonBlock)->viewDataFor([]);
+
+    expect($viewData['iconPosition'])->toBe('left');
+});
+
+it('renders icon before text when icon position is left', function () {
+    $html = renderButtonBlock([
+        'icon' => 'lucide-arrow-right',
+        'icon_position' => 'left',
+    ]);
+
+    expect(strpos($html, 'inline-flex h-5 w-5'))->toBeLessThan(strpos($html, 'Button text'));
+});
+
+it('renders icon after text when icon position is right', function () {
+    $html = renderButtonBlock([
+        'icon' => 'lucide-arrow-right',
+        'icon_position' => 'right',
+    ]);
+
+    expect(strpos($html, 'Button text'))->toBeLessThan(strpos($html, 'inline-flex h-5 w-5'));
+});
+
 it('renders circle button class', function () {
     $html = renderButtonBlock([
         'circle' => true,

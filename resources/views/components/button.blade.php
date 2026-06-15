@@ -55,7 +55,7 @@
   {!! $rawAttributes !!}
   @if ($loading) wire:loading.attr="loading" @endif
 >
-  @if ($icon)
+  @if ($icon && $iconPosition === 'left')
     <span @if ($loading) {!! $wireTarget !!} wire:loading.class="opacity-0" @endif
       class="inline-flex h-5 w-5 items-center justify-center transition-opacity duration-200"
     >
@@ -75,6 +75,14 @@
     @else
       {{ $slot }}
     @endif
+  @endif
+
+  @if ($icon && $iconPosition === 'right')
+    <span @if ($loading) {!! $wireTarget !!} wire:loading.class="opacity-0" @endif
+      class="inline-flex h-5 w-5 items-center justify-center transition-opacity duration-200"
+    >
+      @svg($icon, ['class' => 'size-[1.2em]'])
+    </span>
   @endif
 
   @if ($loading)
