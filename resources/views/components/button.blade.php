@@ -57,9 +57,9 @@
 >
   @if ($icon && $iconPosition === 'left')
     <span @if ($loading) {!! $wireTarget !!} wire:loading.class="opacity-0" @endif
-      class="inline-flex h-5 w-5 items-center justify-center transition-opacity duration-200"
+      class="btn-icon inline-flex items-center justify-center transition-opacity duration-200"
     >
-      @svg($icon, ['class' => 'size-[1.2em]'])
+      @svg($icon, ['class' => 'size-full'])
     </span>
   @endif
 
@@ -79,9 +79,9 @@
 
   @if ($icon && $iconPosition === 'right')
     <span @if ($loading) {!! $wireTarget !!} wire:loading.class="opacity-0" @endif
-      class="inline-flex h-5 w-5 items-center justify-center transition-opacity duration-200"
+      class="btn-icon inline-flex items-center justify-center transition-opacity duration-200"
     >
-      @svg($icon, ['class' => 'size-[1.2em]'])
+      @svg($icon, ['class' => 'size-full'])
     </span>
   @endif
 

@@ -100,7 +100,7 @@ it('renders icon before text when icon position is left', function () {
         'icon_position' => 'left',
     ]);
 
-    expect(strpos($html, 'inline-flex h-5 w-5'))->toBeLessThan(strpos($html, 'Button text'));
+    expect(strpos($html, 'btn-icon'))->toBeLessThan(strpos($html, 'Button text'));
 });
 
 it('renders icon after text when icon position is right', function () {
@@ -109,7 +109,21 @@ it('renders icon after text when icon position is right', function () {
         'icon_position' => 'right',
     ]);
 
-    expect(strpos($html, 'Button text'))->toBeLessThan(strpos($html, 'inline-flex h-5 w-5'));
+    expect(strpos($html, 'Button text'))->toBeLessThan(strpos($html, 'btn-icon'));
+});
+
+it('renders size-aware icon classes', function () {
+    $html = renderButtonBlock([
+        'icon' => 'lucide-arrow-right',
+        'size' => 'xl',
+    ]);
+
+    expect($html)
+        ->toContain('btn-xl')
+        ->toContain('btn-icon')
+        ->toContain('size-full')
+        ->not->toContain('h-5 w-5')
+        ->not->toContain('size-[1.2em]');
 });
 
 it('renders circle button class', function () {
