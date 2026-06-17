@@ -17,6 +17,11 @@ class ProductDescription extends Text
 
     protected static string $category = 'Product';
 
+    public static function name(): string
+    {
+        return _t('blocks.product-description.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.product-description.description');

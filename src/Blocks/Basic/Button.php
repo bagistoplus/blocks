@@ -23,6 +23,11 @@ class Button extends SimpleBlock
 
     protected static string $category = 'Basic';
 
+    public static function name(): string
+    {
+        return _t('blocks.button.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.button.description');

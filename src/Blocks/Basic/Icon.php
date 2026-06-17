@@ -21,6 +21,11 @@ class Icon extends SimpleBlock
 
     protected static string $category = 'Basic';
 
+    public static function name(): string
+    {
+        return _t('blocks.icon.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.icon.description');

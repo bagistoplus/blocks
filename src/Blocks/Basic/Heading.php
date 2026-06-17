@@ -16,6 +16,11 @@ class Heading extends Text
 
     protected static string $category = 'Basic';
 
+    public static function name(): string
+    {
+        return _t('blocks.heading.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.heading.description');

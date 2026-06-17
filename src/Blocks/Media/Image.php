@@ -26,6 +26,11 @@ class Image extends SimpleBlock
 
     protected static string $category = 'Media';
 
+    public static function name(): string
+    {
+        return _t('blocks.image.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.image.description');

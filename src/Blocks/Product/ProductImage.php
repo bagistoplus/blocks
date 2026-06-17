@@ -17,6 +17,11 @@ class ProductImage extends Image
 
     protected static string $category = 'Product';
 
+    public static function name(): string
+    {
+        return _t('blocks.product-image.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.product-image.description');

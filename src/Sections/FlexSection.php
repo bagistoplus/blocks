@@ -37,6 +37,11 @@ class FlexSection extends SimpleSection
 
     protected static string $category = 'Layout';
 
+    public static function name(): string
+    {
+        return _t('sections.flex-section.name');
+    }
+
     public static function description(): string
     {
         return _t('sections.flex-section.description');

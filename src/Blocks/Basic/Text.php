@@ -24,6 +24,11 @@ class Text extends SimpleBlock
 
     protected static string $category = 'Basic';
 
+    public static function name(): string
+    {
+        return _t('blocks.text.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.text.description');

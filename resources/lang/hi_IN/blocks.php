@@ -15,6 +15,7 @@ return [
     ],
 
     'divider' => [
+        'name' => 'विभाजक',
         'description' => 'सामग्री को अलग करने के लिए एक क्षैतिज रेखा',
         'settings' => [
             'thickness_label' => 'मोटाई',
@@ -40,6 +41,7 @@ return [
     ],
 
     'richtext' => [
+        'name' => 'रिच टेक्स्ट',
         'description' => 'स्वरूपण के साथ समृद्ध पाठ सामग्री',
         'settings' => [
             'content_label' => 'सामग्री',
@@ -47,6 +49,7 @@ return [
     ],
 
     'text' => [
+        'name' => 'टेक्स्ट',
         'description' => 'टाइपोग्राफी और रंग विकल्पों के साथ सादा पाठ',
         'settings' => [
             'text_label' => 'पाठ सामग्री',
@@ -112,6 +115,7 @@ return [
     ],
 
     'icon' => [
+        'name' => 'आइकन',
         'description' => 'अनुकूलन योग्य आकार और रंग के साथ एक आइकन प्रदर्शित करें',
         'settings' => [
             'icon_label' => 'आइकन',
@@ -136,6 +140,7 @@ return [
     ],
 
     'link' => [
+        'name' => 'लिंक',
         'description' => 'टाइपोग्राफी विकल्पों के साथ एक क्लिक करने योग्य लिंक',
         'settings' => [
             'text_label' => 'लिंक पाठ',
@@ -166,6 +171,7 @@ return [
     ],
 
     'heading' => [
+        'name' => 'शीर्षक',
         'description' => 'कॉन्फ़िगर करने योग्य स्तर के साथ शीर्षक पाठ',
         'text_label' => 'शीर्षक पाठ',
         'default_text' => 'हमारे स्टोर में आपका स्वागत है',
@@ -173,6 +179,7 @@ return [
     ],
 
     'category-image' => [
+        'name' => 'श्रेणी छवि',
         'description' => 'श्रेणी बैनर या लोगो छवि प्रदर्शित करें',
         'settings' => [
             'category_label' => 'श्रेणी',
@@ -198,6 +205,7 @@ return [
     ],
 
     'category-name' => [
+        'name' => 'श्रेणी नाम',
         'description' => 'श्रेणी का नाम प्रदर्शित करें',
         'settings' => [
             'category_label' => 'श्रेणी',
@@ -213,6 +221,7 @@ return [
     ],
 
     'image' => [
+        'name' => 'छवि',
         'description' => 'आकार, बॉर्डर और होवर प्रभावों के साथ एक छवि',
         'settings' => [
             'image_label' => 'छवि',
@@ -306,6 +315,7 @@ return [
     ],
 
     'product-image' => [
+        'name' => 'उत्पाद छवि',
         'description' => 'उत्पाद छवि प्रदर्शित करें',
         'settings' => [
             'size_label' => 'छवि आकार',
@@ -343,6 +353,7 @@ return [
     ],
 
     'product-labels' => [
+        'name' => 'उत्पाद लेबल',
         'description' => 'उत्पाद बिक्री और नए बैज प्रदर्शित करें',
         'settings' => [
             'layout_label' => 'लेआउट',
@@ -388,10 +399,12 @@ return [
     ],
 
     'product-description' => [
+        'name' => 'उत्पाद विवरण',
         'description' => 'उत्पाद का पूर्ण विवरण प्रदर्शित करें',
     ],
 
     'product-short-description' => [
+        'name' => 'उत्पाद संक्षिप्त विवरण',
         'description' => 'उत्पाद का संक्षिप्त विवरण प्रदर्शित करें',
     ],
 
@@ -621,6 +634,7 @@ return [
     ],
 
     'button' => [
+        'name' => 'बटन',
         'description' => 'रंग, शैली और आकार विकल्पों के साथ एक अनुकूलन योग्य बटन',
         'settings' => [
             'text_label' => 'टेक्स्ट',

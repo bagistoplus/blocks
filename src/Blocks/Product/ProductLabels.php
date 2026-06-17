@@ -21,6 +21,11 @@ class ProductLabels extends SimpleBlock
 
     protected static string $category = 'Product';
 
+    public static function name(): string
+    {
+        return _t('blocks.product-labels.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.product-labels.description');

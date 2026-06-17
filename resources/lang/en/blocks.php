@@ -15,6 +15,7 @@ return [
     ],
 
     'divider' => [
+        'name' => 'Divider',
         'description' => 'A horizontal line to separate content',
         'settings' => [
             'thickness_label' => 'Thickness',
@@ -40,6 +41,7 @@ return [
     ],
 
     'richtext' => [
+        'name' => 'Rich Text',
         'description' => 'Rich text content with formatting',
         'settings' => [
             'content_label' => 'Content',
@@ -47,6 +49,7 @@ return [
     ],
 
     'text' => [
+        'name' => 'Text',
         'description' => 'Plain text with typography and color options',
         'settings' => [
             'text_label' => 'Text Content',
@@ -112,6 +115,7 @@ return [
     ],
 
     'icon' => [
+        'name' => 'Icon',
         'description' => 'Display an icon with customizable size and color',
         'settings' => [
             'icon_label' => 'Icon',
@@ -136,6 +140,7 @@ return [
     ],
 
     'link' => [
+        'name' => 'Link',
         'description' => 'A clickable link with typography options',
         'settings' => [
             'text_label' => 'Link Text',
@@ -166,6 +171,7 @@ return [
     ],
 
     'heading' => [
+        'name' => 'Heading',
         'description' => 'A heading text with configurable level',
         'text_label' => 'Heading Text',
         'default_text' => 'Welcome to our store',
@@ -173,6 +179,7 @@ return [
     ],
 
     'category-image' => [
+        'name' => 'Category Image',
         'description' => 'Display a category banner or logo image',
         'settings' => [
             'category_label' => 'Category',
@@ -198,6 +205,7 @@ return [
     ],
 
     'category-name' => [
+        'name' => 'Category Name',
         'description' => 'Display the category name',
         'settings' => [
             'category_label' => 'Category',
@@ -213,6 +221,7 @@ return [
     ],
 
     'image' => [
+        'name' => 'Image',
         'description' => 'An image with sizing, borders, and hover effects',
         'settings' => [
             'image_label' => 'Image',
@@ -306,6 +315,7 @@ return [
     ],
 
     'product-image' => [
+        'name' => 'Product Image',
         'description' => 'Display the product image',
         'settings' => [
             'size_label' => 'Image Size',
@@ -343,6 +353,7 @@ return [
     ],
 
     'product-labels' => [
+        'name' => 'Product Labels',
         'description' => 'Display product sale and new badges',
         'settings' => [
             'layout_label' => 'Layout',
@@ -388,10 +399,12 @@ return [
     ],
 
     'product-description' => [
+        'name' => 'Product Description',
         'description' => 'Display the full product description',
     ],
 
     'product-short-description' => [
+        'name' => 'Product Short Description',
         'description' => 'Display the product short description',
     ],
 
@@ -621,6 +634,7 @@ return [
     ],
 
     'button' => [
+        'name' => 'Button',
         'description' => 'A customizable button with color, style, and size options',
         'settings' => [
             'text_label' => 'Text',

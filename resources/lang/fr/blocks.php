@@ -15,6 +15,7 @@ return [
     ],
 
     'divider' => [
+        'name' => 'Séparateur',
         'description' => 'Une ligne horizontale pour séparer le contenu',
         'settings' => [
             'thickness_label' => 'Épaisseur',
@@ -40,6 +41,7 @@ return [
     ],
 
     'richtext' => [
+        'name' => 'Texte enrichi',
         'description' => 'Contenu texte riche avec mise en forme',
         'settings' => [
             'content_label' => 'Contenu',
@@ -47,6 +49,7 @@ return [
     ],
 
     'text' => [
+        'name' => 'Texte',
         'description' => 'Texte brut avec options de typographie et de couleur',
         'settings' => [
             'text_label' => 'Contenu du texte',
@@ -112,6 +115,7 @@ return [
     ],
 
     'icon' => [
+        'name' => 'Icône',
         'description' => 'Afficher une icône avec taille et couleur personnalisables',
         'settings' => [
             'icon_label' => 'Icône',
@@ -136,6 +140,7 @@ return [
     ],
 
     'link' => [
+        'name' => 'Lien',
         'description' => 'Un lien cliquable avec options de typographie',
         'settings' => [
             'text_label' => 'Texte du lien',
@@ -166,6 +171,7 @@ return [
     ],
 
     'heading' => [
+        'name' => 'Titre',
         'description' => 'Un texte de titre avec niveau configurable',
         'text_label' => 'Texte du titre',
         'default_text' => 'Bienvenue dans notre boutique',
@@ -173,6 +179,7 @@ return [
     ],
 
     'category-image' => [
+        'name' => 'Image de catégorie',
         'description' => 'Afficher une image de bannière ou de logo de catégorie',
         'settings' => [
             'category_label' => 'Catégorie',
@@ -198,6 +205,7 @@ return [
     ],
 
     'category-name' => [
+        'name' => 'Nom de catégorie',
         'description' => 'Afficher le nom de la catégorie',
         'settings' => [
             'category_label' => 'Catégorie',
@@ -213,6 +221,7 @@ return [
     ],
 
     'image' => [
+        'name' => 'Image',
         'description' => 'Une image avec dimensionnement, bordures et effets de survol',
         'settings' => [
             'image_label' => 'Image',
@@ -306,6 +315,7 @@ return [
     ],
 
     'product-image' => [
+        'name' => 'Image du produit',
         'description' => 'Afficher l\'image du produit',
         'settings' => [
             'size_label' => 'Taille de l\'image',
@@ -343,6 +353,7 @@ return [
     ],
 
     'product-labels' => [
+        'name' => 'Étiquettes du produit',
         'description' => 'Afficher les badges de vente et de nouveauté du produit',
         'settings' => [
             'layout_label' => 'Disposition',
@@ -388,10 +399,12 @@ return [
     ],
 
     'product-description' => [
+        'name' => 'Description du produit',
         'description' => 'Afficher la description complète du produit',
     ],
 
     'product-short-description' => [
+        'name' => 'Description courte du produit',
         'description' => 'Afficher la description courte du produit',
     ],
 
@@ -621,6 +634,7 @@ return [
     ],
 
     'button' => [
+        'name' => 'Bouton',
         'description' => 'Un bouton personnalisable avec des options de couleur, style et taille',
         'settings' => [
             'text_label' => 'Texte',

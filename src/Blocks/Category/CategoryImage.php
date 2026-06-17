@@ -16,6 +16,11 @@ class CategoryImage extends Image
 
     protected static string $category = 'Category';
 
+    public static function name(): string
+    {
+        return _t('blocks.category-image.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.category-image.description');

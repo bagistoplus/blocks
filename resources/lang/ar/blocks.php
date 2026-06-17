@@ -15,6 +15,7 @@ return [
     ],
 
     'divider' => [
+        'name' => 'فاصل',
         'description' => 'خط أفقي لفصل المحتوى',
         'settings' => [
             'thickness_label' => 'السماكة',
@@ -40,6 +41,7 @@ return [
     ],
 
     'richtext' => [
+        'name' => 'نص منسق',
         'description' => 'محتوى نصي غني مع التنسيق',
         'settings' => [
             'content_label' => 'المحتوى',
@@ -47,6 +49,7 @@ return [
     ],
 
     'text' => [
+        'name' => 'نص',
         'description' => 'نص عادي مع خيارات الطباعة والألوان',
         'settings' => [
             'text_label' => 'محتوى النص',
@@ -112,6 +115,7 @@ return [
     ],
 
     'icon' => [
+        'name' => 'أيقونة',
         'description' => 'عرض أيقونة بحجم ولون قابلين للتخصيص',
         'settings' => [
             'icon_label' => 'أيقونة',
@@ -136,6 +140,7 @@ return [
     ],
 
     'link' => [
+        'name' => 'رابط',
         'description' => 'رابط قابل للنقر مع خيارات الطباعة',
         'settings' => [
             'text_label' => 'نص الرابط',
@@ -166,6 +171,7 @@ return [
     ],
 
     'heading' => [
+        'name' => 'عنوان',
         'description' => 'نص عنوان بمستوى قابل للتكوين',
         'text_label' => 'نص العنوان',
         'default_text' => 'مرحباً بكم في متجرنا',
@@ -173,6 +179,7 @@ return [
     ],
 
     'category-image' => [
+        'name' => 'صورة الفئة',
         'description' => 'عرض صورة بانر أو شعار الفئة',
         'settings' => [
             'category_label' => 'الفئة',
@@ -198,6 +205,7 @@ return [
     ],
 
     'category-name' => [
+        'name' => 'اسم الفئة',
         'description' => 'عرض اسم الفئة',
         'settings' => [
             'category_label' => 'الفئة',
@@ -213,6 +221,7 @@ return [
     ],
 
     'image' => [
+        'name' => 'صورة',
         'description' => 'صورة مع خيارات الحجم والحدود وتأثيرات التمرير',
         'settings' => [
             'image_label' => 'صورة',
@@ -306,6 +315,7 @@ return [
     ],
 
     'product-image' => [
+        'name' => 'صورة المنتج',
         'description' => 'عرض صورة المنتج',
         'settings' => [
             'size_label' => 'حجم الصورة',
@@ -343,6 +353,7 @@ return [
     ],
 
     'product-labels' => [
+        'name' => 'تسميات المنتج',
         'description' => 'عرض شارات التخفيض والمنتج الجديد',
         'settings' => [
             'layout_label' => 'التخطيط',
@@ -388,10 +399,12 @@ return [
     ],
 
     'product-description' => [
+        'name' => 'وصف المنتج',
         'description' => 'عرض الوصف الكامل للمنتج',
     ],
 
     'product-short-description' => [
+        'name' => 'الوصف المختصر للمنتج',
         'description' => 'عرض الوصف المختصر للمنتج',
     ],
 
@@ -621,6 +634,7 @@ return [
     ],
 
     'button' => [
+        'name' => 'زر',
         'description' => 'زر قابل للتخصيص مع خيارات اللون والنمط والحجم',
         'settings' => [
             'text_label' => 'النص',

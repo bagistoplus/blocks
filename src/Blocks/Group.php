@@ -32,6 +32,11 @@ class Group extends SimpleBlock
 
     protected static string $category = 'Layout';
 
+    public static function name(): string
+    {
+        return _t('blocks.group.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.group.description');

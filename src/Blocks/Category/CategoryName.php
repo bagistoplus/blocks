@@ -18,6 +18,11 @@ class CategoryName extends Text
 
     protected static string $category = 'Category';
 
+    public static function name(): string
+    {
+        return _t('blocks.category-name.name');
+    }
+
     public static function description(): string
     {
         return _t('blocks.category-name.description');
