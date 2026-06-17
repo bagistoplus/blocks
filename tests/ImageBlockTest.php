@@ -36,6 +36,7 @@ function renderImageBlock(
     string $placeholderClasses = 'h-full w-full',
     string $containerStyles = 'width: 100%',
     string $imageStyles = '',
+    string $imageClasses = 'h-full w-full',
 ): string {
     $block = (object) [
         'editor_attributes' => new HtmlString('data-editor="image-block"'),
@@ -51,12 +52,12 @@ function renderImageBlock(
   container-classes="relative overflow-hidden"
   link-classes="block relative overflow-hidden"
   :container-styles="$containerStyles"
-  image-classes="h-full w-full"
+  :image-classes="$imageClasses"
   :image-styles="$imageStyles"
   :placeholder-classes="$placeholderClasses"
 />
 BLADE,
-        compact('block', 'image', 'link', 'placeholderClasses', 'containerStyles', 'imageStyles')
+        compact('block', 'image', 'link', 'placeholderClasses', 'containerStyles', 'imageStyles', 'imageClasses')
     );
 }
 
@@ -101,8 +102,8 @@ it('renders a clickable placeholder when link is configured without an image', f
     expect($html)
         ->toContain('<a')
         ->toContain('href="https://example.com/page"')
-        ->toContain('<svg')
-        ->not->toContain('<img');
+        ->toContain('<img')
+        ->toContain('src="data:image/svg+xml;base64,');
 });
 
 it('uses literal hover zoom classes for real images', function () {
@@ -188,15 +189,16 @@ it('does not include hover zoom classes when disabled', function () {
         ->not->toContain('group-hover:scale-');
 });
 
-it('renders placeholder classes around the inline placeholder svg', function () {
+it('renders placeholder image classes on the placeholder image', function () {
     $html = renderImageBlock(
         image: null,
-        placeholderClasses: 'transition-transform duration-300 hover:scale-125 group-hover:scale-125 h-full w-full',
+        imageClasses: 'transition-transform duration-300 hover:scale-125 group-hover:scale-125 h-full w-full',
     );
 
     expect($html)
         ->toContain('class="transition-transform duration-300 hover:scale-125 group-hover:scale-125 h-full w-full"')
-        ->toContain('<svg');
+        ->toContain('<img')
+        ->toContain('src="data:image/svg+xml;base64,');
 });
 
 it('uses a tailwind css variable class for image border opacity', function () {
@@ -328,7 +330,8 @@ it('does not render an empty style attribute for placeholders without styles', f
 
     expect($html)
         ->toContain('<div')
-        ->toContain('<svg')
+        ->toContain('<img')
+        ->toContain('src="data:image/svg+xml;base64,')
         ->not->toContain('style=""');
 });
 
@@ -352,5 +355,6 @@ it('renders placeholder styles when container styles are present', function () {
 
     expect($html)
         ->toContain('style="width: 50%"')
-        ->toContain('<svg');
+        ->toContain('<img')
+        ->toContain('src="data:image/svg+xml;base64,');
 });
