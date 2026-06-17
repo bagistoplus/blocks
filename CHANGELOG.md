@@ -1,3 +1,14 @@
+## [1.3.1](https://github.com/bagistoplus/blocks/compare/v1.3.0...v1.3.1) (2026-06-17)
+
+
+### Bug Fixes
+
+* respect button icon position ([68fb4b1](https://github.com/bagistoplus/blocks/commit/68fb4b1ddec4705c7017b5f73c79c38a063ff73d))
+* scale button icons by size ([26562ba](https://github.com/bagistoplus/blocks/commit/26562ba96fb5d8cb723892fe5c814b968e885fdf))
+* translate block display names ([385bb4f](https://github.com/bagistoplus/blocks/commit/385bb4fdeca2c65d93fb01d208ef213b07674591))
+
+
+
 # [1.3.0](https://github.com/bagistoplus/blocks/compare/v1.2.0...v1.3.0) (2026-06-03)
 
 
