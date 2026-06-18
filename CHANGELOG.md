@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/bagistoplus/blocks/compare/v1.3.1...v1.3.2) (2026-06-18)
+
+
+### Bug Fixes
+
+* stop translating group preset category ([07f9bf3](https://github.com/bagistoplus/blocks/commit/07f9bf3148d802319e1c84f9b786330e5281e8d2))
+
+
+
 ## [1.3.1](https://github.com/bagistoplus/blocks/compare/v1.3.0...v1.3.1) (2026-06-17)
 
 
