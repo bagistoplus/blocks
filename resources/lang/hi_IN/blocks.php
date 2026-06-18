@@ -605,7 +605,6 @@ return [
         'presets' => [
             'basic' => [
                 'name' => 'समूह',
-                'category' => 'लेआउट',
             ],
             'centered' => [
                 'name' => 'केंद्रित समूह',

@@ -372,7 +372,7 @@ class Group extends SimpleBlock
     {
         return [
             Preset::make(_t('blocks.group.presets.basic.name'))
-                ->category(_t('blocks.group.presets.basic.category'))
+                ->category('Layout')
                 ->settings([
                     'layout_type' => 'block',
                 ]),

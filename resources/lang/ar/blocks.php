@@ -605,7 +605,6 @@ return [
         'presets' => [
             'basic' => [
                 'name' => 'مجموعة',
-                'category' => 'التخطيط',
             ],
             'centered' => [
                 'name' => 'مجموعة متمركزة',

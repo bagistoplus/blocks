@@ -605,7 +605,6 @@ return [
         'presets' => [
             'basic' => [
                 'name' => 'Group',
-                'category' => 'Layout',
             ],
             'centered' => [
                 'name' => 'Centered Group',
