@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\SplFileInfo;
 
+use function BagistoPlus\BasicBlocks\_t;
+
+it('defers package translations through the Visual translation helper', function () {
+    expect(_t('blocks.button.name'))->toBe('t:basic-blocks::blocks.button.name');
+});
+
 it('keeps supported locales aligned with the English translation keys', function () {
     $langPath = dirname(__DIR__).'/resources/lang';
     $englishPath = $langPath.'/en';

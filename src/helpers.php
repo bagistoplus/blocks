@@ -2,14 +2,13 @@
 
 namespace BagistoPlus\BasicBlocks;
 
-if (! function_exists('_t')) {
+if (! function_exists(__NAMESPACE__.'\_t')) {
     /**
-     * A shortcut for visual-debut string localization
-     * Works with both sections and blocks translations
+     * A shortcut for deferring package translations to Visual.
      */
-    function _t(string $key, array $replace = [], ?string $locale = null): string|array
+    function _t(string $key): string
     {
-        return __("basic-blocks::$key", $replace, $locale);
+        return \BagistoPlus\Visual\t("basic-blocks::$key");
     }
 }
 
