@@ -34,6 +34,7 @@ return [
                 'start' => 'Start',
                 'center' => 'Center',
                 'end' => 'End',
+                'stretch' => 'Stretch',
             ],
 
             'gap_label' => 'Gap Between Items',

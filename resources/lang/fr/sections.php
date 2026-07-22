@@ -34,6 +34,7 @@ return [
                 'start' => 'Début',
                 'center' => 'Centre',
                 'end' => 'Fin',
+                'stretch' => 'Étirer',
             ],
 
             'gap_label' => 'Espacement entre les éléments',

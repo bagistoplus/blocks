@@ -76,6 +76,7 @@ class FlexSection extends SimpleSection
                     'start' => _t('sections.flex-section.settings.flex_align_options.start'),
                     'center' => _t('sections.flex-section.settings.flex_align_options.center'),
                     'end' => _t('sections.flex-section.settings.flex_align_options.end'),
+                    'stretch' => _t('sections.flex-section.settings.flex_align_options.stretch'),
                 ])
                 ->responsive(),
 
@@ -441,7 +442,8 @@ class FlexSection extends SimpleSection
                 'start' => 'items-start',
                 'center' => 'items-center',
                 'end' => 'items-end',
-                default => 'items-center',
+                'stretch' => 'items-stretch',
+                default => 'items-stretch',
             });
         }
 
