@@ -87,3 +87,46 @@ it('ignores the custom color when a token is selected', function () {
     expect($data['classes'])->toContain('text-danger')
         ->and($data['styles'])->toBe('');
 });
+
+it('does not clamp lines by default', function () {
+    $data = textViewData([]);
+
+    expect($data['classes'])->not->toContain('line-clamp')
+        ->and($data['styles'])->toBe('');
+});
+
+it('does not clamp lines when truncation is disabled', function () {
+    $data = textViewData(['truncate' => false, 'max_lines' => 4]);
+
+    expect($data['classes'])->not->toContain('line-clamp')
+        ->and($data['styles'])->toBe('');
+});
+
+it('clamps lines when truncation is enabled', function () {
+    $data = textViewData(['truncate' => true, 'max_lines' => 4]);
+
+    expect($data['classes'])->toContain('line-clamp-(--max-lines)')
+        ->and($data['styles'])->toBe('--max-lines: 4;');
+});
+
+it('clamps lines per breakpoint', function () {
+    $data = textViewData([
+        'truncate' => true,
+        'max_lines' => ['_default' => 2, 'desktop' => 5],
+    ]);
+
+    expect($data['classes'])->toContain('line-clamp-(--max-lines)')
+        ->and($data['classes'])->toContain('desktop:line-clamp-(--max-lines-desktop)')
+        ->and($data['styles'])->toBe('--max-lines: 2; --max-lines-desktop: 5;');
+});
+
+it('combines the clamp variable with a custom color', function () {
+    $data = textViewData([
+        'color' => '__none__',
+        'text_color' => '#FF0000FF',
+        'truncate' => true,
+        'max_lines' => 3,
+    ]);
+
+    expect($data['styles'])->toBe('color: #F00; --max-lines: 3;');
+});

@@ -69,6 +69,9 @@ return [
                 'none' => 'بدون',
             ],
 
+            'truncate_label' => 'اقتطاع النص',
+            'max_lines_label' => 'الحد الأقصى للأسطر',
+
             'alignment_label' => 'المحاذاة',
             'alignment_options' => [
                 'start' => 'بداية',

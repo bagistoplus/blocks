@@ -8,6 +8,9 @@
 /* Custom height with CSS variables */
 @source inline("{h-(--height),mobile:h-(--height-mobile),tablet:h-(--height-tablet),desktop:h-(--height-desktop)}");
 
+/* Line clamp with CSS variables */
+@source inline("{line-clamp-(--max-lines),mobile:line-clamp-(--max-lines-mobile),tablet:line-clamp-(--max-lines-tablet),desktop:line-clamp-(--max-lines-desktop)}");
+
 /* Section height presets */
 @source inline("{mobile:,tablet:,desktop:,}h-[{20rem,25rem,37.5rem,50rem}]");
 

@@ -4,10 +4,12 @@ namespace BagistoPlus\BasicBlocks\Blocks\Basic;
 
 use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
+use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Color;
 use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\ColorToken;
 use BagistoPlus\Visual\Settings\Header;
+use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Support\ColorTokenValue;
@@ -25,6 +27,13 @@ class Text extends SimpleBlock
     protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6.1H3"/><path d="M21 12.1H3"/><path d="M15.1 18H3"/></svg>';
 
     protected static string $category = 'Basic';
+
+    /**
+     * Memoized truncation classes and styles.
+     *
+     * @var array{classes: string, styles: string}|null
+     */
+    protected ?array $truncation = null;
 
     public static function name(): string
     {
@@ -75,6 +84,18 @@ class Text extends SimpleBlock
                 ->default('start')
                 ->visibleWhen(fn ($rule) => $rule->when('width', 'fill'))
                 ->responsive(),
+
+            Checkbox::make('truncate', _t('blocks.text.settings.truncate_label'))
+                ->default(false)
+                ->asSwitch(),
+
+            Range::make('max_lines', _t('blocks.text.settings.max_lines_label'))
+                ->min(1)
+                ->max(24)
+                ->step(1)
+                ->default(3)
+                ->responsive()
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('truncate')),
 
             Header::make(_t('blocks.text.settings.typography_header')),
 
@@ -137,6 +158,7 @@ class Text extends SimpleBlock
             $this->getMaxWidthClass(),
             $this->getAlignmentClass(),
             $this->getColorClass(),
+            $this->getTruncation()['classes'],
             $this->getPaddingClasses(),
             $this->getMarginClasses(),
         ];
@@ -149,6 +171,23 @@ class Text extends SimpleBlock
      */
     protected function getStyles(): string
     {
+        $styles = array_filter([
+            $this->getColorStyle(),
+            $this->getTruncation()['styles'],
+        ]);
+
+        if ($styles === []) {
+            return '';
+        }
+
+        return implode('; ', $styles).';';
+    }
+
+    /**
+     * Get the custom color inline style, if any
+     */
+    protected function getColorStyle(): string
+    {
         if (! $this->usesCustomColor()) {
             return '';
         }
@@ -157,7 +196,30 @@ class Text extends SimpleBlock
             return '';
         }
 
-        return 'color: '.$this->block->settings->text_color.';';
+        return 'color: '.$this->block->settings->text_color;
+    }
+
+    /**
+     * Get the line clamp classes and CSS variables
+     *
+     * @return array{classes: string, styles: string}
+     */
+    protected function getTruncation(): array
+    {
+        if ($this->truncation !== null) {
+            return $this->truncation;
+        }
+
+        if (! $this->block->settings->truncate) {
+            return $this->truncation = ['classes' => '', 'styles' => ''];
+        }
+
+        return $this->truncation = Tailwind::buildResponsiveStyleFor(
+            $this->block->settings->max_lines ?? 3,
+            'line-clamp',
+            'max-lines',
+            ''
+        );
     }
 
     /**

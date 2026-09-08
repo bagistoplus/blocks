@@ -69,6 +69,9 @@ return [
                 'none' => 'कोई नहीं',
             ],
 
+            'truncate_label' => 'पाठ छोटा करें',
+            'max_lines_label' => 'अधिकतम पंक्तियाँ',
+
             'alignment_label' => 'संरेखण',
             'alignment_options' => [
                 'start' => 'शुरुआत',

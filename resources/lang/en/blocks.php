@@ -69,6 +69,9 @@ return [
                 'none' => 'None',
             ],
 
+            'truncate_label' => 'Truncate Text',
+            'max_lines_label' => 'Max Lines',
+
             'alignment_label' => 'Alignment',
             'alignment_options' => [
                 'start' => 'Start',
