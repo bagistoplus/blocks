@@ -71,9 +71,9 @@ return [
 
             'alignment_label' => 'المحاذاة',
             'alignment_options' => [
-                'left' => 'يسار',
+                'start' => 'بداية',
                 'center' => 'وسط',
-                'right' => 'يمين',
+                'end' => 'نهاية',
             ],
 
             'typography_header' => 'الطباعة',
@@ -83,14 +83,6 @@ return [
 
             'color_label' => 'لون النص',
             'color_options' => [
-                'default' => 'افتراضي',
-                'primary' => 'أساسي',
-                'secondary' => 'ثانوي',
-                'accent' => 'تمييز',
-                'info' => 'معلومات',
-                'success' => 'نجاح',
-                'warning' => 'تحذير',
-                'danger' => 'خطر',
                 'custom' => 'مخصص',
             ],
 

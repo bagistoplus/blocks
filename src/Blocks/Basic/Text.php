@@ -6,9 +6,11 @@ use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Color;
 use BagistoPlus\Visual\Settings\ColorScheme;
+use BagistoPlus\Visual\Settings\ColorToken;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
+use BagistoPlus\Visual\Settings\Support\ColorTokenValue;
 use BagistoPlus\Visual\Settings\Text as SettingsText;
 use BagistoPlus\Visual\Settings\Typography;
 
@@ -66,11 +68,11 @@ class Text extends SimpleBlock
 
             Select::make('alignment', _t('blocks.text.settings.alignment_label'))
                 ->options([
-                    'left' => _t('blocks.text.settings.alignment_options.left'),
+                    'start' => _t('blocks.text.settings.alignment_options.start'),
                     'center' => _t('blocks.text.settings.alignment_options.center'),
-                    'right' => _t('blocks.text.settings.alignment_options.right'),
+                    'end' => _t('blocks.text.settings.alignment_options.end'),
                 ])
-                ->default('left')
+                ->default('start')
                 ->visibleWhen(fn ($rule) => $rule->when('width', 'fill'))
                 ->responsive(),
 
@@ -84,23 +86,12 @@ class Text extends SimpleBlock
             ColorScheme::make('color_scheme', _t('blocks.common.color_scheme_label'))
                 ->info(_t('blocks.common.color_scheme_info')),
 
-            Select::make('color', _t('blocks.text.settings.color_label'))
-                ->options([
-                    'default' => _t('blocks.text.settings.color_options.default'),
-                    'primary' => _t('blocks.text.settings.color_options.primary'),
-                    'secondary' => _t('blocks.text.settings.color_options.secondary'),
-                    'accent' => _t('blocks.text.settings.color_options.accent'),
-                    'info' => _t('blocks.text.settings.color_options.info'),
-                    'success' => _t('blocks.text.settings.color_options.success'),
-                    'warning' => _t('blocks.text.settings.color_options.warning'),
-                    'danger' => _t('blocks.text.settings.color_options.danger'),
-                    'custom' => _t('blocks.text.settings.color_options.custom'),
-                ])
+            ColorToken::make('color', _t('blocks.text.settings.color_label'))
+                ->allowNone(_t('blocks.text.settings.color_options.custom'))
                 ->default('default'),
 
             Color::make('text_color', _t('blocks.text.settings.text_color_label'))
-                ->default('#000000FF')
-                ->visibleWhen(fn ($rule) => $rule->when('color', 'custom')),
+                ->visibleWhen(fn ($rule) => $rule->when('color', ColorTokenValue::EMPTY_VALUE)),
 
             Header::make(_t('blocks.common.spacing_header')),
 
@@ -158,13 +149,15 @@ class Text extends SimpleBlock
      */
     protected function getStyles(): string
     {
-        $color = $this->block->settings->color ?? 'default';
-
-        if ($color === 'custom') {
-            return 'color: '.($this->block->settings->text_color ?? '#000000FF').';';
+        if (! $this->usesCustomColor()) {
+            return '';
         }
 
-        return '';
+        if (empty($this->block->settings->raw()['text_color'])) {
+            return '';
+        }
+
+        return 'color: '.$this->block->settings->text_color.';';
     }
 
     /**
@@ -202,12 +195,12 @@ class Text extends SimpleBlock
     protected function getAlignmentClass(): string
     {
         return Tailwind::responsive(
-            $this->block->settings->alignment ?? 'left',
+            $this->block->settings->alignment ?? 'start',
             fn ($v) => match ($v) {
-                'left' => 'text-left',
+                'start', 'left' => 'text-start',
                 'center' => 'text-center',
-                'right' => 'text-right',
-                default => 'text-left',
+                'end', 'right' => 'text-end',
+                default => 'text-start',
             }
         );
     }
@@ -217,24 +210,47 @@ class Text extends SimpleBlock
      */
     protected function getColorClass(): string
     {
-        $color = $this->block->settings->color ?? 'default';
+        $token = $this->getColorToken();
 
-        if ($color === 'custom') {
+        if ($token === null) {
             return '';
         }
 
         $colorClasses = [
-            'default' => 'text-on-background',
+            'default' => '',
             'primary' => 'text-primary',
             'secondary' => 'text-secondary',
             'accent' => 'text-accent',
+            'neutral' => 'text-neutral',
             'info' => 'text-info',
             'success' => 'text-success',
             'warning' => 'text-warning',
             'danger' => 'text-danger',
         ];
 
-        return $colorClasses[$color] ?? 'text-on-background';
+        return $colorClasses[$token] ?? '';
+    }
+
+    /**
+     * Get the selected color token, or null when the text uses a custom color
+     */
+    protected function getColorToken(): ?string
+    {
+        if ($this->usesCustomColor()) {
+            return null;
+        }
+
+        return $this->block->settings->color->token();
+    }
+
+    /**
+     * Whether the text color comes from the custom color picker instead of a token
+     */
+    protected function usesCustomColor(): bool
+    {
+        $color = $this->block->settings->color;
+
+        return ! $color instanceof ColorTokenValue || $color->isEmpty();
     }
 
     /**

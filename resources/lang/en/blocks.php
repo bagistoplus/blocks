@@ -71,9 +71,9 @@ return [
 
             'alignment_label' => 'Alignment',
             'alignment_options' => [
-                'left' => 'Left',
+                'start' => 'Start',
                 'center' => 'Center',
-                'right' => 'Right',
+                'end' => 'End',
             ],
 
             'typography_header' => 'Typography',
@@ -83,14 +83,6 @@ return [
 
             'color_label' => 'Text Color',
             'color_options' => [
-                'default' => 'Default',
-                'primary' => 'Primary',
-                'secondary' => 'Secondary',
-                'accent' => 'Accent',
-                'info' => 'Info',
-                'success' => 'Success',
-                'warning' => 'Warning',
-                'danger' => 'Danger',
                 'custom' => 'Custom',
             ],
 

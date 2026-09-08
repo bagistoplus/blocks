@@ -71,9 +71,9 @@ return [
 
             'alignment_label' => 'संरेखण',
             'alignment_options' => [
-                'left' => 'बाएं',
+                'start' => 'शुरुआत',
                 'center' => 'केंद्र',
-                'right' => 'दाएं',
+                'end' => 'अंत',
             ],
 
             'typography_header' => 'टाइपोग्राफी',
@@ -83,14 +83,6 @@ return [
 
             'color_label' => 'पाठ रंग',
             'color_options' => [
-                'default' => 'डिफ़ॉल्ट',
-                'primary' => 'प्राथमिक',
-                'secondary' => 'द्वितीयक',
-                'accent' => 'उच्चारण',
-                'info' => 'सूचना',
-                'success' => 'सफलता',
-                'warning' => 'चेतावनी',
-                'danger' => 'खतरा',
                 'custom' => 'कस्टम',
             ],
 
