@@ -1,3 +1,19 @@
+# [1.4.0](https://github.com/bagistoplus/blocks/compare/v1.3.3...v1.4.0) (2026-09-08)
+
+
+### Bug Fixes
+
+* move flex section padding inside the container ([f4127a9](https://github.com/bagistoplus/blocks/commit/f4127a911ba7876dfcb60ad3ab434180d8ef8fd0))
+
+
+### Features
+
+* add stretch alignment to flex section ([fc42bdc](https://github.com/bagistoplus/blocks/commit/fc42bdcbfdd3dc9a8a0a3dcd1e39e26b388becba))
+* use logical alignment and color token in text block ([611368e](https://github.com/bagistoplus/blocks/commit/611368e0334fd0f2f627d597b2adb5fa20a1aa7e))
+* use Radius setting type for button radius ([c671288](https://github.com/bagistoplus/blocks/commit/c6712880e15bfb01b1cdce33a73cf20827409759))
+
+
+
 ## [1.3.3](https://github.com/bagistoplus/blocks/compare/v1.3.2...v1.3.3) (2026-06-22)
 
 
