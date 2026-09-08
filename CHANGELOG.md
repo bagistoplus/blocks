@@ -1,3 +1,13 @@
+# [1.5.0](https://github.com/bagistoplus/blocks/compare/v1.4.0...v1.5.0) (2026-09-08)
+
+
+### Features
+
+* add line truncation to text styling settings ([44d049b](https://github.com/bagistoplus/blocks/commit/44d049b95ef8dd2b7df5a6c3300dbbde34e3f7af))
+* add support for Laravel 13 ([e402da0](https://github.com/bagistoplus/blocks/commit/e402da038846c5785691af41e9b88937a9e8ec2a))
+
+
+
 # [1.4.0](https://github.com/bagistoplus/blocks/compare/v1.3.3...v1.4.0) (2026-09-08)
 
 
