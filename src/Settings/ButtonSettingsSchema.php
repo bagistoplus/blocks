@@ -5,7 +5,9 @@ namespace BagistoPlus\BasicBlocks\Settings;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Color;
 use BagistoPlus\Visual\Settings\Header;
+use BagistoPlus\Visual\Settings\Radius;
 use BagistoPlus\Visual\Settings\Range;
+use BagistoPlus\Visual\Settings\Support\RadiusValue;
 
 class ButtonSettingsSchema
 {
@@ -14,7 +16,7 @@ class ButtonSettingsSchema
      */
     private const STYLES = [
         'flat' => [
-            'btn_radius' => 6,
+            'btn_radius' => 'md',
             'btn_border_width' => 0,
 
             'btn_shadow_x' => 0,
@@ -35,7 +37,7 @@ class ButtonSettingsSchema
         ],
 
         'neumorphism' => [
-            'btn_radius' => 16,
+            'btn_radius' => 'full',
             'btn_border_width' => 0,
 
             'btn_shadow_x' => 6,
@@ -56,7 +58,7 @@ class ButtonSettingsSchema
         ],
 
         'brutalism' => [
-            'btn_radius' => 0,
+            'btn_radius' => 'none',
             'btn_border_width' => 3,
 
             'btn_shadow_x' => 4,
@@ -77,7 +79,7 @@ class ButtonSettingsSchema
         ],
 
         'glassmorphism' => [
-            'btn_radius' => 12,
+            'btn_radius' => 'xl',
             'btn_border_width' => 1,
 
             'btn_shadow_x' => 0,
@@ -165,7 +167,7 @@ class ButtonSettingsSchema
     public static function resolveCssVars(object $settings): array
     {
         return [
-            '--btn-radius' => ($settings->btn_radius ?? 6).'px',
+            '--btn-radius' => (string) ($settings->btn_radius ?? new RadiusValue('md')),
             '--btn-border-width' => ($settings->btn_border_width ?? 0).'px',
             '--btn-letter-spacing' => ($settings->btn_letter_spacing ?? 0).'px',
             '--btn-text-transform' => ($settings->btn_uppercase ?? false) ? 'uppercase' : 'none',
@@ -193,8 +195,7 @@ class ButtonSettingsSchema
             // Geometry & Borders
             Header::make('basic-blocks::settings.button.geometry_header'),
 
-            Range::make('btn_radius', 'basic-blocks::settings.button.radius_label')
-                ->min(0)->max(100)->step(1)->unit('px')
+            Radius::make('btn_radius', 'basic-blocks::settings.button.radius_label')
                 ->default($defaults['btn_radius']),
 
             Range::make('btn_border_width', 'basic-blocks::settings.button.border_width_label')
