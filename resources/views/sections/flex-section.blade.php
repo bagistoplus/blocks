@@ -8,7 +8,9 @@
     <div class="absolute inset-0 z-0 pointer-events-none" @if ($overlayStyles) style="{{ $overlayStyles }}" @endif></div>
   @endif
 
-  <div class="{{ $contentWidthClasses }} {{ $sectionHeightClasses }} {{ $flexClasses }} relative z-10 flex" @if ($sectionHeightStyles) style="{{ $sectionHeightStyles }}" @endif>
-    @children
+  <div class="{{ $contentWidthClasses }} relative z-10">
+    <div class="{{ $sectionHeightClasses }} {{ $flexClasses }} {{ $paddingClasses }} flex" @if ($sectionHeightStyles) style="{{ $sectionHeightStyles }}" @endif>
+      @children
+    </div>
   </div>
 </div>

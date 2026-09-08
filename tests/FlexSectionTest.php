@@ -71,6 +71,7 @@ function renderFlexSection(array $settings = []): string
     'sectionHeightClasses' => $sectionHeightClasses,
     'sectionHeightStyles' => $sectionHeightStyles,
     'flexClasses' => $flexClasses,
+    'paddingClasses' => $paddingClasses,
 ])
 BLADE,
         array_merge(['section' => $section], $viewData)
@@ -310,5 +311,57 @@ it('renders overlay and content with explicit stacking classes', function () {
 
     expect($html)
         ->toContain('absolute inset-0 z-0 pointer-events-none')
-        ->toContain('relative z-10 flex');
+        ->toContain('relative z-10')
+        ->toContain('flex-col');
+});
+
+it('uses w-full content width in full width mode', function () {
+    $viewData = (new TestableFlexSection)->viewDataFor([
+        'section_width' => 'full',
+    ]);
+
+    expect(flexSectionClassTokens($viewData['contentWidthClasses']))
+        ->toBe(['w-full']);
+});
+
+it('splits padding classes out of flex classes', function () {
+    $viewData = (new TestableFlexSection)->viewDataFor([
+        'padding' => [
+            '_default' => ['top' => 12, 'right' => 4, 'bottom' => 12, 'left' => 4],
+        ],
+    ]);
+
+    expect(flexSectionClassTokens($viewData['paddingClasses']))
+        ->toContain('py-12')
+        ->toContain('px-4')
+        ->and(flexSectionClassTokens($viewData['flexClasses']))
+        ->not->toContain('py-12')
+        ->not->toContain('px-4');
+});
+
+it('renders padding on the inner wrapper instead of the container', function () {
+    $html = renderFlexSection([
+        'section_width' => 'container',
+        'padding' => [
+            '_default' => ['top' => 12, 'right' => 4, 'bottom' => 12, 'left' => 4],
+        ],
+    ]);
+
+    preg_match_all('/<div\s+class="([^"]*)"/', $html, $matches);
+    $classLists = $matches[1];
+
+    $containerClasses = collect($classLists)->first(fn ($classes) => str_contains($classes, 'container'));
+    $innerClasses = collect($classLists)->first(fn ($classes) => str_contains($classes, 'py-12'));
+
+    expect($containerClasses)->not->toBeNull()
+        ->and(flexSectionClassTokens($containerClasses))
+        ->toContain('container')
+        ->toContain('mx-auto')
+        ->not->toContain('py-12')
+        ->not->toContain('px-4')
+        ->and($innerClasses)->not->toBeNull()
+        ->and(flexSectionClassTokens($innerClasses))
+        ->toContain('px-4')
+        ->toContain('flex')
+        ->not->toContain('container');
 });

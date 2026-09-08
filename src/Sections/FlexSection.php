@@ -247,10 +247,11 @@ class FlexSection extends SimpleSection
             'outerClasses' => $outerAttributes['classes'],
             'outerStyles' => $outerAttributes['styles'],
             'overlayStyles' => $this->computeOverlayStyles(),
-            'contentWidthClasses' => ($s->section_width ?? 'container') === 'container' ? 'container mx-auto' : '',
+            'contentWidthClasses' => ($s->section_width ?? 'container') === 'container' ? 'container mx-auto' : 'w-full',
             'sectionHeightClasses' => $sectionHeightAttributes['classes'],
             'sectionHeightStyles' => $sectionHeightAttributes['styles'],
             'flexClasses' => $this->computeFlexClasses(),
+            'paddingClasses' => $this->computePaddingClasses(),
         ];
     }
 
@@ -451,11 +452,17 @@ class FlexSection extends SimpleSection
         $gap = $s->flex_gap ?? ['_default' => 4];
         $classes[] = Tailwind::responsive($gap, fn ($v) => "gap-{$v}");
 
-        // Padding
-        if ($s->has('padding')) {
-            $classes[] = Tailwind::responsive($s->padding, fn ($v) => Tailwind::buildSpacingClasses($v, 'p'));
+        return implode(' ', array_filter($classes));
+    }
+
+    protected function computePaddingClasses(): string
+    {
+        $s = $this->section->settings;
+
+        if (! $s->has('padding')) {
+            return '';
         }
 
-        return implode(' ', array_filter($classes));
+        return Tailwind::responsive($s->padding, fn ($v) => Tailwind::buildSpacingClasses($v, 'p'));
     }
 }
