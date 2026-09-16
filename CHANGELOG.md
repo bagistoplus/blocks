@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/bagistoplus/blocks/compare/v1.5.0...v1.5.1) (2026-09-16)
+
+
+### Bug Fixes
+
+* make default the button's base color ([01a7ba5](https://github.com/bagistoplus/blocks/commit/01a7ba50d8ca4467aa334edac38d26b5a2b28f98))
+
+
+
 # [1.5.0](https://github.com/bagistoplus/blocks/compare/v1.4.0...v1.5.0) (2026-09-08)
 
 
