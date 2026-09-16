@@ -1,6 +1,6 @@
 @props([
     'tag' => 'a',
-    'color' => 'primary',
+    'color' => 'default',
     'variant' => 'filled',
     'size' => 'md',
     'icon' => null,
