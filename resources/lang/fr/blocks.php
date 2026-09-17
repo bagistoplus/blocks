@@ -224,6 +224,75 @@ return [
         ],
     ],
 
+    'category-banner' => [
+        'name' => 'Bannière de catégorie',
+        'description' => 'Une bannière affichant l\'image, le nom et la description de la catégorie',
+        'settings' => [
+            'category_label' => 'Catégorie',
+            'category_info' => 'Sélectionnez une catégorie à des fins de prévisualisation uniquement',
+
+            'show_heading_label' => 'Afficher le titre',
+            'show_description_label' => 'Afficher la description',
+            'show_image_label' => 'Afficher l\'image de la catégorie',
+
+            'image_label' => 'Image',
+            'image_info' => 'Utilise l\'image de bannière de la catégorie par défaut. 2880 x 880px recommandé',
+
+            'layout_header' => 'Disposition',
+
+            'height_label' => 'Hauteur',
+            'height_options' => [
+                'auto' => 'Automatique',
+                'xs' => 'Très petite',
+                'sm' => 'Petite',
+                'md' => 'Moyenne',
+            ],
+
+            'content_max_width_label' => 'Largeur du contenu',
+            'content_max_width_options' => [
+                'narrow' => 'Étroite',
+                'normal' => 'Normale',
+                'wide' => 'Large',
+                'full' => 'Pleine',
+            ],
+
+            'content_alignment_label' => 'Alignement du contenu',
+            'content_alignment_options' => [
+                'start' => 'Gauche',
+                'center' => 'Centre',
+                'end' => 'Droite',
+            ],
+
+            'content_position_label' => 'Position du contenu',
+            'content_position_options' => [
+                'top' => 'Haut',
+                'middle' => 'Milieu',
+                'bottom' => 'Bas',
+            ],
+
+            'heading_header' => 'Titre',
+            'heading_tag_label' => 'Balise du titre',
+            'heading_tag_info' => 'Utilisez H1 lorsque cette bannière est le titre principal de la page',
+            'heading_tag_options' => [
+                'div' => 'Aucune (div)',
+            ],
+            'heading_typography_label' => 'Typographie du titre',
+
+            'description_header' => 'Description',
+            'description_typography_label' => 'Typographie de la description',
+            'truncate_label' => 'Tronquer la description',
+            'max_lines_label' => 'Lignes maximum',
+
+            'appearance_header' => 'Apparence',
+            'toggle_overlay_label' => 'Superposition',
+            'toggle_overlay_info' => 'Assombrit l\'image pour garder le texte lisible',
+            'overlay_color_label' => 'Couleur de la superposition',
+
+            'padding_label' => 'Marge intérieure du contenu',
+            'padding_info' => 'Écarte le texte des bords de la bannière. L\'image remplit toujours la bannière',
+        ],
+    ],
+
     'image' => [
         'name' => 'Image',
         'description' => 'Une image avec dimensionnement, bordures et effets de survol',

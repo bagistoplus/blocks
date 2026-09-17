@@ -224,6 +224,75 @@ return [
         ],
     ],
 
+    'category-banner' => [
+        'name' => 'श्रेणी बैनर',
+        'description' => 'श्रेणी की छवि, नाम और विवरण दिखाने वाला हीरो बैनर',
+        'settings' => [
+            'category_label' => 'श्रेणी',
+            'category_info' => 'केवल पूर्वावलोकन उद्देश्य के लिए एक श्रेणी चुनें',
+
+            'show_heading_label' => 'शीर्षक दिखाएं',
+            'show_description_label' => 'विवरण दिखाएं',
+            'show_image_label' => 'श्रेणी छवि दिखाएं',
+
+            'image_label' => 'छवि',
+            'image_info' => 'डिफ़ॉल्ट रूप से श्रेणी की बैनर छवि का उपयोग होता है। 2880 x 880px अनुशंसित',
+
+            'layout_header' => 'लेआउट',
+
+            'height_label' => 'ऊंचाई',
+            'height_options' => [
+                'auto' => 'स्वतः',
+                'xs' => 'बहुत छोटी',
+                'sm' => 'छोटी',
+                'md' => 'मध्यम',
+            ],
+
+            'content_max_width_label' => 'सामग्री की चौड़ाई',
+            'content_max_width_options' => [
+                'narrow' => 'संकरी',
+                'normal' => 'सामान्य',
+                'wide' => 'चौड़ी',
+                'full' => 'पूर्ण',
+            ],
+
+            'content_alignment_label' => 'सामग्री संरेखण',
+            'content_alignment_options' => [
+                'start' => 'बाएं',
+                'center' => 'केंद्र',
+                'end' => 'दाएं',
+            ],
+
+            'content_position_label' => 'सामग्री की स्थिति',
+            'content_position_options' => [
+                'top' => 'ऊपर',
+                'middle' => 'मध्य',
+                'bottom' => 'नीचे',
+            ],
+
+            'heading_header' => 'शीर्षक',
+            'heading_tag_label' => 'शीर्षक टैग',
+            'heading_tag_info' => 'जब यह बैनर पृष्ठ का मुख्य शीर्षक हो तो H1 का उपयोग करें',
+            'heading_tag_options' => [
+                'div' => 'कोई नहीं (div)',
+            ],
+            'heading_typography_label' => 'शीर्षक टाइपोग्राफी',
+
+            'description_header' => 'विवरण',
+            'description_typography_label' => 'विवरण टाइपोग्राफी',
+            'truncate_label' => 'विवरण छोटा करें',
+            'max_lines_label' => 'अधिकतम पंक्तियाँ',
+
+            'appearance_header' => 'दिखावट',
+            'toggle_overlay_label' => 'ओवरले',
+            'toggle_overlay_info' => 'पाठ पठनीय बनाए रखने के लिए छवि को गहरा करें',
+            'overlay_color_label' => 'ओवरले रंग',
+
+            'padding_label' => 'सामग्री पैडिंग',
+            'padding_info' => 'पाठ को बैनर के किनारों से दूर रखता है। छवि फिर भी बैनर भरती है',
+        ],
+    ],
+
     'image' => [
         'name' => 'छवि',
         'description' => 'आकार, बॉर्डर और होवर प्रभावों के साथ एक छवि',

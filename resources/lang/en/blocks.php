@@ -224,6 +224,75 @@ return [
         ],
     ],
 
+    'category-banner' => [
+        'name' => 'Category Banner',
+        'description' => 'A hero banner showing the category image, name and description',
+        'settings' => [
+            'category_label' => 'Category',
+            'category_info' => 'Select a category for preview purpose only',
+
+            'show_heading_label' => 'Show heading',
+            'show_description_label' => 'Show description',
+            'show_image_label' => 'Show category image',
+
+            'image_label' => 'Image',
+            'image_info' => 'Defaults to the category banner image. 2880 x 880px recommended',
+
+            'layout_header' => 'Layout',
+
+            'height_label' => 'Height',
+            'height_options' => [
+                'auto' => 'Auto',
+                'xs' => 'Extra small',
+                'sm' => 'Small',
+                'md' => 'Medium',
+            ],
+
+            'content_max_width_label' => 'Content width',
+            'content_max_width_options' => [
+                'narrow' => 'Narrow',
+                'normal' => 'Normal',
+                'wide' => 'Wide',
+                'full' => 'Full',
+            ],
+
+            'content_alignment_label' => 'Content alignment',
+            'content_alignment_options' => [
+                'start' => 'Left',
+                'center' => 'Center',
+                'end' => 'Right',
+            ],
+
+            'content_position_label' => 'Content position',
+            'content_position_options' => [
+                'top' => 'Top',
+                'middle' => 'Middle',
+                'bottom' => 'Bottom',
+            ],
+
+            'heading_header' => 'Heading',
+            'heading_tag_label' => 'Heading tag',
+            'heading_tag_info' => 'Use H1 when this banner is the main title of the page',
+            'heading_tag_options' => [
+                'div' => 'None (div)',
+            ],
+            'heading_typography_label' => 'Heading typography',
+
+            'description_header' => 'Description',
+            'description_typography_label' => 'Description typography',
+            'truncate_label' => 'Truncate description',
+            'max_lines_label' => 'Max lines',
+
+            'appearance_header' => 'Appearance',
+            'toggle_overlay_label' => 'Overlay',
+            'toggle_overlay_info' => 'Darken the image so the text stays readable',
+            'overlay_color_label' => 'Overlay color',
+
+            'padding_label' => 'Content padding',
+            'padding_info' => 'Insets the text from the banner edges. The image still fills the banner',
+        ],
+    ],
+
     'image' => [
         'name' => 'Image',
         'description' => 'An image with sizing, borders, and hover effects',

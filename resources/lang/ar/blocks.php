@@ -224,6 +224,75 @@ return [
         ],
     ],
 
+    'category-banner' => [
+        'name' => 'بانر الفئة',
+        'description' => 'بانر رئيسي يعرض صورة الفئة واسمها ووصفها',
+        'settings' => [
+            'category_label' => 'الفئة',
+            'category_info' => 'اختر فئة لأغراض المعاينة فقط',
+
+            'show_heading_label' => 'إظهار العنوان',
+            'show_description_label' => 'إظهار الوصف',
+            'show_image_label' => 'إظهار صورة الفئة',
+
+            'image_label' => 'صورة',
+            'image_info' => 'تُستخدم صورة بانر الفئة افتراضيًا. يوصى بمقاس 2880 × 880 بكسل',
+
+            'layout_header' => 'التخطيط',
+
+            'height_label' => 'الارتفاع',
+            'height_options' => [
+                'auto' => 'تلقائي',
+                'xs' => 'صغير جدًا',
+                'sm' => 'صغير',
+                'md' => 'متوسط',
+            ],
+
+            'content_max_width_label' => 'عرض المحتوى',
+            'content_max_width_options' => [
+                'narrow' => 'ضيق',
+                'normal' => 'عادي',
+                'wide' => 'واسع',
+                'full' => 'كامل',
+            ],
+
+            'content_alignment_label' => 'محاذاة المحتوى',
+            'content_alignment_options' => [
+                'start' => 'يسار',
+                'center' => 'وسط',
+                'end' => 'يمين',
+            ],
+
+            'content_position_label' => 'موضع المحتوى',
+            'content_position_options' => [
+                'top' => 'أعلى',
+                'middle' => 'وسط',
+                'bottom' => 'أسفل',
+            ],
+
+            'heading_header' => 'العنوان',
+            'heading_tag_label' => 'وسم العنوان',
+            'heading_tag_info' => 'استخدم H1 عندما يكون هذا البانر العنوان الرئيسي للصفحة',
+            'heading_tag_options' => [
+                'div' => 'بدون (div)',
+            ],
+            'heading_typography_label' => 'طباعة العنوان',
+
+            'description_header' => 'الوصف',
+            'description_typography_label' => 'طباعة الوصف',
+            'truncate_label' => 'اقتطاع الوصف',
+            'max_lines_label' => 'أقصى عدد للأسطر',
+
+            'appearance_header' => 'المظهر',
+            'toggle_overlay_label' => 'التراكب',
+            'toggle_overlay_info' => 'تعتيم الصورة للحفاظ على وضوح النص',
+            'overlay_color_label' => 'لون التراكب',
+
+            'padding_label' => 'الحشو الداخلي للمحتوى',
+            'padding_info' => 'يبعد النص عن حواف البانر. تبقى الصورة تملأ البانر',
+        ],
+    ],
+
     'image' => [
         'name' => 'صورة',
         'description' => 'صورة مع خيارات الحجم والحدود وتأثيرات التمرير',
