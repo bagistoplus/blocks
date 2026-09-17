@@ -215,6 +215,15 @@ return [
         ],
     ],
 
+    'category-description' => [
+        'name' => 'Description de catégorie',
+        'description' => 'Afficher la description de la catégorie',
+        'settings' => [
+            'category_label' => 'Catégorie',
+            'category_info' => 'Sélectionnez une catégorie à des fins de prévisualisation uniquement',
+        ],
+    ],
+
     'image' => [
         'name' => 'Image',
         'description' => 'Une image avec dimensionnement, bordures et effets de survol',

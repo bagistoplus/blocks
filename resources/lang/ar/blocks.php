@@ -215,6 +215,15 @@ return [
         ],
     ],
 
+    'category-description' => [
+        'name' => 'وصف الفئة',
+        'description' => 'عرض وصف الفئة',
+        'settings' => [
+            'category_label' => 'الفئة',
+            'category_info' => 'اختر فئة لأغراض المعاينة فقط',
+        ],
+    ],
+
     'image' => [
         'name' => 'صورة',
         'description' => 'صورة مع خيارات الحجم والحدود وتأثيرات التمرير',

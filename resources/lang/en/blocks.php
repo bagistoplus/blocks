@@ -215,6 +215,15 @@ return [
         ],
     ],
 
+    'category-description' => [
+        'name' => 'Category Description',
+        'description' => 'Display the category description',
+        'settings' => [
+            'category_label' => 'Category',
+            'category_info' => 'Select a category for preview purpose only',
+        ],
+    ],
+
     'image' => [
         'name' => 'Image',
         'description' => 'An image with sizing, borders, and hover effects',
