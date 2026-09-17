@@ -1,3 +1,13 @@
+# [1.6.0](https://github.com/bagistoplus/blocks/compare/v1.5.1...v1.6.0) (2026-09-17)
+
+
+### Features
+
+* add category banner block ([58103ae](https://github.com/bagistoplus/blocks/commit/58103ae32868d73324d2bdb190020c7014b9168a))
+* add category description block ([62f94af](https://github.com/bagistoplus/blocks/commit/62f94afdcfca17ce9656c7cac0672f804b34d42d))
+
+
+
 ## [1.5.1](https://github.com/bagistoplus/blocks/compare/v1.5.0...v1.5.1) (2026-09-16)
 
 
