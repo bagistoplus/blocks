@@ -39,8 +39,6 @@
       $attributes = $attributes->merge(['wire:target' => $wireClick], escape: false);
   }
 
-  $wireTarget = $attributes->has('wire:target') ? 'wire:target=' . $attributes->get('wire:target') : '';
-
   if ($loading) {
       $tag = $attributes->has('href') ? 'a' : 'button';
   } else {
@@ -56,41 +54,20 @@
   @if ($loading) wire:loading.attr="loading" @endif
 >
   @if ($icon && $iconPosition === 'left')
-    <span @if ($loading) {!! $wireTarget !!} wire:loading.class="opacity-0" @endif
-      class="btn-icon inline-flex items-center justify-center transition-opacity duration-200"
-    >
+    <span class="btn-icon inline-flex items-center justify-center transition-opacity duration-200">
       @svg($icon, ['class' => 'size-full'])
     </span>
   @endif
 
   @if (!$square && !$circle)
-    @if ($loading)
-      <span
-        {!! $wireTarget !!}
-        wire:loading.class="opacity-0"
-        class="transition-opacity duration-200"
-      >
-        {{ $slot }}
-      </span>
-    @else
-      {{ $slot }}
-    @endif
+    <span class="btn-label transition-opacity duration-200">{{ $slot }}</span>
   @endif
 
   @if ($icon && $iconPosition === 'right')
-    <span @if ($loading) {!! $wireTarget !!} wire:loading.class="opacity-0" @endif
-      class="btn-icon inline-flex items-center justify-center transition-opacity duration-200"
-    >
+    <span class="btn-icon inline-flex items-center justify-center transition-opacity duration-200">
       @svg($icon, ['class' => 'size-full'])
     </span>
   @endif
 
-  @if ($loading)
-    <span
-      {!! $wireTarget !!}
-      class="absolute top-1/2 -translate-y-1/2 transform"
-      wire:loading.class="loading"
-    >
-    </span>
-  @endif
+  <span class="loading absolute top-1/2 -translate-y-1/2 transform"></span>
 </{{ $tag }}>

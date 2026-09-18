@@ -81,8 +81,8 @@
             #000 calc(var(--depth, 1) * 5%)
         );
 
-        --btn-outline-border-opacity: 20%;
-        --btn-outline-border-opacity-hover: 30%;
+        --btn-outline-border-opacity: 80%;
+        --btn-outline-border-opacity-hover: 80%;
     }
 
     .btn-icon {
@@ -95,11 +95,7 @@
    -------------------------------------------------------------------------- */
 
     .btn:hover {
-        --btn-bg: color-mix(
-            in oklab,
-            var(--btn-color),
-            #000 7%
-        );
+        --btn-bg: color-mix(in oklab, var(--btn-color), #000 7%);
     }
 
     .btn:focus-visible {
@@ -109,16 +105,8 @@
 
     .btn:active {
         translate: 0 0.5px;
-        --btn-bg: color-mix(
-            in oklab,
-            var(--btn-color),
-            #000 5%
-        );
-        --btn-border-color: color-mix(
-            in oklab,
-            var(--btn-color),
-            #000 7%
-        );
+        --btn-bg: color-mix(in oklab, var(--btn-color), #000 5%);
+        --btn-border-color: color-mix(in oklab, var(--btn-color), #000 7%);
     }
 
     .btn:disabled:not([loading]),
@@ -137,6 +125,21 @@
 
     .btn[loading] {
         @apply pointer-events-none opacity-80;
+    }
+
+    /* The loading look is CSS, driven by one attribute on the button, so
+       Livewire and Alpine can both switch it on. */
+    .btn[loading] .btn-icon,
+    .btn[loading] .btn-label {
+        @apply opacity-0;
+    }
+
+    .btn .loading {
+        @apply hidden;
+    }
+
+    .btn[loading] .loading {
+        @apply inline-block;
     }
 
     /* --------------------------------------------------------------------------
@@ -196,7 +199,12 @@
    -------------------------------------------------------------------------- */
 
     /* Soft */
-    .btn-soft:not(:hover, :active, :disabled, [disabled]) {
+    .btn-soft:not(
+        :hover,
+        :active,
+        :disabled:not([loading]),
+        [disabled]:not([loading])
+    ) {
         --btn-fg: var(--btn-color);
         --btn-bg: color-mix(
             in oklab,
@@ -239,15 +247,15 @@
     }
 
     /* Outline */
-    .btn-outline:not(:hover, :active, :disabled, [disabled]) {
+    .btn-outline:not(
+        :hover,
+        :active,
+        :disabled:not([loading]),
+        [disabled]:not([loading])
+    ) {
         --btn-bg: transparent;
         --btn-fg: var(--btn-color);
-        --btn-border-color: color-mix(
-            in oklab,
-            var(--btn-color)
-                var(--btn-outline-border-opacity),
-            transparent
-        );
+        --btn-border-color: var(--btn-color);
         border-width: max(1px, var(--btn-border-width, 1px));
     }
 
@@ -255,32 +263,20 @@
         border-width: max(1px, var(--btn-border-width, 1px));
         --btn-bg: color-mix(
             in oklab,
-            var(--btn-color) 8%,
+            var(--btn-color) 7%,
             var(--color-background)
         );
         --btn-fg: var(--btn-color);
-        --btn-border-color: color-mix(
-            in oklab,
-            var(--btn-color)
-                var(--btn-outline-border-opacity-hover),
-            transparent
-        );
     }
 
     .btn-outline:active {
         border-width: max(1px, var(--btn-border-width, 1px));
         --btn-bg: color-mix(
             in oklab,
-            var(--btn-color) 15%,
+            var(--btn-color) 10%,
             var(--color-background)
         );
         --btn-fg: var(--btn-color);
-        --btn-border-color: color-mix(
-            in oklab,
-            var(--btn-color)
-                var(--btn-outline-border-opacity-hover),
-            transparent
-        );
     }
 
     /* Ghost */
