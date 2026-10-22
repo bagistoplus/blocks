@@ -461,6 +461,7 @@ return [
                 'md' => 'Moyen',
                 'lg' => 'Grand',
                 'full' => 'Complet',
+                'box' => 'Rayon des boîtes du thème',
             ],
         ],
         'placeholder' => 'Aucune étiquette disponible',

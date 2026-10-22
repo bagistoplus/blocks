@@ -461,6 +461,7 @@ return [
                 'md' => 'Medium',
                 'lg' => 'Large',
                 'full' => 'Full',
+                'box' => 'Theme box radius',
             ],
         ],
         'placeholder' => 'No labels available',

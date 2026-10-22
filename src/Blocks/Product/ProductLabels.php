@@ -81,6 +81,7 @@ class ProductLabels extends SimpleBlock
                     'md' => _t('blocks.product-labels.settings.corner_radius_options.md'),
                     'lg' => _t('blocks.product-labels.settings.corner_radius_options.lg'),
                     'full' => _t('blocks.product-labels.settings.corner_radius_options.full'),
+                    'box' => _t('blocks.product-labels.settings.corner_radius_options.box'),
                 ])
                 ->default('md'),
 
@@ -142,6 +143,8 @@ class ProductLabels extends SimpleBlock
             'sm' => 'rounded-sm',
             'lg' => 'rounded-lg',
             'full' => 'rounded-full',
+            // Follows the theme's box radius, falling back to md
+            'box' => 'rounded-[var(--box-radius,0.375rem)]',
             default => 'rounded-md',
         };
 
@@ -149,7 +152,7 @@ class ProductLabels extends SimpleBlock
             return match ($variant) {
                 'outline' => "bg-transparent border border-{$color} text-{$color}",
                 'soft' => "bg-{$color}/10 text-{$color}",
-                default => "bg-{$color} text-{$color}-100",
+                default => "bg-{$color} text-on-{$color}",
             };
         };
 
