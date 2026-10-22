@@ -1,3 +1,17 @@
+# [1.7.0](https://github.com/bagistoplus/blocks/compare/v1.6.0...v1.7.0) (2026-10-22)
+
+
+### Bug Fixes
+
+* drive the button loading state from css so alpine can show it ([a2f7ac5](https://github.com/bagistoplus/blocks/commit/a2f7ac5ba2987a1aa3971430fc604a014fcafda5))
+
+
+### Features
+
+* **product-labels:** add a theme box radius option and use contrast text colours ([5f79dc4](https://github.com/bagistoplus/blocks/commit/5f79dc436852c415a48f2d5c0e6b08d631b8cc62))
+
+
+
 # [1.6.0](https://github.com/bagistoplus/blocks/compare/v1.5.1...v1.6.0) (2026-09-17)
 
 
