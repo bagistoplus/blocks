@@ -301,6 +301,8 @@ return [
             'link_label' => 'Lien',
             'alt_label' => 'Texte alternatif',
             'alt_info' => 'Texte descriptif pour l\'accessibilité et le référencement',
+            'priority_label' => 'Charger en premier',
+            'priority_info' => 'Activez-le pour l\'image principale en haut d\'une page, afin qu\'elle se charge avant le reste. Les autres images se chargent à l\'approche de l\'écran.',
 
             'size_header' => 'Taille',
             'sizing_header' => 'Dimensionnement',

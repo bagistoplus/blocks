@@ -3,12 +3,24 @@
   {{ $block->settings->color_scheme?->attributes() }}
   class="{{ $bannerClasses }}"
 >
-  @if ($image)
+  {{-- The banner opens a category page, so it loads first across the full width --}}
+  @if ($image instanceof \BagistoPlus\Visual\Settings\Support\ImageValue)
+    <x-visual::image
+      :image="$image"
+      :alt="$alt"
+      priority
+      sizes="100vw"
+      class="absolute inset-0 h-full w-full object-cover"
+      :style="$imageStyles ?: null"
+    />
+  @elseif ($image)
     <img
       src="{{ $image }}"
       alt="{{ $alt }}"
       class="absolute inset-0 h-full w-full object-cover"
       @if ($imageStyles) style="{{ $imageStyles }}" @endif
+      fetchpriority="high"
+      decoding="async"
     >
   @elseif ($showImage)
     @visual_design_mode

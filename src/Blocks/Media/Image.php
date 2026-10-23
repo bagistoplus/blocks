@@ -56,6 +56,10 @@ class Image extends SimpleBlock
             Text::make('alt', _t('blocks.image.settings.alt_label'))
                 ->default('')
                 ->info(_t('blocks.image.settings.alt_info')),
+
+            Checkbox::make('priority', _t('blocks.image.settings.priority_label'))
+                ->default(false)
+                ->info(_t('blocks.image.settings.priority_info')),
         ];
     }
 
@@ -172,6 +176,7 @@ class Image extends SimpleBlock
             'image' => $image,
             'link' => $this->block->settings->link ?? null,
             'alt' => $this->block->settings->alt ?? '',
+            'priority' => (bool) ($this->block->settings->priority ?? false),
             'containerClasses' => $this->getContainerClasses(),
             'linkClasses' => $this->getLinkClasses(),
             'containerStyles' => $this->getContainerStyles(),

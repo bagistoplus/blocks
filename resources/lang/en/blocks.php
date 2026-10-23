@@ -301,6 +301,8 @@ return [
             'link_label' => 'Link',
             'alt_label' => 'Alt Text',
             'alt_info' => 'Descriptive text for accessibility and SEO',
+            'priority_label' => 'Load first',
+            'priority_info' => 'Turn on for the main image at the top of a page, so it loads before the rest. Other images load as they scroll into view.',
 
             'size_header' => 'Size',
             'sizing_header' => 'Sizing',

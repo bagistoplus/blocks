@@ -4,6 +4,7 @@ use BagistoPlus\BasicBlocks\Blocks\Category\CategoryImage;
 use BagistoPlus\BasicBlocks\Blocks\Media\Image;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductImage;
 use BagistoPlus\Visual\Data\BlockData;
+use BagistoPlus\Visual\Settings\Support\ImageValue;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
 
@@ -357,4 +358,55 @@ it('renders placeholder styles when container styles are present', function () {
         ->toContain('style="width: 50%"')
         ->toContain('<img')
         ->toContain('src="data:image/svg+xml;base64,');
+});
+
+function renderUploadedImageBlock(bool $priority = false, string $imageStyles = ''): string
+{
+    $block = (object) ['editor_attributes' => new HtmlString('data-editor="image-block"')];
+    $image = new ImageValue(
+        name: 'Hero',
+        path: 'bagisto-visual/images/4865726f_1.jpg',
+        url: 'https://shop.test/storage/hero.jpg',
+        alt: 'Stored alt',
+        width: 1600,
+        height: 900,
+        variants: [640 => 'https://shop.test/storage/640/hero.webp', 1024 => 'https://shop.test/storage/1024/hero.webp'],
+    );
+
+    return Blade::render(
+        '<x-basic-blocks::image-block :block="$block" :image="$image" alt="" :priority="$priority" image-classes="h-full w-full" :image-styles="$imageStyles" />',
+        compact('block', 'image', 'priority', 'imageStyles'),
+    );
+}
+
+it('renders an uploaded image with its webp copies, lazily', function () {
+    $html = renderUploadedImageBlock(imageStyles: 'object-position: 25% 70%');
+
+    expect($html)
+        ->toContain('srcset="https://shop.test/storage/640/hero.webp 640w, https://shop.test/storage/1024/hero.webp 1024w, https://shop.test/storage/hero.jpg 1600w"')
+        ->toContain('sizes="auto, 100vw"')
+        ->toContain('width="1600"')
+        ->toContain('height="900"')
+        ->toContain('alt="Stored alt"')
+        ->toContain('loading="lazy"')
+        ->toContain('class="h-full w-full"')
+        ->toContain('style="object-position: 25% 70%"');
+});
+
+it('loads an uploaded image first when the block asks for priority', function () {
+    expect(renderUploadedImageBlock(priority: true))
+        ->toContain('fetchpriority="high"')
+        ->not->toContain('loading="lazy"');
+});
+
+it('lazy loads a plain image url, as product and category images are', function () {
+    expect(renderImageBlock())
+        ->toContain('src="https://example.com/image.jpg"')
+        ->toContain('loading="lazy"')
+        ->not->toContain('srcset');
+});
+
+it('passes the priority setting to the view', function () {
+    expect((new TestableImageBlock)->viewDataFor(['priority' => true])['priority'])->toBeTrue()
+        ->and((new TestableImageBlock)->viewDataFor([])['priority'])->toBeFalse();
 });

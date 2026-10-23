@@ -56,6 +56,12 @@ it('prefers the category picked in the settings over the context one', function 
     {
         public function __construct(private $category) {}
 
+        // Visual's category setting counts products on the query before finding
+        public function withCount($relations)
+        {
+            return $this;
+        }
+
         public function find($id)
         {
             return $this->category;

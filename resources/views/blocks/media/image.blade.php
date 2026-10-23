@@ -3,6 +3,7 @@
   :image="$image"
   :link="$link"
   :alt="$alt"
+  :priority="$priority"
   :container-classes="$containerClasses"
   :link-classes="$linkClasses"
   :container-styles="$containerStyles"
