@@ -1,3 +1,17 @@
+# [1.9.0](https://github.com/bagistoplus/blocks/compare/v1.8.0...v1.9.0) (2026-10-23)
+
+
+### Bug Fixes
+
+* **a11y:** render styled text as text and name icon-only buttons ([bdc5ce2](https://github.com/bagistoplus/blocks/commit/bdc5ce296cc44999bb928a90feedde9f5830c8cb))
+
+
+### Features
+
+* **backgrounds:** render section and group background images as an img ([af93452](https://github.com/bagistoplus/blocks/commit/af934523bd9a6eaea153162cb63503f66dfa2dbf))
+
+
+
 # [1.8.0](https://github.com/bagistoplus/blocks/compare/v1.7.0...v1.8.0) (2026-10-23)
 
 
