@@ -100,6 +100,9 @@ return [
                 'repeat_y' => 'Repeat Vertically',
             ],
 
+            'background_priority_label' => 'Load first',
+            'background_priority_info' => 'Turn on for a background at the top of a page, so it loads before the rest. Applies when the image covers or fits the area without repeating.',
+
             'border_label' => 'Show Border',
             'border_width_label' => 'Border Width',
             'border_style_label' => 'Border Style',

@@ -100,6 +100,9 @@ return [
                 'repeat_y' => 'Répéter verticalement',
             ],
 
+            'background_priority_label' => 'Charger en premier',
+            'background_priority_info' => 'Activez-le pour un arrière-plan en haut d\'une page, afin qu\'il se charge avant le reste. S\'applique lorsque l\'image couvre ou remplit la zone sans se répéter.',
+
             'border_label' => 'Afficher la bordure',
             'border_width_label' => 'Largeur de la bordure',
             'border_style_label' => 'Style de bordure',

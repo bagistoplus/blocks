@@ -4,6 +4,10 @@
   class="{{ $outerClasses }} relative"
   @if ($outerStyles) style="{{ $outerStyles }}" @endif
 >
+  @if ($backgroundImage)
+    <x-basic-blocks::background-image :image="$backgroundImage" :fit="$backgroundFit" :priority="$backgroundPriority" class="z-0" />
+  @endif
+
   @if ($section->settings->toggle_overlay)
     <div class="absolute inset-0 z-0 pointer-events-none" @if ($overlayStyles) style="{{ $overlayStyles }}" @endif></div>
   @endif

@@ -634,6 +634,9 @@ return [
                 'repeat_y' => 'Repeat Y',
             ],
 
+            'background_priority_label' => 'Load first',
+            'background_priority_info' => 'Turn on for a background at the top of a page, so it loads before the rest. Applies when the image covers or fits the area without repeating.',
+
             // Overlay
             'overlay_header' => 'Overlay',
             'is_overlay_label' => 'Position as Overlay',

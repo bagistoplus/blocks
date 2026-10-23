@@ -634,6 +634,9 @@ return [
                 'repeat_y' => 'Répéter Y',
             ],
 
+            'background_priority_label' => 'Charger en premier',
+            'background_priority_info' => 'Activez-le pour un arrière-plan en haut d\'une page, afin qu\'il se charge avant le reste. S\'applique lorsque l\'image couvre ou remplit la zone sans se répéter.',
+
             // Overlay
             'overlay_header' => 'Superposition',
             'is_overlay_label' => 'Positionner en superposition',

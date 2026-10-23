@@ -8,6 +8,9 @@
     @if ($linkRel) rel="{{ $linkRel }}" @endif
     @if ($style) style="{{ $style }}" @endif
   >
+    @if ($backgroundImage)
+      <x-basic-blocks::background-image :image="$backgroundImage" :fit="$backgroundFit" :priority="$backgroundPriority" class="-z-10 rounded-[inherit]" />
+    @endif
     @children
   </a>
 @else
@@ -17,6 +20,9 @@
     class="{{ $class }}"
     @if ($style) style="{{ $style }}" @endif
   >
+    @if ($backgroundImage)
+      <x-basic-blocks::background-image :image="$backgroundImage" :fit="$backgroundFit" :priority="$backgroundPriority" class="-z-10 rounded-[inherit]" />
+    @endif
     @children
   </div>
 @endif

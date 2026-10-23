@@ -164,6 +164,11 @@ class FlexSection extends SimpleSection
                 ->default('no-repeat')
                 ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
 
+            Checkbox::make('background_priority', _t('sections.flex-section.settings.background_priority_label'))
+                ->default(false)
+                ->info(_t('sections.flex-section.settings.background_priority_info'))
+                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
+
             Checkbox::make('border', _t('sections.flex-section.settings.border_label'))
                 ->default(false),
 
@@ -247,6 +252,9 @@ class FlexSection extends SimpleSection
             'outerClasses' => $outerAttributes['classes'],
             'outerStyles' => $outerAttributes['styles'],
             'overlayStyles' => $this->computeOverlayStyles(),
+            'backgroundImage' => $this->imageBackground(),
+            'backgroundFit' => ($s->background_size ?? 'cover') === 'contain' ? 'object-contain' : 'object-cover',
+            'backgroundPriority' => (bool) ($s->background_priority ?? false),
             'contentWidthClasses' => ($s->section_width ?? 'container') === 'container' ? 'container mx-auto' : 'w-full',
             'sectionHeightClasses' => $sectionHeightAttributes['classes'],
             'sectionHeightStyles' => $sectionHeightAttributes['styles'],
@@ -331,7 +339,7 @@ class FlexSection extends SimpleSection
             $styles[] = "background-color: {$s->background_color}";
         } elseif ($bgType === 'gradient' && $s->has('background_gradient') && $s->background_gradient) {
             $styles[] = "background-image: {$s->background_gradient}";
-        } elseif ($bgType === 'image' && $s->has('background_image') && $s->background_image) {
+        } elseif ($bgType === 'image' && $s->has('background_image') && $s->background_image && ! $this->imageBackground()) {
             /** @var ImageValue $backgroundImage */
             $backgroundImage = $s->background_image;
 
@@ -351,6 +359,26 @@ class FlexSection extends SimpleSection
                 default => 'bg-no-repeat',
             };
         }
+    }
+
+    /**
+     * The background image when it renders as an <img> behind the content, so
+     * it can take a srcset and load first. Repeated or auto-sized images have
+     * no <img> equivalent and stay a CSS background.
+     */
+    protected function imageBackground(): ?ImageValue
+    {
+        $s = $this->section->settings;
+
+        if (($s->background_type ?? 'none') !== 'image' || ! $s->has('background_image') || ! $s->background_image) {
+            return null;
+        }
+
+        if (($s->background_size ?? 'cover') === 'auto' || ($s->background_repeat ?? 'no-repeat') !== 'no-repeat') {
+            return null;
+        }
+
+        return $s->background_image instanceof ImageValue ? $s->background_image : null;
     }
 
     protected function mapBorder(array &$classes, array &$styles): void

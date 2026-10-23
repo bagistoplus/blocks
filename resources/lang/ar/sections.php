@@ -100,6 +100,9 @@ return [
                 'repeat_y' => 'تكرار عمودي',
             ],
 
+            'background_priority_label' => 'التحميل أولاً',
+            'background_priority_info' => 'فعّله لخلفية في أعلى الصفحة لتُحمَّل قبل بقية المحتوى. يُطبَّق عندما تغطي الصورة المساحة أو تتسع داخلها دون تكرار.',
+
             'border_label' => 'إظهار الحدود',
             'border_width_label' => 'عرض الحدود',
             'border_style_label' => 'نمط الحدود',

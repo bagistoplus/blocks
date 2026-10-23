@@ -296,6 +296,11 @@ class Group extends SimpleBlock
                 ->default('no-repeat')
                 ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
 
+            Checkbox::make('background_priority', _t('blocks.group.settings.background_priority_label'))
+                ->default(false)
+                ->info(_t('blocks.group.settings.background_priority_info'))
+                ->visibleWhen(fn ($rule) => $rule->when('background_type', 'image')),
+
             // Overlay
             Header::make(_t('blocks.group.settings.overlay_header')),
 
@@ -385,6 +390,9 @@ class Group extends SimpleBlock
         $openInNewTab = (bool) ($this->block->settings->open_in_new_tab ?? false);
 
         return array_merge($this->generateClasses(), [
+            'backgroundImage' => $this->imageBackground(),
+            'backgroundFit' => ($this->block->settings->background_size ?? 'cover') === 'contain' ? 'object-contain' : 'object-cover',
+            'backgroundPriority' => (bool) ($this->block->settings->background_priority ?? false),
             'link' => $link,
             'isLinkable' => $link !== null,
             'linkTarget' => $link !== null && $openInNewTab ? '_blank' : null,
@@ -483,8 +491,14 @@ class Group extends SimpleBlock
                 'relative' => 'relative',
                 'absolute' => 'absolute',
                 'fixed' => 'fixed',
-                default => 'static',
+                // A background image needs a positioned box to fill
+                default => $this->imageBackground() ? 'relative' : 'static',
             };
+        }
+
+        // Keeps the background image behind the children but above the group's own background
+        if ($this->imageBackground()) {
+            $classes[] = 'isolate';
         }
     }
 
@@ -747,7 +761,7 @@ class Group extends SimpleBlock
             $styles[] = "background-color: {$this->block->settings->background_color}";
         } elseif ($bgType === 'gradient' && $this->block->settings->has('background_gradient') && $this->block->settings->background_gradient) {
             $styles[] = "background-image: {$this->block->settings->background_gradient}";
-        } elseif ($bgType === 'image' && $this->block->settings->has('background_image') && $this->block->settings->background_image) {
+        } elseif ($bgType === 'image' && $this->block->settings->has('background_image') && $this->block->settings->background_image && ! $this->imageBackground()) {
             /** @var ImageValue $backgroundImage */
             $backgroundImage = $this->block->settings->background_image;
 
@@ -767,6 +781,26 @@ class Group extends SimpleBlock
                 default => 'bg-no-repeat',
             };
         }
+    }
+
+    /**
+     * The background image when it renders as an <img> behind the children, so
+     * it can take a srcset and load first. Repeated or auto-sized images have
+     * no <img> equivalent and stay a CSS background.
+     */
+    protected function imageBackground(): ?ImageValue
+    {
+        $s = $this->block->settings;
+
+        if (($s->background_type ?? 'none') !== 'image' || ! $s->has('background_image') || ! $s->background_image) {
+            return null;
+        }
+
+        if (($s->background_size ?? 'cover') === 'auto' || ($s->background_repeat ?? 'no-repeat') !== 'no-repeat') {
+            return null;
+        }
+
+        return $s->background_image instanceof ImageValue ? $s->background_image : null;
     }
 
     protected function mapOverlay(array &$classes, array &$styles): void

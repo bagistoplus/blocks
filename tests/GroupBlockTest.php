@@ -49,7 +49,7 @@ function groupPresetProperties(): array
         ->all();
 }
 
-function renderGroupBlock(array $settings = []): string
+function renderGroupBlock(array $settings = [], string $type = '@test/group'): string
 {
     $block = (object) [
         'id' => 'group-block',
@@ -57,11 +57,11 @@ function renderGroupBlock(array $settings = []): string
         'settings' => new Fluent($settings),
     ];
 
-    $viewData = (new TestableGroupBlock)->viewDataFor($settings);
+    $viewData = (new TestableGroupBlock)->viewDataFor($settings, $type);
 
     return Blade::render(
         <<<'BLADE'
-@include('basic-blocks::blocks.group', ['block' => $block, 'class' => $class, 'style' => $style, 'link' => $link, 'isLinkable' => $isLinkable, 'linkTarget' => $linkTarget, 'linkRel' => $linkRel])
+@include('basic-blocks::blocks.group', ['block' => $block, 'class' => $class, 'style' => $style, 'link' => $link, 'isLinkable' => $isLinkable, 'linkTarget' => $linkTarget, 'linkRel' => $linkRel, 'backgroundImage' => $backgroundImage, 'backgroundFit' => $backgroundFit, 'backgroundPriority' => $backgroundPriority])
 BLADE,
         array_merge(['block' => $block], $viewData)
     );
@@ -314,48 +314,115 @@ it('falls back to border-solid for unknown border style values', function () {
         ->not->toContain('border-double');
 });
 
-it('uses image focal point for group background position', function () {
-    $viewData = (new TestableGroupBlock)->viewDataFor([
+it('renders a group background image as an img at its focal point', function () {
+    $settings = [
         'background_type' => 'image',
         'background_image' => [
             'path' => 'https://example.com/hero.jpg',
             'focalPoint' => ['x' => 25, 'y' => 70],
         ],
-    ], '@basic-blocks/group');
+    ];
 
-    expect($viewData['style'])
-        ->toContain("background-image: url('https://example.com/hero.jpg')")
-        ->toContain('background-position: 25% 70%')
+    $viewData = (new TestableGroupBlock)->viewDataFor($settings, '@basic-blocks/group');
+    $html = renderGroupBlock($settings, '@basic-blocks/group');
+
+    expect($viewData['style'])->not->toContain('background-image')
         ->and(groupClassTokens($viewData['class']))
-        ->not->toContain('bg-center')
-        ->not->toContain('bg-top');
+        ->not->toContain('bg-cover')
+        ->and($html)
+        ->toContain('src="https://example.com/hero.jpg"')
+        ->toContain('object-position: 25% 70%')
+        ->toContain('object-cover')
+        ->toContain('-z-10')
+        ->toContain('loading="lazy"');
 });
 
 it('uses center focal point for group background images without explicit focal point', function () {
-    $viewData = (new TestableGroupBlock)->viewDataFor([
+    $html = renderGroupBlock([
         'background_type' => 'image',
         'background_image' => [
             'path' => 'https://example.com/hero.jpg',
         ],
     ], '@basic-blocks/group');
 
-    expect($viewData['style'])
-        ->toContain('background-position: 50% 50%');
+    expect($html)->toContain('object-position: 50% 50%');
 });
 
 it('uses default focal point for string group background images', function () {
-    $viewData = (new TestableGroupBlock)->viewDataFor([
+    $html = renderGroupBlock([
         'background_type' => 'image',
         'background_image' => 'https://example.com/legacy.jpg',
         'background_position' => 'top',
     ], '@basic-blocks/group');
 
-    expect(groupClassTokens($viewData['class']))
-        ->not->toContain('bg-top')
-        ->and($viewData['style'])
-        ->toContain("background-image: url('https://example.com/legacy.jpg')")
-        ->toContain('background-position: 50% 50%');
+    expect($html)
+        ->toContain('src="https://example.com/legacy.jpg"')
+        ->toContain('object-position: 50% 50%');
 });
+
+it('positions a static group so its background image fills it', function () {
+    $viewData = (new TestableGroupBlock)->viewDataFor([
+        'background_type' => 'image',
+        'background_image' => 'https://example.com/hero.jpg',
+    ], '@basic-blocks/group');
+
+    expect(groupClassTokens($viewData['class']))
+        ->toContain('relative')
+        ->toContain('isolate')
+        ->not->toContain('static');
+});
+
+it('keeps the chosen position of a group with a background image', function () {
+    $viewData = (new TestableGroupBlock)->viewDataFor([
+        'position' => 'absolute',
+        'background_type' => 'image',
+        'background_image' => 'https://example.com/hero.jpg',
+    ], '@basic-blocks/group');
+
+    expect(groupClassTokens($viewData['class']))
+        ->toContain('absolute')
+        ->toContain('isolate')
+        ->not->toContain('relative');
+});
+
+it('renders the group background image in a linked group', function () {
+    $html = renderGroupBlock([
+        'link' => '/sale',
+        'background_type' => 'image',
+        'background_image' => 'https://example.com/hero.jpg',
+        'background_size' => 'contain',
+        'background_priority' => true,
+    ], '@basic-blocks/group');
+
+    expect($html)
+        ->toContain('<a')
+        ->toContain('src="https://example.com/hero.jpg"')
+        ->toContain('object-contain')
+        ->toContain('fetchpriority="high"');
+});
+
+it('keeps repeated and auto sized group background images as a css background', function (array $settings, string $expectedClass) {
+    $settings = array_merge([
+        'background_type' => 'image',
+        'background_image' => 'https://example.com/pattern.png',
+    ], $settings);
+
+    $viewData = (new TestableGroupBlock)->viewDataFor($settings, '@basic-blocks/group');
+
+    expect($viewData['backgroundImage'])->toBeNull()
+        ->and($viewData['style'])
+        ->toContain("background-image: url('https://example.com/pattern.png')")
+        ->and(groupClassTokens($viewData['class']))
+        ->toContain($expectedClass)
+        ->toContain('static')
+        ->not->toContain('isolate')
+        ->and(renderGroupBlock($settings, '@basic-blocks/group'))
+        ->not->toContain('<img');
+})->with([
+    'repeat' => [['background_repeat' => 'repeat'], 'bg-repeat'],
+    'repeat-y' => [['background_repeat' => 'repeat-y'], 'bg-repeat-y'],
+    'auto size' => [['background_size' => 'auto'], 'bg-auto'],
+]);
 
 it('renders group as anchor when link is a non-empty string', function () {
     $html = renderGroupBlock([

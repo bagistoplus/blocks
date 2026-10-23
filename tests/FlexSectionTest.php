@@ -72,6 +72,9 @@ function renderFlexSection(array $settings = []): string
     'sectionHeightStyles' => $sectionHeightStyles,
     'flexClasses' => $flexClasses,
     'paddingClasses' => $paddingClasses,
+    'backgroundImage' => $backgroundImage,
+    'backgroundFit' => $backgroundFit,
+    'backgroundPriority' => $backgroundPriority,
 ])
 BLADE,
         array_merge(['section' => $section], $viewData)
@@ -179,48 +182,98 @@ it('does not add overflow hidden when border radius is none', function () {
         ->not->toContain('overflow-hidden');
 });
 
-it('uses image focal point for background position', function () {
-    $viewData = (new TestableFlexSection)->viewDataFor([
+it('renders a cover background image as an img at its focal point', function () {
+    $settings = [
         'background_type' => 'image',
         'background_image' => [
             'path' => 'https://example.com/hero.jpg',
             'focalPoint' => ['x' => 25, 'y' => 70],
         ],
-    ]);
+    ];
 
-    expect($viewData['outerStyles'])
-        ->toContain("background-image: url('https://example.com/hero.jpg')")
-        ->toContain('background-position: 25% 70%')
+    $viewData = (new TestableFlexSection)->viewDataFor($settings);
+    $html = renderFlexSection($settings);
+
+    expect($viewData['outerStyles'])->not->toContain('background-image')
         ->and(flexSectionClassTokens($viewData['outerClasses']))
-        ->not->toContain('bg-center')
-        ->not->toContain('bg-top');
+        ->not->toContain('bg-cover')
+        ->not->toContain('bg-no-repeat')
+        ->and($html)
+        ->toContain('src="https://example.com/hero.jpg"')
+        ->toContain('object-position: 25% 70%')
+        ->toContain('object-cover')
+        ->toContain('alt=""')
+        ->toContain('loading="lazy"')
+        ->not->toContain('fetchpriority');
 });
 
 it('uses center focal point for background images without explicit focal point', function () {
-    $viewData = (new TestableFlexSection)->viewDataFor([
+    $html = renderFlexSection([
         'background_type' => 'image',
         'background_image' => [
             'path' => 'https://example.com/hero.jpg',
         ],
     ]);
 
-    expect($viewData['outerStyles'])
-        ->toContain('background-position: 50% 50%');
+    expect($html)->toContain('object-position: 50% 50%');
 });
 
 it('uses default focal point for string background images', function () {
-    $viewData = (new TestableFlexSection)->viewDataFor([
+    $html = renderFlexSection([
         'background_type' => 'image',
         'background_image' => 'https://example.com/legacy.jpg',
         'background_position' => 'top',
     ]);
 
-    expect(flexSectionClassTokens($viewData['outerClasses']))
-        ->not->toContain('bg-top')
-        ->and($viewData['outerStyles'])
-        ->toContain("background-image: url('https://example.com/legacy.jpg')")
-        ->toContain('background-position: 50% 50%');
+    expect($html)
+        ->toContain('src="https://example.com/legacy.jpg"')
+        ->toContain('object-position: 50% 50%');
 });
+
+it('fits a contained background image inside the section', function () {
+    $html = renderFlexSection([
+        'background_type' => 'image',
+        'background_image' => 'https://example.com/hero.jpg',
+        'background_size' => 'contain',
+    ]);
+
+    expect($html)
+        ->toContain('object-contain')
+        ->not->toContain('object-cover');
+});
+
+it('loads a priority background image first', function () {
+    $html = renderFlexSection([
+        'background_type' => 'image',
+        'background_image' => 'https://example.com/hero.jpg',
+        'background_priority' => true,
+    ]);
+
+    expect($html)
+        ->toContain('fetchpriority="high"')
+        ->not->toContain('loading="lazy"');
+});
+
+it('keeps repeated and auto sized background images as a css background', function (array $settings, string $expectedClass) {
+    $settings = array_merge([
+        'background_type' => 'image',
+        'background_image' => 'https://example.com/pattern.png',
+    ], $settings);
+
+    $viewData = (new TestableFlexSection)->viewDataFor($settings);
+
+    expect($viewData['backgroundImage'])->toBeNull()
+        ->and($viewData['outerStyles'])
+        ->toContain("background-image: url('https://example.com/pattern.png')")
+        ->and(flexSectionClassTokens($viewData['outerClasses']))
+        ->toContain($expectedClass)
+        ->and(renderFlexSection($settings))
+        ->not->toContain('<img');
+})->with([
+    'repeat' => [['background_repeat' => 'repeat'], 'bg-repeat'],
+    'repeat-x' => [['background_repeat' => 'repeat-x'], 'bg-repeat-x'],
+    'auto size' => [['background_size' => 'auto'], 'bg-auto'],
+]);
 
 it('renders responsive custom height with css variables', function () {
     $viewData = (new TestableFlexSection)->viewDataFor([
