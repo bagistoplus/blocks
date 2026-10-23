@@ -1,3 +1,12 @@
+# [1.8.0](https://github.com/bagistoplus/blocks/compare/v1.7.0...v1.8.0) (2026-10-23)
+
+
+### Features
+
+* **images:** serve uploaded images as responsive webp and add a load first option ([454ddad](https://github.com/bagistoplus/blocks/commit/454ddad30ac82e27c5da26feddea2765221001da))
+
+
+
 # [1.7.0](https://github.com/bagistoplus/blocks/compare/v1.6.0...v1.7.0) (2026-10-22)
 
 
