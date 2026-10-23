@@ -39,6 +39,10 @@ class Button extends SimpleBlock
             Text::make('text', _t('blocks.button.settings.text_label'))
                 ->default('Button'),
 
+            Text::make('aria_label', _t('blocks.button.settings.aria_label_label'))
+                ->default('')
+                ->info(_t('blocks.button.settings.aria_label_info')),
+
             Link::make('url', _t('blocks.button.settings.url_label')),
 
             Checkbox::make('open_in_new_tab', _t('blocks.button.settings.open_in_new_tab_label'))
@@ -166,6 +170,7 @@ class Button extends SimpleBlock
             'rel' => $openInNewTab ? 'noopener noreferrer' : null,
             'icon' => $s->icon ?? null,
             'iconPosition' => $s->icon_position ?? 'left',
+            'ariaLabel' => ($s->aria_label ?? '') ?: null,
         ];
     }
 }

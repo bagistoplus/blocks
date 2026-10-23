@@ -15,6 +15,11 @@ class TestableTextBlock extends Text
 
         return $this->getViewData();
     }
+
+    public static function tagFor(?string $typography): string
+    {
+        return static::tagForTypography($typography);
+    }
 }
 
 function textViewData(array $properties): array
@@ -130,3 +135,12 @@ it('combines the clamp variable with a custom color', function () {
 
     expect($data['styles'])->toBe('color: #F00; --max-lines: 3;');
 });
+
+it('stays text when styled like a heading', function (?string $typography, string $tag) {
+    expect(TestableTextBlock::tagFor($typography))->toBe($tag);
+})->with([
+    'heading' => ['heading-2', 'p'],
+    'small heading' => ['heading-6', 'p'],
+    'body' => ['body', 'p'],
+    'none' => [null, 'div'],
+]);

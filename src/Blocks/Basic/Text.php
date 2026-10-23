@@ -346,19 +346,18 @@ class Text extends SimpleBlock
     }
 
     /**
-     * Get the HTML tag to use
+     * Get the HTML tag to use.
+     *
+     * Text styled like a heading stays text, so it never skips a level in the
+     * page's outline; a real heading is the Heading block, which has a level.
      */
     protected function getTag(): string
     {
-        return match ($this->block->settings->typography?->id) {
-            'heading-1' => 'h1',
-            'heading-2' => 'h2',
-            'heading-3' => 'h3',
-            'heading-4' => 'h4',
-            'heading-5' => 'h5',
-            'heading-6' => 'h6',
-            'body' => 'p',
-            default => 'div',
-        };
+        return static::tagForTypography($this->block->settings->typography?->id);
+    }
+
+    protected static function tagForTypography(?string $typography): string
+    {
+        return $typography === 'body' || str_starts_with((string) $typography, 'heading-') ? 'p' : 'div';
     }
 }

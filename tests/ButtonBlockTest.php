@@ -59,6 +59,7 @@ function renderButtonBlock(array $settings = []): string
     'rel' => $rel,
     'icon' => $icon,
     'iconPosition' => $iconPosition,
+    'ariaLabel' => $ariaLabel,
 ])
 BLADE,
         array_merge(['block' => $block], $viewData)
@@ -144,4 +145,14 @@ it('renders square button class', function () {
     expect($html)
         ->toContain('btn-square')
         ->not->toContain('Button text');
+});
+
+it('names an icon only button for screen readers', function () {
+    $html = renderButtonBlock(['text' => '', 'icon' => 'lucide-facebook', 'url' => 'https://facebook.com', 'aria_label' => 'Facebook']);
+
+    expect($html)->toContain('aria-label="Facebook"');
+});
+
+it('leaves the accessible name to the text by default', function () {
+    expect(renderButtonBlock())->not->toContain('aria-label');
 });

@@ -713,6 +713,8 @@ return [
         'description' => 'A customizable button with color, style, and size options',
         'settings' => [
             'text_label' => 'Text',
+            'aria_label_label' => 'Accessible name',
+            'aria_label_info' => 'Read by screen readers instead of the text. Needed when the button shows only an icon.',
             'url_label' => 'URL',
             'open_in_new_tab_label' => 'Open in new tab',
 

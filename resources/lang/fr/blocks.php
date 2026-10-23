@@ -713,6 +713,8 @@ return [
         'description' => 'Un bouton personnalisable avec des options de couleur, style et taille',
         'settings' => [
             'text_label' => 'Texte',
+            'aria_label_label' => 'Nom accessible',
+            'aria_label_info' => 'Lu par les lecteurs d\'écran à la place du texte. Nécessaire lorsque le bouton n\'affiche qu\'une icône.',
             'url_label' => 'URL',
             'open_in_new_tab_label' => 'Ouvrir dans un nouvel onglet',
 

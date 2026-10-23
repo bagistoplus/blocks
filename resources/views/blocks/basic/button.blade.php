@@ -11,6 +11,7 @@
   href="{{ $url }}"
   :target="$target"
   :rel="$rel"
+  :aria-label="$ariaLabel"
 >
   <span>{{ $block->settings->text }}</span>
 </x-basic-blocks::button>
