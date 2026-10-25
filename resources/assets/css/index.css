@@ -312,12 +312,14 @@
         --btn-fg: var(--btn-color);
     }
 
-    /* Link */
+    /* Link. No side padding, so it lines up with the text around it. Set directly,
+       because the size utilities set --btn-p from a later layer. */
     .btn-link {
         --btn-border-color: transparent;
         --btn-bg: transparent;
         --btn-fg: var(--btn-color);
         box-shadow: none;
+        padding-inline: 0;
     }
 
     .btn-link:is(.btn-active, :hover, :active:focus, :focus-visible) {
