@@ -60,6 +60,8 @@ class CategoryImage extends Image
         return array_merge(parent::getViewData(), [
             'image' => $imageUrl,
             'alt' => $category->name,
+            // A list can mark the cards it shows first, so their image loads with the page instead of lazily
+            'priority' => (bool) $this->context('priority'),
         ]);
     }
 

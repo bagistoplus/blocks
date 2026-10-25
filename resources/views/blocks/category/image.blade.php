@@ -2,6 +2,7 @@
   :block="$block"
   :image="$image"
   :alt="$alt"
+  :priority="$priority"
   :container-classes="$containerClasses"
   :container-styles="$containerStyles"
   :image-classes="$imageClasses"
