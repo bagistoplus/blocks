@@ -3,7 +3,6 @@
 use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Data\BlockData;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\HtmlString;
 
 class TestableGroupBlock extends Group
@@ -51,11 +50,14 @@ function groupPresetProperties(): array
 
 function renderGroupBlock(array $settings = [], string $type = '@test/group'): string
 {
-    $block = (object) [
+    // A real BlockData, because the children tag reads the block's children to find their compiled file
+    $block = BlockData::make([
         'id' => 'group-block',
-        'editor_attributes' => new HtmlString('data-editor="group-block"'),
-        'settings' => new Fluent($settings),
-    ];
+        'type' => $type,
+        'properties' => $settings,
+    ]);
+
+    $block->editor_attributes = new HtmlString('data-editor="group-block"');
 
     $viewData = (new TestableGroupBlock)->viewDataFor($settings, $type);
 
