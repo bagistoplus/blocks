@@ -1,3 +1,17 @@
+# [1.10.0](https://github.com/bagistoplus/blocks/compare/v1.9.0...v1.10.0) (2026-10-25)
+
+
+### Bug Fixes
+
+* **button:** line link buttons up with the text around them ([72ca0d1](https://github.com/bagistoplus/blocks/commit/72ca0d1bf9f9be018f541b089636a9373f221117))
+
+
+### Features
+
+* **button:** set the button size per device ([757ecd4](https://github.com/bagistoplus/blocks/commit/757ecd40e3d9cc3b61afe3313cd9a3a9b864a085))
+
+
+
 # [1.9.0](https://github.com/bagistoplus/blocks/compare/v1.8.0...v1.9.0) (2026-10-23)
 
 
