@@ -78,7 +78,8 @@ class Button extends SimpleBlock
                     'lg' => _t('blocks.button.settings.size_options.lg'),
                     'xl' => _t('blocks.button.settings.size_options.xl'),
                 ])
-                ->default('md'),
+                ->default('md')
+                ->responsive(),
 
             Checkbox::make('full_width', _t('blocks.button.settings.full_width_label'))
                 ->asSwitch()

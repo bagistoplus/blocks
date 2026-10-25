@@ -127,6 +127,16 @@ it('renders size-aware icon classes', function () {
         ->not->toContain('size-[1.2em]');
 });
 
+it('renders a size per breakpoint', function () {
+    $html = renderButtonBlock([
+        'size' => ['_default' => 'xl', 'mobile' => 'md'],
+    ]);
+
+    expect($html)
+        ->toContain('btn-xl mobile:btn-md')
+        ->not->toContain('tablet:btn-');
+});
+
 it('renders circle button class', function () {
     $html = renderButtonBlock([
         'circle' => true,

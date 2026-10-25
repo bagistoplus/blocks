@@ -13,7 +13,7 @@
 ])
 
 @php
-  $classes = ['relative', 'btn', "btn-{$color}", "btn-{$size}"];
+  $classes = ['relative', 'btn', "btn-{$color}", \BagistoPlus\BasicBlocks\Tailwind::responsive($size, fn($v) => "btn-{$v}")];
 
   if ($variant !== 'filled') {
       $classes[] = "btn-{$variant}";
