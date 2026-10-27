@@ -1,3 +1,12 @@
+## [1.10.1](https://github.com/bagistoplus/blocks/compare/v1.10.0...v1.10.1) (2026-10-27)
+
+
+### Performance Improvements
+
+* **category-image:** load the image with the page when its card is a priority ([371f8a8](https://github.com/bagistoplus/blocks/commit/371f8a8582335131ed1b8e2188f72c77016ae5e8))
+
+
+
 # [1.10.0](https://github.com/bagistoplus/blocks/compare/v1.9.0...v1.10.0) (2026-10-25)
 
 
